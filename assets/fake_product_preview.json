@@ -1,0 +1,340 @@
+{
+  "products": [
+    {
+      "id": "cdbd723c-dfef-4371-9a4c-803ac9ac3cea",
+      "name": "Product 1",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 10,
+      "price": 10,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "38c27ae5-5c8e-4438-94ee-0de4d21fb54b",
+      "name": "Product 2",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 33,
+      "price": 33,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "3c26f3c8-d68a-4242-8e6c-bd09ee4a7575",
+      "name": "Product 3",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 950,
+      "price": 1000,
+      "imageUrl": "q",
+      "percentage": 5,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "af734e8d-238a-4f9b-a099-ab56543805d1",
+      "name": "Product 4",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 300,
+      "price": 300,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "cffd04a8-4555-4224-9199-438419fd6fb5",
+      "name": "Product 5",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 110,
+      "price": 110,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "9e1a86e3-51f1-4b0c-ae82-9697af179012",
+      "name": "Product 6",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 450,
+      "price": 450,
+      "imageUrl": "q",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "be48e350-073b-4ce3-8691-23632472dd3a",
+      "name": "Product 7",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 250,
+      "price": 250,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "bb506759-a884-49be-b6a0-702b57e27530",
+      "name": "Product 8",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 800,
+      "price": 800,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "d70d7507-8472-4702-8c1d-fcefe80fc54f",
+      "name": "Product 9",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 900,
+      "price": 1000,
+      "imageUrl": "",
+      "percentage": 10,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "7dc52dd8-2d6f-4652-9a74-f4e5f229a0ee",
+      "name": "Product 10",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 500,
+      "price": 500,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "889132c0-b677-4e4e-8f88-59fc71af4cdd",
+      "name": "Product 11",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 700,
+      "price": 700,
+      "imageUrl": "q",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "592cb868-541f-4b1d-b139-e11e4beb0790",
+      "name": "Product 12",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 350,
+      "price": 350,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "ed0b1387-e1d3-46f2-a136-bbe765fd9de7",
+      "name": "Product 13",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 1000,
+      "price": 1000,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "3418120e-39a7-4ac7-b502-a850942387e5",
+      "name": "Product 14",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 6500,
+      "price": 6500,
+      "imageUrl": "q",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "6760c10b-5fc0-48c5-9b1b-016ea5480d1d",
+      "name": "Product 15",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 4300,
+      "price": 430,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "af45cc20-86c6-46d9-be59-1d44c75d80cb",
+      "name": "Product 16",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 400,
+      "price": 400,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "82bc4f5b-ea4c-4e75-a8aa-2c7614c24136",
+      "name": "Product 17",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 750,
+      "price": 1000,
+      "imageUrl": "",
+      "percentage": 25,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "d1d9a43b-0e02-493c-a572-34d130d69b3b",
+      "name": "Product 18",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 670,
+      "price": 670,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "d0ba974a-0a71-473a-8a26-633959c4d58e",
+      "name": "Product 19",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 500,
+      "price": 500,
+      "imageUrl": "q",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "2a898085-9219-4ae2-9510-ee60ea26841a",
+      "name": "Product 20",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 650,
+      "price": 650,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "2ef5fb1b-2b9e-4bcf-90ab-bffd1b040bf9",
+      "name": "Product 21",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 640,
+      "price": 640,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "a874bbc7-15f6-4ab3-a5db-5acd4e8edffc",
+      "name": "Product 22",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 100,
+      "price": 100,
+      "imageUrl": "q",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    },
+    {
+      "id": "e09b4ca4-8727-43fb-af53-0a75eed7fb68",
+      "name": "Product 23",
+      "categoryPreview": {
+        "id": "69fbd135-a8cd-4c8a-b6e8-3688d70de740",
+        "name": "Category 2"
+      },
+      "displayPrice": 720,
+      "price": 800,
+      "imageUrl": "",
+      "percentage": 10,
+      "isFavorite": true,
+      "currency": "FCFA"
+    },
+    {
+      "id": "6acc3ed6-de67-413d-a51f-74713b3b8b36",
+      "name": "Product 24",
+      "categoryPreview": {
+        "id": "9594bb9f-25bb-4a44-a51e-be300f74bbf8",
+        "name": "Category 1"
+      },
+      "displayPrice": 1000,
+      "price": 1000,
+      "imageUrl": "",
+      "percentage": 0,
+      "isFavorite": false,
+      "currency": "FCFA"
+    }
+  ]
+}
