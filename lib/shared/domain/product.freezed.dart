@@ -25,7 +25,10 @@ mixin _$Product {
   ProductCategoryPreview get categoryPreview =>
       throw _privateConstructorUsedError;
   int get displayPrice => throw _privateConstructorUsedError;
+  String get displayPriceAsString => throw _privateConstructorUsedError;
+  String get priceAsString => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  String get currency => throw _privateConstructorUsedError;
   String get image1 => throw _privateConstructorUsedError;
   String get image2 => throw _privateConstructorUsedError;
   String get image3 => throw _privateConstructorUsedError;
@@ -50,7 +53,10 @@ abstract class $ProductCopyWith<$Res> {
       String name,
       ProductCategoryPreview categoryPreview,
       int displayPrice,
+      String displayPriceAsString,
+      String priceAsString,
       int price,
+      String currency,
       String image1,
       String image2,
       String image3,
@@ -80,7 +86,10 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? name = null,
     Object? categoryPreview = null,
     Object? displayPrice = null,
+    Object? displayPriceAsString = null,
+    Object? priceAsString = null,
     Object? price = null,
+    Object? currency = null,
     Object? image1 = null,
     Object? image2 = null,
     Object? image3 = null,
@@ -107,10 +116,22 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      displayPriceAsString: null == displayPriceAsString
+          ? _value.displayPriceAsString
+          : displayPriceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
+      priceAsString: null == priceAsString
+          ? _value.priceAsString
+          : priceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       image1: null == image1
           ? _value.image1
           : image1 // ignore: cast_nullable_to_non_nullable
@@ -168,7 +189,10 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       String name,
       ProductCategoryPreview categoryPreview,
       int displayPrice,
+      String displayPriceAsString,
+      String priceAsString,
       int price,
+      String currency,
       String image1,
       String image2,
       String image3,
@@ -196,7 +220,10 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? name = null,
     Object? categoryPreview = null,
     Object? displayPrice = null,
+    Object? displayPriceAsString = null,
+    Object? priceAsString = null,
     Object? price = null,
+    Object? currency = null,
     Object? image1 = null,
     Object? image2 = null,
     Object? image3 = null,
@@ -223,10 +250,22 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      displayPriceAsString: null == displayPriceAsString
+          ? _value.displayPriceAsString
+          : displayPriceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
+      priceAsString: null == priceAsString
+          ? _value.priceAsString
+          : priceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      currency: null == currency
+          ? _value.currency
+          : currency // ignore: cast_nullable_to_non_nullable
+              as String,
       image1: null == image1
           ? _value.image1
           : image1 // ignore: cast_nullable_to_non_nullable
@@ -271,7 +310,10 @@ class _$_Product extends _Product {
       required this.name,
       required this.categoryPreview,
       required this.displayPrice,
+      required this.displayPriceAsString,
+      required this.priceAsString,
       required this.price,
+      required this.currency,
       required this.image1,
       required this.image2,
       required this.image3,
@@ -294,7 +336,13 @@ class _$_Product extends _Product {
   @override
   final int displayPrice;
   @override
+  final String displayPriceAsString;
+  @override
+  final String priceAsString;
+  @override
   final int price;
+  @override
+  final String currency;
   @override
   final String image1;
   @override
@@ -316,7 +364,7 @@ class _$_Product extends _Product {
 
   @override
   String toString() {
-    return 'Product(id: $id, name: $name, categoryPreview: $categoryPreview, displayPrice: $displayPrice, price: $price, image1: $image1, image2: $image2, image3: $image3, image4: $image4, image5: $image5, description: $description, percentage: $percentage, isFavorite: $isFavorite)';
+    return 'Product(id: $id, name: $name, categoryPreview: $categoryPreview, displayPrice: $displayPrice, displayPriceAsString: $displayPriceAsString, priceAsString: $priceAsString, price: $price, currency: $currency, image1: $image1, image2: $image2, image3: $image3, image4: $image4, image5: $image5, description: $description, percentage: $percentage, isFavorite: $isFavorite)';
   }
 
   @override
@@ -330,7 +378,13 @@ class _$_Product extends _Product {
                 other.categoryPreview == categoryPreview) &&
             (identical(other.displayPrice, displayPrice) ||
                 other.displayPrice == displayPrice) &&
+            (identical(other.displayPriceAsString, displayPriceAsString) ||
+                other.displayPriceAsString == displayPriceAsString) &&
+            (identical(other.priceAsString, priceAsString) ||
+                other.priceAsString == priceAsString) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.currency, currency) ||
+                other.currency == currency) &&
             (identical(other.image1, image1) || other.image1 == image1) &&
             (identical(other.image2, image2) || other.image2 == image2) &&
             (identical(other.image3, image3) || other.image3 == image3) &&
@@ -352,7 +406,10 @@ class _$_Product extends _Product {
       name,
       categoryPreview,
       displayPrice,
+      displayPriceAsString,
+      priceAsString,
       price,
+      currency,
       image1,
       image2,
       image3,
@@ -382,7 +439,10 @@ abstract class _Product extends Product {
       required final String name,
       required final ProductCategoryPreview categoryPreview,
       required final int displayPrice,
+      required final String displayPriceAsString,
+      required final String priceAsString,
       required final int price,
+      required final String currency,
       required final String image1,
       required final String image2,
       required final String image3,
@@ -404,7 +464,13 @@ abstract class _Product extends Product {
   @override
   int get displayPrice;
   @override
+  String get displayPriceAsString;
+  @override
+  String get priceAsString;
+  @override
   int get price;
+  @override
+  String get currency;
   @override
   String get image1;
   @override

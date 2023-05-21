@@ -13,6 +13,7 @@ bool get isInDebugMode {
 }
 
 void main() {
+  CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
   ErrorWidget.builder = (errorDetails) => const ErrorView();
 
   runZonedGuarded(

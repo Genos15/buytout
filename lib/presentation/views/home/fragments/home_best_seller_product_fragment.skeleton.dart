@@ -11,7 +11,8 @@ class HomeBestSellerProductFragmentSkeleton extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverGrid.count(
       crossAxisCount: 2,
-      childAspectRatio: CardDimens.kBestSellerProductCardAspectRatio,
+      childAspectRatio: LayoutDimens.ar1_14,
+      crossAxisSpacing: LayoutDimens.s4,
       children: List.generate(
         size,
         (_) => const _HomeBestSellerProductCardSkeleton(),
@@ -21,50 +22,42 @@ class HomeBestSellerProductFragmentSkeleton extends StatelessWidget {
 }
 
 class _HomeBestSellerProductCardSkeleton extends StatelessWidget {
-  static const _kTextHeight = 15.0;
-  static const _kTextShortWidth = 80.0;
-  static const _kTextLongWidth = 120.0;
-
   const _HomeBestSellerProductCardSkeleton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const mainColor = Color(CommonColors.red10);
     return Card(
       key: UniqueKey(),
-      elevation: CardDimens.kProductCardElevation,
+      elevation: LayoutDimens.e0,
       child: SizedBox(
-        width: CardDimens.kProductCardWidth,
+        width: LayoutDimens.s192,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: CardDimens.kBestSellerProductImageAspectRatio,
-              child: Container(color: const Color(CardColors.kSkeleton)),
+              aspectRatio: LayoutDimens.ar1_1,
+              child: Container(color: mainColor),
             ),
             Text.rich(
               TextSpan(
                 children: [
                   WidgetSpan(
                     child: SizedBox(
-                      height: _kTextHeight,
-                      width: _kTextLongWidth,
-                      child: Container(
-                        color: const Color(CardColors.kSkeleton),
-                      ),
+                      height: LayoutDimens.s16,
+                      width: LayoutDimens.s128,
+                      child: Container(color: mainColor),
                     ),
                   ),
-                  const TextSpan(text: '\n'),
-                  const WidgetSpan(
-                      child: SizedBox(height: CardDimens.kProductCardGap)),
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
                   WidgetSpan(
                     child: SizedBox(
-                      height: _kTextHeight,
-                      width: _kTextShortWidth,
-                      child: Container(
-                        color: const Color(CardColors.kSkeleton),
-                      ),
+                      height: LayoutDimens.s16,
+                      width: LayoutDimens.s64,
+                      child: Container(color: mainColor),
                     ),
                   ),
                 ],

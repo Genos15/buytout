@@ -10,7 +10,7 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Result<Iterable<ProductPreview>>> fetchNewArrivalProductPreviews(
       {required int first, String? after}) async {
-    await Future.delayed(5.seconds);
+    await Future.delayed(3.seconds);
     final apiData =
         await rootBundle.loadString('assets/fake_product_preview.json');
     final jsonApiData = await jsonDecode(apiData);
@@ -34,6 +34,7 @@ class ProductRepositoryImpl implements ProductRepository {
   @override
   Future<Result<Iterable<ProductPreview>>> fetchProductPreviews(
       {required int first, String? after}) async {
+    await Future.delayed(5.seconds);
     final apiData =
         await rootBundle.loadString('assets/fake_product_preview.json');
     final jsonApiData = await jsonDecode(apiData);
@@ -46,6 +47,6 @@ class ProductRepositoryImpl implements ProductRepository {
 
     final products = (mapApiData['products'] as List)
         .map((jsonObject) => ProductPreview.fromJson(jsonObject));
-    return Success(products);
+    return Success(products.toList().reversed);
   }
 }

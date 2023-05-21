@@ -25,7 +25,9 @@ mixin _$ProductPreview {
   ProductCategoryPreview get categoryPreview =>
       throw _privateConstructorUsedError;
   int get displayPrice => throw _privateConstructorUsedError;
+  String get displayPriceAsString => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
+  String get priceAsString => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
   int get percentage => throw _privateConstructorUsedError;
@@ -48,7 +50,9 @@ abstract class $ProductPreviewCopyWith<$Res> {
       String name,
       ProductCategoryPreview categoryPreview,
       int displayPrice,
+      String displayPriceAsString,
       int price,
+      String priceAsString,
       String currency,
       String imageUrl,
       int percentage,
@@ -74,7 +78,9 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
     Object? name = null,
     Object? categoryPreview = null,
     Object? displayPrice = null,
+    Object? displayPriceAsString = null,
     Object? price = null,
+    Object? priceAsString = null,
     Object? currency = null,
     Object? imageUrl = null,
     Object? percentage = null,
@@ -97,10 +103,18 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      displayPriceAsString: null == displayPriceAsString
+          ? _value.displayPriceAsString
+          : displayPriceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      priceAsString: null == priceAsString
+          ? _value.priceAsString
+          : priceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -143,7 +157,9 @@ abstract class _$$_ProductPreviewCopyWith<$Res>
       String name,
       ProductCategoryPreview categoryPreview,
       int displayPrice,
+      String displayPriceAsString,
       int price,
+      String priceAsString,
       String currency,
       String imageUrl,
       int percentage,
@@ -168,7 +184,9 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
     Object? name = null,
     Object? categoryPreview = null,
     Object? displayPrice = null,
+    Object? displayPriceAsString = null,
     Object? price = null,
+    Object? priceAsString = null,
     Object? currency = null,
     Object? imageUrl = null,
     Object? percentage = null,
@@ -191,10 +209,18 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
               as int,
+      displayPriceAsString: null == displayPriceAsString
+          ? _value.displayPriceAsString
+          : displayPriceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       price: null == price
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as int,
+      priceAsString: null == priceAsString
+          ? _value.priceAsString
+          : priceAsString // ignore: cast_nullable_to_non_nullable
+              as String,
       currency: null == currency
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
@@ -223,7 +249,9 @@ class _$_ProductPreview extends _ProductPreview {
       required this.name,
       required this.categoryPreview,
       required this.displayPrice,
+      required this.displayPriceAsString,
       required this.price,
+      required this.priceAsString,
       required this.currency,
       required this.imageUrl,
       this.percentage = 0,
@@ -242,7 +270,11 @@ class _$_ProductPreview extends _ProductPreview {
   @override
   final int displayPrice;
   @override
+  final String displayPriceAsString;
+  @override
   final int price;
+  @override
+  final String priceAsString;
   @override
   final String currency;
   @override
@@ -256,7 +288,7 @@ class _$_ProductPreview extends _ProductPreview {
 
   @override
   String toString() {
-    return 'ProductPreview(id: $id, name: $name, categoryPreview: $categoryPreview, displayPrice: $displayPrice, price: $price, currency: $currency, imageUrl: $imageUrl, percentage: $percentage, isFavorite: $isFavorite)';
+    return 'ProductPreview(id: $id, name: $name, categoryPreview: $categoryPreview, displayPrice: $displayPrice, displayPriceAsString: $displayPriceAsString, price: $price, priceAsString: $priceAsString, currency: $currency, imageUrl: $imageUrl, percentage: $percentage, isFavorite: $isFavorite)';
   }
 
   @override
@@ -270,7 +302,11 @@ class _$_ProductPreview extends _ProductPreview {
                 other.categoryPreview == categoryPreview) &&
             (identical(other.displayPrice, displayPrice) ||
                 other.displayPrice == displayPrice) &&
+            (identical(other.displayPriceAsString, displayPriceAsString) ||
+                other.displayPriceAsString == displayPriceAsString) &&
             (identical(other.price, price) || other.price == price) &&
+            (identical(other.priceAsString, priceAsString) ||
+                other.priceAsString == priceAsString) &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
             (identical(other.imageUrl, imageUrl) ||
@@ -283,8 +319,19 @@ class _$_ProductPreview extends _ProductPreview {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, name, categoryPreview,
-      displayPrice, price, currency, imageUrl, percentage, isFavorite);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      name,
+      categoryPreview,
+      displayPrice,
+      displayPriceAsString,
+      price,
+      priceAsString,
+      currency,
+      imageUrl,
+      percentage,
+      isFavorite);
 
   @JsonKey(ignore: true)
   @override
@@ -306,7 +353,9 @@ abstract class _ProductPreview extends ProductPreview {
       required final String name,
       required final ProductCategoryPreview categoryPreview,
       required final int displayPrice,
+      required final String displayPriceAsString,
       required final int price,
+      required final String priceAsString,
       required final String currency,
       required final String imageUrl,
       final int percentage,
@@ -325,7 +374,11 @@ abstract class _ProductPreview extends ProductPreview {
   @override
   int get displayPrice;
   @override
+  String get displayPriceAsString;
+  @override
   int get price;
+  @override
+  String get priceAsString;
   @override
   String get currency;
   @override

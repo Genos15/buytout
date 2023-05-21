@@ -1,5 +1,8 @@
 export 'package:flutter_animate/flutter_animate.dart';
 export 'package:flutter_riverpod/flutter_riverpod.dart';
+export 'package:cached_network_image/cached_network_image.dart'
+    hide ErrorListener;
+export 'package:carbon_icons/carbon_icons.dart';
 export 'domain/index.dart';
 export 'repository/index.dart';
 export 'services/index.dart';

@@ -18,8 +18,8 @@ class HomeNewArrivalProductFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return switch (_skeleton) {
-      true => const HomeNewArrivalProductFragmentSkeleton().sliverBox,
-      _ => _HomeNewArrivalProductFragment(products: products).sliverBox,
+      true => const HomeNewArrivalProductFragmentSkeleton(),
+      _ => _HomeNewArrivalProductFragment(products: products),
     };
   }
 }
@@ -33,8 +33,11 @@ class _HomeNewArrivalProductFragment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: CardDimens.kProductCardHeight,
-      child: ListView.builder(
+      height: LayoutDimens.s192,
+      child: ListView.separated(
+        physics: const BouncingScrollPhysics(),
+        shrinkWrap: true,
+        padding: const EdgeInsets.symmetric(horizontal: LayoutDimens.p8),
         scrollDirection: Axis.horizontal,
         itemCount: products.length,
         itemBuilder: (context, index) {
@@ -47,6 +50,9 @@ class _HomeNewArrivalProductFragment extends StatelessWidget {
         addAutomaticKeepAlives: false,
         addRepaintBoundaries: false,
         addSemanticIndexes: false,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SpacerLine.horizontal();
+        },
       ),
     );
   }
@@ -61,38 +67,28 @@ class _HomeNewArrivalProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: CardDimens.kProductCardElevation,
+      elevation: LayoutDimens.e0,
       child: SizedBox(
-        width: CardDimens.kProductCardWidth,
+        width: LayoutDimens.s192,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: CardDimens.kProductImageAspectRatio,
-              child: Container(
-                color: const Color(CardColors.kImagePlaceholder),
-              ),
-            ).withPaddingOnly(bottom: CardDimens.kProductCardGap),
+              aspectRatio: LayoutDimens.ar16_9,
+              child: Container(color: const Color(CommonColors.red10)),
+            ).pOnly(bottom: LayoutDimens.p4),
             Text.rich(
               TextSpan(
                 children: [
-                  TextSpan(
-                    text: product.name,
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  const TextSpan(text: '\n'),
-                  const WidgetSpan(
-                      child: SizedBox(height: CardDimens.kProductCardGap)),
+                  TextSpan(text: product.name).w500.lg,
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
                   TextSpan(text: product.categoryPreview.name),
-                  const TextSpan(text: '\n'),
-                  const WidgetSpan(
-                      child: SizedBox(height: CardDimens.kProductCardGap)),
-                  TextSpan(
-                    text: product.displayPrice.toString(),
-                    style: const TextStyle(fontWeight: FontWeight.bold),
-                  ),
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
+                  TextSpan(text: product.displayPriceAsString).w500,
                 ],
               ),
             ),

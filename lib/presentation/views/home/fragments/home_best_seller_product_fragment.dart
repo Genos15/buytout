@@ -17,89 +17,77 @@ class HomeBestSellerProductFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const HomeBestSellerProductFragmentSkeleton();
-    // return switch (_skeleton) {
-    //   true => const HomeNewArrivalProductFragmentSkeleton().sliverBox,
-    //   _ => _HomeNewArrivalProductFragment(products: products).sliverBox,
-    // };
+    return switch (_skeleton) {
+      true => const HomeBestSellerProductFragmentSkeleton(),
+      _ => _HomeBestSellerProductFragment(products: products),
+    };
   }
 }
 
-// class _HomeNewArrivalProductFragment extends StatelessWidget {
-//   final List<ProductPreview> products;
-//
-//   const _HomeNewArrivalProductFragment({Key? key, required this.products})
-//       : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return SizedBox(
-//       height: CardDimens.kProductCardHeight,
-//       child: ListView.builder(
-//         scrollDirection: Axis.horizontal,
-//         itemCount: products.length,
-//         itemBuilder: (context, index) {
-//           final product = products[index];
-//           return _HomeNewArrivalProductCard(
-//             key: ValueKey(product.id),
-//             product: product,
-//           );
-//         },
-//         addAutomaticKeepAlives: false,
-//         addRepaintBoundaries: false,
-//         addSemanticIndexes: false,
-//       ),
-//     );
-//   }
-// }
+class _HomeBestSellerProductFragment extends StatelessWidget {
+  final List<ProductPreview> products;
 
-// class _HomeNewArrivalProductCard extends StatelessWidget {
-//   final ProductPreview product;
-//
-//   const _HomeNewArrivalProductCard({Key? key, required this.product})
-//       : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Card(
-//       elevation: CardDimens.kProductCardElevation,
-//       child: SizedBox(
-//         width: CardDimens.kProductCardWidth,
-//         child: Column(
-//           mainAxisSize: MainAxisSize.min,
-//           crossAxisAlignment: CrossAxisAlignment.start,
-//           mainAxisAlignment: MainAxisAlignment.start,
-//           children: [
-//             AspectRatio(
-//               aspectRatio: CardDimens.kProductImageAspectRatio,
-//               child: Container(
-//                 color: const Color(CardColors.kImagePlaceholder),
-//               ),
-//             ).withPaddingOnly(bottom: CardDimens.kProductCardGap),
-//             Text.rich(
-//               TextSpan(
-//                 children: [
-//                   TextSpan(
-//                     text: product.name,
-//                     style: const TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                   const TextSpan(text: '\n'),
-//                   const WidgetSpan(
-//                       child: SizedBox(height: CardDimens.kProductCardGap)),
-//                   TextSpan(text: product.categoryPreview.name),
-//                   const TextSpan(text: '\n'),
-//                   const WidgetSpan(
-//                       child: SizedBox(height: CardDimens.kProductCardGap)),
-//                   TextSpan(
-//                     text: product.displayPrice.toString(),
-//                     style: const TextStyle(fontWeight: FontWeight.bold),
-//                   ),
-//                 ],
-//               ),
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
+  const _HomeBestSellerProductFragment({Key? key, required this.products})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SliverGrid.builder(
+      itemCount: products.length,
+      addSemanticIndexes: false,
+      addRepaintBoundaries: false,
+      addAutomaticKeepAlives: false,
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        childAspectRatio: LayoutDimens.ar1_14,
+        crossAxisCount: 2,
+        crossAxisSpacing: LayoutDimens.s4,
+      ),
+      itemBuilder: (context, index) {
+        final product = products[index];
+        return _HomeBestSellerProductCard(product: product);
+      },
+    );
+  }
+}
+
+class _HomeBestSellerProductCard extends StatelessWidget {
+  final ProductPreview product;
+
+  const _HomeBestSellerProductCard({Key? key, required this.product})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      key: UniqueKey(),
+      elevation: LayoutDimens.e0,
+      child: SizedBox(
+        width: LayoutDimens.s192,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            AspectRatio(
+              aspectRatio: LayoutDimens.ar1_1,
+              child: Container(color: const Color(CommonColors.red10)),
+            ),
+            Text.rich(
+              TextSpan(
+                children: [
+                  TextSpan(text: product.name).w500.lg,
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
+                  TextSpan(text: product.categoryPreview.name),
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
+                  TextSpan(text: product.displayPriceAsString).w500,
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

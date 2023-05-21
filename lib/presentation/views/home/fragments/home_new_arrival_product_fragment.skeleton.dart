@@ -1,74 +1,74 @@
+import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class HomeNewArrivalProductFragmentSkeleton extends StatelessWidget {
   final int size;
 
-  const HomeNewArrivalProductFragmentSkeleton({Key? key, this.size = 5})
+  const HomeNewArrivalProductFragmentSkeleton({Key? key, this.size = 3})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: CardDimens.kProductCardHeight,
-      child: ListView(
+      height: LayoutDimens.s192,
+      child: ListView.separated(
+        key: UniqueKey(),
+        shrinkWrap: true,
+        physics: const BouncingScrollPhysics(),
         scrollDirection: Axis.horizontal,
-        children: [
-          ...List.generate(
-            size,
-            (_) => const _HomeNewArrivalProductCardSkeleton(),
-          )
-        ],
+        itemCount: size,
+        padding: const EdgeInsets.symmetric(horizontal: LayoutDimens.p8),
+        itemBuilder: (context, _) {
+          return const _HomeNewArrivalProductCardSkeleton();
+        },
+        addAutomaticKeepAlives: false,
+        addRepaintBoundaries: false,
+        addSemanticIndexes: false,
+        separatorBuilder: (BuildContext context, int index) {
+          return const SpacerLine.horizontal();
+        },
       ),
     );
   }
 }
 
 class _HomeNewArrivalProductCardSkeleton extends StatelessWidget {
-  static const _kTextHeight = 15.0;
-  static const _kTextShortWidth = 80.0;
-  static const _kTextLongWidth = 120.0;
-
   const _HomeNewArrivalProductCardSkeleton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const placeholder = Color(CommonColors.red10);
     return Card(
-      key: UniqueKey(),
-      elevation: CardDimens.kProductCardElevation,
+      elevation: LayoutDimens.e0,
       child: SizedBox(
-        width: CardDimens.kProductCardWidth,
+        width: LayoutDimens.s192,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: CardDimens.kProductImageAspectRatio,
-              child: Container(color: const Color(CardColors.kSkeleton)),
+              aspectRatio: LayoutDimens.ar16_9,
+              child: Container(color: placeholder),
             ),
             Text.rich(
               TextSpan(
                 children: [
                   WidgetSpan(
                     child: SizedBox(
-                      height: _kTextHeight,
-                      width: _kTextLongWidth,
-                      child: Container(
-                        color: const Color(CardColors.kSkeleton),
-                      ),
+                      height: LayoutDimens.s16,
+                      width: LayoutDimens.s128,
+                      child: Container(color: placeholder),
                     ),
                   ),
-                  const TextSpan(text: '\n'),
-                  const WidgetSpan(
-                      child: SizedBox(height: CardDimens.kProductCardGap)),
+                  TextSpanWidgetExtension.breaker,
+                  TextSpanWidgetExtension.gap,
                   WidgetSpan(
                     child: SizedBox(
-                      height: _kTextHeight,
-                      width: _kTextShortWidth,
-                      child: Container(
-                        color: const Color(CardColors.kSkeleton),
-                      ),
+                      height: LayoutDimens.s16,
+                      width: LayoutDimens.s64,
+                      child: Container(color: placeholder),
                     ),
                   ),
                 ],
