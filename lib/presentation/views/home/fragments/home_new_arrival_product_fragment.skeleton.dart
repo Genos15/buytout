@@ -38,7 +38,6 @@ class _HomeNewArrivalProductCardSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const placeholder = Color(CommonColors.red10);
     return Card(
       elevation: LayoutDimens.e0,
       child: SizedBox(
@@ -50,27 +49,15 @@ class _HomeNewArrivalProductCardSkeleton extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: LayoutDimens.ar16_9,
-              child: Container(color: placeholder),
+              child: Container(color: CommonColors.red10.asColor),
             ),
             Text.rich(
               TextSpan(
                 children: [
-                  WidgetSpan(
-                    child: SizedBox(
-                      height: LayoutDimens.s16,
-                      width: LayoutDimens.s128,
-                      child: Container(color: placeholder),
-                    ),
-                  ),
+                  TextWidgetExtension.longTextSkeleton,
                   TextSpanWidgetExtension.breaker,
                   TextSpanWidgetExtension.gap,
-                  WidgetSpan(
-                    child: SizedBox(
-                      height: LayoutDimens.s16,
-                      width: LayoutDimens.s64,
-                      child: Container(color: placeholder),
-                    ),
-                  ),
+                  TextWidgetExtension.shortTextSkeleton,
                 ],
               ),
             ),

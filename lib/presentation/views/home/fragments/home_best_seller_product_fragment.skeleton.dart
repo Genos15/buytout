@@ -44,22 +44,10 @@ class _HomeBestSellerProductCardSkeleton extends StatelessWidget {
             Text.rich(
               TextSpan(
                 children: [
-                  WidgetSpan(
-                    child: SizedBox(
-                      height: LayoutDimens.s16,
-                      width: LayoutDimens.s128,
-                      child: Container(color: mainColor),
-                    ),
-                  ),
+                  TextWidgetExtension.longTextSkeleton,
                   TextSpanWidgetExtension.breaker,
                   TextSpanWidgetExtension.gap,
-                  WidgetSpan(
-                    child: SizedBox(
-                      height: LayoutDimens.s16,
-                      width: LayoutDimens.s64,
-                      child: Container(color: mainColor),
-                    ),
-                  ),
+                  TextWidgetExtension.shortTextSkeleton,
                 ],
               ),
             ),

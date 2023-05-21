@@ -20,14 +20,16 @@ const _fakeProductPreview = ProductPreview(
   isFavorite: false,
 );
 
-class ProductView extends StatelessWidget {
+class ProductView extends ConsumerWidget {
   final ProductPreview productPreview;
 
   const ProductView({Key? key, this.productPreview = _fakeProductPreview})
       : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final vm = ref.watch(productViewModelProvider(productPreview));
+
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -35,10 +37,26 @@ class ProductView extends StatelessWidget {
             title: const Text('Details Product'),
             background: AspectRatio(
               aspectRatio: LayoutDimens.ar1_1,
-              child: ImageFragment(imageUrl: productPreview.imageUrl),
+              child: vm.when(
+                data: (s) => ProductImageSliderFragment(product: s.product),
+                error: (_, s) =>
+                    ImageFragment(imageUrl: productPreview.imageUrl),
+                loading: () => ImageFragment(imageUrl: productPreview.imageUrl),
+              ),
             ),
           ),
           ProductNameFragment(productPreview: productPreview).sliverBox.sp12,
+          vm
+              .when(
+                data: (state) => ProductDescriptionFragment(
+                  product: state.product,
+                ).animate().fade().sliverBox,
+                error: (e, s) => const SizedBox.shrink().sliverBox,
+                loading: () =>
+                    const ProductDescriptionFragment.skeleton().sliverBox,
+              )
+              .sp12,
+          const Divider(thickness: LayoutDimens.p0_1).sliverBox.sp12,
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
@@ -55,8 +73,7 @@ class ProductView extends StatelessWidget {
                   ),
                 );
               },
-              // 40 list items
-              childCount: 15,
+              childCount: 10,
             ),
           ),
         ],

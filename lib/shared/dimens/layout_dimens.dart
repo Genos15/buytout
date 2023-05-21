@@ -1,6 +1,8 @@
 abstract class LayoutDimens {
   // p = padding
   static const p0 = 0.0;
+  static const p0_1 = 0.1;
+  static const p0_5 = 0.5;
   static const p1 = 1.0;
   static const p2 = 2.0;
   static const p4 = 4.0;

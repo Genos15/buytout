@@ -3,6 +3,7 @@ export 'package:flutter_riverpod/flutter_riverpod.dart';
 export 'package:cached_network_image/cached_network_image.dart'
     hide ErrorListener;
 export 'package:carbon_icons/carbon_icons.dart';
+export 'package:carousel_slider/carousel_slider.dart';
 export 'domain/index.dart';
 export 'repository/index.dart';
 export 'services/index.dart';

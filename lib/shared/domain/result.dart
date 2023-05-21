@@ -8,8 +8,9 @@ class Success<T> extends Result<T> {
 
 class Failure<T> extends Result<T> {
   final Exception exception;
+  final StackTrace stackTrace;
 
-  Failure(this.exception);
+  Failure(this.exception, this.stackTrace);
 }
 
 class Loading<T> extends Result<T> {}
