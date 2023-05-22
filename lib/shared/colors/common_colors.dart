@@ -10,6 +10,8 @@ abstract class CommonColors {
   static const int gray800 = 0xFF1f2937;
   static const int gray900 = 0xFF111827;
 
+  static const int black900 = 0xFF121212;
+
   static const int red10 = 0xFFf8edeb;
   static const int red50 = 0xFFFEF2F2;
   static const int red100 = 0xFFFEE2E2;

@@ -11,7 +11,7 @@ class ProductImageSliderFragment extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final viewmodel = ref.watch(productImageViewModelProvider.notifier);
-    final viewmodelState = ref.watch(productImageViewModelProvider);
+    final currentImageIndex = ref.watch(productImageViewModelProvider);
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
@@ -52,7 +52,7 @@ class ProductImageSliderFragment extends ConsumerWidget {
                 height: LayoutDimens.p12,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: viewmodelState == image.key
+                  color: currentImageIndex == image.key
                       ? CommonColors.gray700.asColor
                       : CommonColors.gray300.asColor,
                   border: Border.all(

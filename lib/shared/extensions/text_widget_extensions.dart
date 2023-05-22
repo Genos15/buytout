@@ -21,4 +21,27 @@ extension TextWidgetExtension on Widget {
       ),
     );
   }
+
+  Widget get black {
+    if (this is! Text) {
+      return this;
+    }
+
+    final textWidget = this as Text;
+
+    if (textWidget.data == null) {
+      return this;
+    }
+
+    TextStyle blackStyle;
+    if (textWidget.style == null) {
+      blackStyle = TextStyle(color: CommonColors.black900.asColor);
+    } else {
+      blackStyle = textWidget.style!.copyWith(
+        color: CommonColors.black900.asColor,
+      );
+    }
+
+    return Text(textWidget.data!, style: blackStyle);
+  }
 }

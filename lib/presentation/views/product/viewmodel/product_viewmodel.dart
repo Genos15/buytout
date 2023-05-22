@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 
@@ -49,5 +51,25 @@ class ProductImageViewModel extends StateNotifier<int> {
 
   void move(int index) {
     state = index;
+  }
+}
+
+final productCartQuantityViewModelProvider = StateNotifierProvider.autoDispose
+    .family<ProductCartQuantityViewModel, int, int>((_, availableQuantity) =>
+        ProductCartQuantityViewModel(availableQuantity));
+
+class ProductCartQuantityViewModel extends StateNotifier<int> {
+  ProductCartQuantityViewModel(this.available) : super(0);
+
+  final int available;
+
+  int increment() {
+    state = min(available, state + 1);
+    return state;
+  }
+
+  int decrement() {
+    state = max(state - 1, 0);
+    return state;
   }
 }

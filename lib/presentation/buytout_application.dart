@@ -22,8 +22,9 @@ class BuytoutApplication extends StatelessWidget {
         // dividerTheme: DividerThemeData(color: Colors.black.withOpacity(.04)),
         // scaffoldBackgroundColor: from(context).scaffoldBackground,
       ),
-      // home: const HomeView(),
-      home: const ProductView(),
+      // home: const HomeUI(),
+      // home: const CartUI(products: {}),
+      home: const ProductUI(),
     );
   }
 }
