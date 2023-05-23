@@ -8,10 +8,11 @@ class BuytoutApplication extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Readige',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: TextDimens.baseSize),
@@ -22,9 +23,9 @@ class BuytoutApplication extends StatelessWidget {
         // dividerTheme: DividerThemeData(color: Colors.black.withOpacity(.04)),
         // scaffoldBackgroundColor: from(context).scaffoldBackground,
       ),
-      // home: const HomeUI(),
+      home: const HomeUI(),
       // home: const CartUI(products: {}),
-      home: const ProductUI(),
+      // home: const ProductUI(),
     );
   }
 }

@@ -4,6 +4,9 @@ export 'package:cached_network_image/cached_network_image.dart'
     hide ErrorListener;
 export 'package:carbon_icons/carbon_icons.dart';
 export 'package:carousel_slider/carousel_slider.dart';
+export 'package:hive/hive.dart';
+export 'package:hive_flutter/hive_flutter.dart';
+
 export 'domain/index.dart';
 export 'repository/index.dart';
 export 'services/index.dart';
