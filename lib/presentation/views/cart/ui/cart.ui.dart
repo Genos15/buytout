@@ -25,6 +25,7 @@ class CartUI extends ConsumerWidget {
           error: (e, s) => const SizedBox.shrink().sliverBox,
         ),
         const SpaceDivider().sliverBox,
+        // starting from here
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
