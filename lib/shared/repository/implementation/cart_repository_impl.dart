@@ -1,46 +1,62 @@
+import 'package:buytout/shared/domain/product_cart_item.dart';
 import 'package:buytout/shared/index.dart';
 
-// final productRepositoryProvider =
-//     Provider<ProductRepository>((ref) => ProductRepositoryImpl());
+final cartRepositoryProvider = Provider.autoDispose<CartRepository>((ref) {
+  final db = ref.watch(databaseProvider);
+  return CartRepositoryImpl(db);
+});
 
 class CartRepositoryImpl implements CartRepository {
-  final LazyBox<Cart> box;
-  final String boxKey;
+  final DatabaseClient client;
 
-  CartRepositoryImpl(this.box, this.boxKey) {
-    Hive.registerAdapter(CartAdapter());
+  CartRepositoryImpl(this.client) {
+    // init(database: client.database);
   }
 
   @override
-  Future<Result<bool>> clear() async {
-    try {
-      final optionalCart = await find();
-      final cart = switch (optionalCart) {
-        (Success<Cart> s) => s.data,
-        _ => throw Exception('Impossible to delete the cart instance'),
-      };
-      await cart.delete();
-      return Success(true);
-    } on Exception catch (exception, stackTrace) {
-      return Failure(exception, stackTrace);
+  Future<bool> clear() {
+    // TODO: implement clear
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Cart> find() {
+    // TODO: implement find
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Cart> update({required Cart cart}) {
+    // TODO: implement update
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<Iterable<ProductCartItem>> findAll() async {
+    final database = client.database;
+    if (database == null) {
+      // throw DatabaseNotReadyException();
+      return [];
     }
+    final cartMap = await database.query('cart_products', orderBy: "id");
+    final cartProducts = cartMap.map((e) {
+      return Map<String, Object>.from(e)
+        ..putIfAbsent('runtimeType', () => 'output');
+    }).map(ProductCartItem.fromJson);
+
+    return cartProducts;
   }
 
   @override
-  Future<Result<Cart>> find() async {
-    try {
-      final cart = await box.get(boxKey);
-      return switch (cart?.isInBox) {
-        true when cart != null => Success(cart),
-        _ => throw Exception('Impossible to find the cart instance')
-      };
-    } on Exception catch (exception, stackTrace) {
-      return Failure(exception, stackTrace);
+  Future<int> insert({required ProductCartItem productCartItem}) async {
+    final database = client.database;
+    if (database == null) {
+      throw DatabaseNotReadyException();
     }
-  }
-
-  @override
-  Future<Result<Cart>> save({required Cart cart}) async {
-    return Idle();
+    return await database.insert(
+      'cart_products',
+      productCartItem.toJson()..remove('runtimeType'),
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
   }
 }

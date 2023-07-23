@@ -37,7 +37,7 @@ class _HomeBestSellerProductTitle extends StatelessWidget {
       if (!loading && products.isEmpty) {
         return const SizedBox.shrink();
       } else {
-        return Text(title);
+        return AutoSizeText(title);
       }
     });
   }

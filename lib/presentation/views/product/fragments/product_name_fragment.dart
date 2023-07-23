@@ -2,9 +2,9 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class ProductNameFragment extends StatelessWidget {
-  final ProductPreview productPreview;
+  final Product product;
 
-  const ProductNameFragment({Key? key, required this.productPreview})
+  const ProductNameFragment({Key? key, required this.product})
       : super(key: key);
 
   @override
@@ -12,15 +12,13 @@ class ProductNameFragment extends StatelessWidget {
     return SelectableText.rich(
       TextSpan(
         children: [
-          TextSpan(text: productPreview.name).xl.w500,
+          TextSpan(text: product.name).xl.w500,
           TextSpanWidgetExtension.breaker,
-          TextSpan(text: productPreview.categoryPreview.name).w600.gray500.sm,
-          TextSpanWidgetExtension.breaker,
-          TextSpan(text: productPreview.displayPriceAsString).lg.w500,
+          TextSpan(text: product.displayPriceAsString).lg.w500,
           TextSpanWidgetExtension.spacer,
           TextSpanWidgetExtension.spacer,
-          if (productPreview.price != productPreview.displayPrice)
-            TextSpan(text: productPreview.priceAsString)
+          if (product.price != product.displayPrice)
+            TextSpan(text: product.priceAsString)
                 .w500
                 .sm
                 .red500

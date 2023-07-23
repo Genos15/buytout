@@ -4,24 +4,31 @@ import 'package:flutter/material.dart';
 
 class ProductImageSliderFragment extends ConsumerWidget {
   final Product product;
+  final void Function(int) moveImage;
+  final int currentImageIndex;
 
-  const ProductImageSliderFragment({Key? key, required this.product})
-      : super(key: key);
+  const ProductImageSliderFragment({
+    Key? key,
+    required this.product,
+    required this.moveImage,
+    required this.currentImageIndex,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewmodel = ref.watch(productImageViewModelProvider.notifier);
-    final currentImageIndex = ref.watch(productImageViewModelProvider);
+    assert(product is ProductOutput);
+    final product_ = product as ProductOutput;
+
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
     final imageLinks = [
-      product.image1,
-      product.image2,
-      product.image3,
-      product.image4,
-      product.image5,
-    ];
+      product_.image1,
+      product_.image2,
+      product_.image3,
+      product_.image4,
+      product_.image5,
+    ].nonNulls;
 
     return Stack(
       children: [
@@ -32,13 +39,13 @@ class ProductImageSliderFragment extends ConsumerWidget {
             viewportFraction: 1.0,
             enlargeCenterPage: false,
             enableInfiniteScroll: false,
-            onPageChanged: (index, _) => viewmodel.move(index),
+            onPageChanged: (index, _) => moveImage(index),
           ),
           itemBuilder: (context, index, _) {
             return SizedBox(
               height: height,
               width: width,
-              child: ImageFragment(imageUrl: imageLinks[index]),
+              child: ImageFragment(imageUrl: imageLinks.elementAt(index)),
             );
           },
         ),
@@ -46,18 +53,18 @@ class ProductImageSliderFragment extends ConsumerWidget {
           alignment: Alignment.bottomCenter,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: imageLinks.asMap().entries.map((image) {
+            children: imageLinks.toList().asMap().entries.map((image) {
               return Container(
                 width: LayoutDimens.p12,
                 height: LayoutDimens.p12,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: currentImageIndex == image.key
-                      ? CommonColors.gray700.asColor
-                      : CommonColors.gray300.asColor,
+                      ? CommonColors.gray700.color
+                      : CommonColors.gray300.color,
                   border: Border.all(
                     width: LayoutDimens.s2,
-                    color: CommonColors.gray50.asColor,
+                    color: CommonColors.gray50.color,
                     style: BorderStyle.solid,
                   ),
                 ),

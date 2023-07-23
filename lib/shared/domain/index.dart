@@ -1,5 +1,4 @@
 export 'cart.dart';
 export 'result.dart';
-export 'product.dart';
+export 'product.d.dart';
 export 'product_preview.dart';
-export 'product_category_preview.dart';

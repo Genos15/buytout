@@ -1,4 +1,4 @@
-import 'package:buytout/shared/domain/product_category_preview.dart';
+import 'package:buytout/config/index.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'product_preview.freezed.dart';
@@ -13,15 +13,15 @@ class ProductPreview with _$ProductPreview {
   const factory ProductPreview({
     required String id,
     required String name,
-    required ProductCategoryPreview categoryPreview,
     required int displayPrice,
     required String displayPriceAsString,
     required int price,
     required String priceAsString,
     required String currency,
-    required String imageUrl,
+    required String image1,
     @Default(0) int percentage,
     @Default(false) bool isFavorite,
+    @Default(mockedInStock) int inStock,
   }) = _ProductPreview;
 
   factory ProductPreview.fromJson(Map<String, Object?> json) =>

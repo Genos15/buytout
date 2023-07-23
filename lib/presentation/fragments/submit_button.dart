@@ -27,7 +27,7 @@ class SubmitButton extends StatelessWidget {
       height: height,
       width: width,
       child: CupertinoButton(
-        color: color.asColor,
+        color: color.color,
         onPressed: onPressed,
         minSize: minSize,
         borderRadius: BorderRadius.circular(borderRadius),

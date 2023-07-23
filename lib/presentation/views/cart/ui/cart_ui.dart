@@ -3,16 +3,22 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class CartUI extends ConsumerWidget {
-  final Map<int, Product> products;
-
-  const CartUI({Key? key, required this.products}) : super(key: key);
+  const CartUI({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final cartResult = ref.watch(cartViewModelProvider);
+
     return RefreshableScaffold(
-      header: HeaderFragment.home(title: const Text('My Cart').black),
+      header: HeaderFragment.home(title: const Text('Cart').black),
       slivers: [
-        const Text('List').sliverBox.sp12,
+        cartResult.when(
+          (cart) => CartProductListFragment(cart: cart),
+          idle: () => const SizedBox.shrink().sliverBox,
+          loading: () => const SizedBox.shrink().sliverBox,
+          error: (e, s) => const SizedBox.shrink().sliverBox,
+        ),
+        const SpaceDivider().sliverBox,
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
@@ -23,7 +29,7 @@ class CartUI extends ConsumerWidget {
           mainAxisSize: MainAxisSize.max,
           children: [Text('Delivery fee'), Text('250 FCFA')],
         ).sliverBox.sp12,
-        const Divider(thickness: LayoutDimens.p0_1).sliverBox.sp12,
+        const SpaceDivider().sliverBox,
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,

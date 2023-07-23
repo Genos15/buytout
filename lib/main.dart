@@ -17,9 +17,6 @@ void main() {
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      // **
-      // Initializing Hive NoSQL local database*/
-      await Hive.initFlutter();
       // await initDi();
       // await myErrorsHandler.initialize();
       FlutterError.onError = (FlutterErrorDetails details) async {

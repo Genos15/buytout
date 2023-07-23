@@ -16,14 +16,16 @@ class ProductDescriptionFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    assert(product is ProductOutput?);
+    final product_ = product as ProductOutput?;
     return switch (skeleton) {
       true => const _ProductDescriptionFragmentSkeleton(),
-      _ when product != null => Text.rich(
+      _ when product_ != null => Text.rich(
           maxLines: 7,
           overflow: TextOverflow.fade,
           TextSpan(
             children: [
-              TextSpan(text: product!.description),
+              TextSpan(text: product_.description),
               // TextSpanWidgetExtension.breaker,
             ],
           ),

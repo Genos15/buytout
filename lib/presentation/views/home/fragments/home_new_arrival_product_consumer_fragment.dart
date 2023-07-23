@@ -27,17 +27,18 @@ class HomeNewArrivalProductConsumerFragment extends StatelessWidget {
 
 class _HomeNewArrivalProductTitle extends StatelessWidget {
   final String title;
-  const _HomeNewArrivalProductTitle({Key? key, required this.title}) : super(key: key);
+
+  const _HomeNewArrivalProductTitle({Key? key, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      final (loading, products) =
-          ref.watch(homeViewModelArrivalProductsProvider);
-      if (!loading && products.isEmpty) {
+      final (loading, _) = ref.watch(homeViewModelNewProductsProvider);
+      if (!loading) {
         return const SizedBox.shrink();
       } else {
-        return Text(title);
+        return AutoSizeText(title);
       }
     });
   }
@@ -49,8 +50,7 @@ class _HomeNewArrivalProductList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer(builder: (context, ref, _) {
-      final (loading, products) =
-          ref.watch(homeViewModelArrivalProductsProvider);
+      final (loading, products) = ref.watch(homeViewModelNewProductsProvider);
       if (loading) {
         return const HomeNewArrivalProductFragment.skeleton();
       } else {

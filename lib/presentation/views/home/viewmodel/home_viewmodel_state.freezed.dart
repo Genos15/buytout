@@ -16,10 +16,9 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$HomeViewModelState {
-  Result<Iterable<ProductPreview>> get newArrivalProductPreviews =>
+  Result<Iterable<Product>> get newProducts =>
       throw _privateConstructorUsedError;
-  Result<Iterable<ProductPreview>> get productPreviews =>
-      throw _privateConstructorUsedError;
+  Result<Iterable<Product>> get products => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $HomeViewModelStateCopyWith<HomeViewModelState> get copyWith =>
@@ -33,8 +32,11 @@ abstract class $HomeViewModelStateCopyWith<$Res> {
       _$HomeViewModelStateCopyWithImpl<$Res, HomeViewModelState>;
   @useResult
   $Res call(
-      {Result<Iterable<ProductPreview>> newArrivalProductPreviews,
-      Result<Iterable<ProductPreview>> productPreviews});
+      {Result<Iterable<Product>> newProducts,
+      Result<Iterable<Product>> products});
+
+  $ResultCopyWith<Iterable<Product>, $Res> get newProducts;
+  $ResultCopyWith<Iterable<Product>, $Res> get products;
 }
 
 /// @nodoc
@@ -50,19 +52,36 @@ class _$HomeViewModelStateCopyWithImpl<$Res, $Val extends HomeViewModelState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newArrivalProductPreviews = null,
-    Object? productPreviews = null,
+    Object? newProducts = null,
+    Object? products = null,
   }) {
     return _then(_value.copyWith(
-      newArrivalProductPreviews: null == newArrivalProductPreviews
-          ? _value.newArrivalProductPreviews
-          : newArrivalProductPreviews // ignore: cast_nullable_to_non_nullable
-              as Result<Iterable<ProductPreview>>,
-      productPreviews: null == productPreviews
-          ? _value.productPreviews
-          : productPreviews // ignore: cast_nullable_to_non_nullable
-              as Result<Iterable<ProductPreview>>,
+      newProducts: null == newProducts
+          ? _value.newProducts
+          : newProducts // ignore: cast_nullable_to_non_nullable
+              as Result<Iterable<Product>>,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as Result<Iterable<Product>>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResultCopyWith<Iterable<Product>, $Res> get newProducts {
+    return $ResultCopyWith<Iterable<Product>, $Res>(_value.newProducts,
+        (value) {
+      return _then(_value.copyWith(newProducts: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResultCopyWith<Iterable<Product>, $Res> get products {
+    return $ResultCopyWith<Iterable<Product>, $Res>(_value.products, (value) {
+      return _then(_value.copyWith(products: value) as $Val);
+    });
   }
 }
 
@@ -75,8 +94,13 @@ abstract class _$$_HomeViewModelStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {Result<Iterable<ProductPreview>> newArrivalProductPreviews,
-      Result<Iterable<ProductPreview>> productPreviews});
+      {Result<Iterable<Product>> newProducts,
+      Result<Iterable<Product>> products});
+
+  @override
+  $ResultCopyWith<Iterable<Product>, $Res> get newProducts;
+  @override
+  $ResultCopyWith<Iterable<Product>, $Res> get products;
 }
 
 /// @nodoc
@@ -90,18 +114,18 @@ class __$$_HomeViewModelStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? newArrivalProductPreviews = null,
-    Object? productPreviews = null,
+    Object? newProducts = null,
+    Object? products = null,
   }) {
     return _then(_$_HomeViewModelState(
-      newArrivalProductPreviews: null == newArrivalProductPreviews
-          ? _value.newArrivalProductPreviews
-          : newArrivalProductPreviews // ignore: cast_nullable_to_non_nullable
-              as Result<Iterable<ProductPreview>>,
-      productPreviews: null == productPreviews
-          ? _value.productPreviews
-          : productPreviews // ignore: cast_nullable_to_non_nullable
-              as Result<Iterable<ProductPreview>>,
+      newProducts: null == newProducts
+          ? _value.newProducts
+          : newProducts // ignore: cast_nullable_to_non_nullable
+              as Result<Iterable<Product>>,
+      products: null == products
+          ? _value.products
+          : products // ignore: cast_nullable_to_non_nullable
+              as Result<Iterable<Product>>,
     ));
   }
 }
@@ -110,17 +134,17 @@ class __$$_HomeViewModelStateCopyWithImpl<$Res>
 
 class _$_HomeViewModelState extends _HomeViewModelState {
   const _$_HomeViewModelState(
-      {required this.newArrivalProductPreviews, required this.productPreviews})
+      {required this.newProducts, required this.products})
       : super._();
 
   @override
-  final Result<Iterable<ProductPreview>> newArrivalProductPreviews;
+  final Result<Iterable<Product>> newProducts;
   @override
-  final Result<Iterable<ProductPreview>> productPreviews;
+  final Result<Iterable<Product>> products;
 
   @override
   String toString() {
-    return 'HomeViewModelState(newArrivalProductPreviews: $newArrivalProductPreviews, productPreviews: $productPreviews)';
+    return 'HomeViewModelState(newProducts: $newProducts, products: $products)';
   }
 
   @override
@@ -128,16 +152,14 @@ class _$_HomeViewModelState extends _HomeViewModelState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_HomeViewModelState &&
-            (identical(other.newArrivalProductPreviews,
-                    newArrivalProductPreviews) ||
-                other.newArrivalProductPreviews == newArrivalProductPreviews) &&
-            (identical(other.productPreviews, productPreviews) ||
-                other.productPreviews == productPreviews));
+            (identical(other.newProducts, newProducts) ||
+                other.newProducts == newProducts) &&
+            (identical(other.products, products) ||
+                other.products == products));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, newArrivalProductPreviews, productPreviews);
+  int get hashCode => Object.hash(runtimeType, newProducts, products);
 
   @JsonKey(ignore: true)
   @override
@@ -149,16 +171,15 @@ class _$_HomeViewModelState extends _HomeViewModelState {
 
 abstract class _HomeViewModelState extends HomeViewModelState {
   const factory _HomeViewModelState(
-          {required final Result<Iterable<ProductPreview>>
-              newArrivalProductPreviews,
-          required final Result<Iterable<ProductPreview>> productPreviews}) =
+          {required final Result<Iterable<Product>> newProducts,
+          required final Result<Iterable<Product>> products}) =
       _$_HomeViewModelState;
   const _HomeViewModelState._() : super._();
 
   @override
-  Result<Iterable<ProductPreview>> get newArrivalProductPreviews;
+  Result<Iterable<Product>> get newProducts;
   @override
-  Result<Iterable<ProductPreview>> get productPreviews;
+  Result<Iterable<Product>> get products;
   @override
   @JsonKey(ignore: true)
   _$$_HomeViewModelStateCopyWith<_$_HomeViewModelState> get copyWith =>

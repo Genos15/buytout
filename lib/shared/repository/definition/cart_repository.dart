@@ -1,9 +1,14 @@
+import 'package:buytout/shared/domain/product_cart_item.dart';
 import 'package:buytout/shared/index.dart';
 
 abstract interface class CartRepository {
-  Future<Result<Cart>> find();
+  Future<Cart> find();
 
-  Future<Result<Cart>> save({required Cart cart});
+  Future<Cart> update({required Cart cart});
 
-  Future<Result<bool>> clear();
+  Future<bool> clear();
+
+  Future<Iterable<ProductCartItem>> findAll();
+
+  Future<int> insert({required ProductCartItem productCartItem});
 }

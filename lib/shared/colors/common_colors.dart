@@ -1,4 +1,6 @@
 abstract class CommonColors {
+  static const int white = 0xFFFFFFFF;
+
   static const int gray50 = 0xFFf9fafb;
   static const int gray100 = 0xFFf3f4f6;
   static const int gray200 = 0xFFe5e7eb;

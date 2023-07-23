@@ -17,7 +17,12 @@ class ImageFragment extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // CarbonIcons.accessibility
+    final isValidUri = Uri.tryParse(imageUrl)?.hasAbsolutePath ?? false;
+
+    if (!isValidUri) {
+      return const _DefaultError();
+    }
+
     return CachedNetworkImage(
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => Container(
@@ -27,21 +32,39 @@ class ImageFragment extends StatelessWidget {
       ),
       placeholder: (context, url) => switch (placeholder) {
         (Widget? w) when w != null => w,
-        _ => Container(color: CommonColors.red10.asColor),
+        _ => const _DefaultPlaceholder(),
       },
       errorWidget: (context, url, error) => switch (placeholder) {
         (Widget? w) when w != null => w,
-        _ => Container(
-            color: CommonColors.red10.asColor,
-            child: Center(
-              child: Icon(
-                CarbonIcons.in_progress_error,
-                color: CommonColors.red300.asColor,
-                size: LayoutDimens.s32,
-              ),
-            ),
-          ),
+        _ => const _DefaultError(),
       },
+    );
+  }
+}
+
+class _DefaultPlaceholder extends StatelessWidget {
+  const _DefaultPlaceholder({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(color: CommonColors.red10.color);
+  }
+}
+
+class _DefaultError extends StatelessWidget {
+  const _DefaultError({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: CommonColors.red10.color,
+      child: Center(
+        child: Icon(
+          CarbonIcons.in_progress_error,
+          color: CommonColors.red300.color,
+          size: LayoutDimens.s32,
+        ),
+      ),
     );
   }
 }

@@ -33,9 +33,13 @@ abstract class LayoutDimens {
   static const s20 = 20.0;
   static const s24 = 24.0;
   static const s32 = 32.0;
+  static const s36 = 36.0;
   static const s48 = 48.0;
   static const s64 = 64.0;
+  static const s72 = 72.0;
+  static const s96 = 96.0;
   static const s128 = 128.0;
+  static const s112 = 112.0;
   static const s192 = 192.0;
   static const s256 = 256.0;
 

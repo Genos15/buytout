@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class HomeNewArrivalProductFragment extends StatelessWidget {
   final bool _skeleton;
-  final List<ProductPreview> products;
+  final List<Product> products;
 
   const HomeNewArrivalProductFragment({Key? key, required this.products})
       : _skeleton = false,
@@ -12,7 +12,7 @@ class HomeNewArrivalProductFragment extends StatelessWidget {
 
   const HomeNewArrivalProductFragment.skeleton({Key? key})
       : _skeleton = true,
-        products = const <ProductPreview>[],
+        products = const <Product>[],
         super(key: key);
 
   @override
@@ -25,7 +25,7 @@ class HomeNewArrivalProductFragment extends StatelessWidget {
 }
 
 class _HomeNewArrivalProductFragment extends StatelessWidget {
-  final List<ProductPreview> products;
+  final List<Product> products;
 
   const _HomeNewArrivalProductFragment({Key? key, required this.products})
       : super(key: key);
@@ -44,7 +44,7 @@ class _HomeNewArrivalProductFragment extends StatelessWidget {
           final product = products[index];
           return _HomeNewArrivalProductCard(
             key: ValueKey(product.id),
-            product: product,
+            preview: product,
           );
         },
         addAutomaticKeepAlives: false,
@@ -59,40 +59,42 @@ class _HomeNewArrivalProductFragment extends StatelessWidget {
 }
 
 class _HomeNewArrivalProductCard extends StatelessWidget {
-  final ProductPreview product;
+  final Product preview;
 
-  const _HomeNewArrivalProductCard({Key? key, required this.product})
+  const _HomeNewArrivalProductCard({Key? key, required this.preview})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: LayoutDimens.e0,
-      child: SizedBox(
-        width: LayoutDimens.s192,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: LayoutDimens.ar16_9,
-              child: Container(color: const Color(CommonColors.red10)),
-            ).pOnly(bottom: LayoutDimens.p4),
-            Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(text: product.name).w500.lg,
-                  TextSpanWidgetExtension.breaker,
-                  TextSpanWidgetExtension.gap,
-                  TextSpan(text: product.categoryPreview.name),
-                  TextSpanWidgetExtension.breaker,
-                  TextSpanWidgetExtension.gap,
-                  TextSpan(text: product.displayPriceAsString).w500,
-                ],
+    return GestureDetector(
+      onTap: () => context.go('/details', extra: preview),
+      child: Card(
+        elevation: LayoutDimens.e0,
+        child: SizedBox(
+          width: LayoutDimens.s192,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Hero(
+                tag: preview.id,
+                child: AspectRatio(
+                  aspectRatio: LayoutDimens.ar16_9,
+                  child: ImageFragment(imageUrl: preview.image1),
+                ).pOnly(bottom: LayoutDimens.p4),
               ),
-            ),
-          ],
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(text: preview.displayPriceAsString).w500,
+                    TextSpanWidgetExtension.breaker,
+                    TextSpan(text: preview.name).w500.sm.disable,
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

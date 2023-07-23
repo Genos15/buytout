@@ -49,7 +49,7 @@ class _HomeNewArrivalProductCardSkeleton extends StatelessWidget {
           children: [
             AspectRatio(
               aspectRatio: LayoutDimens.ar16_9,
-              child: Container(color: CommonColors.red10.asColor),
+              child: Container(color: CommonColors.red10.color),
             ),
             Text.rich(
               TextSpan(

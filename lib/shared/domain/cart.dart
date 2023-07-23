@@ -2,11 +2,16 @@ import 'package:buytout/shared/index.dart';
 
 part 'cart.g.dart';
 
-@HiveType(typeId: 1)
-class Cart extends HiveObject {
-  @HiveField(0)
-  late String id;
+part 'cart.freezed.dart';
 
-  @HiveField(1)
-  late Map<int, Product> products;
+@freezed
+class Cart with _$Cart {
+  const Cart._();
+
+  const factory Cart({
+    required String id,
+    required Map<String, (int, Product)> products,
+  }) = _Cart;
+
+  factory Cart.fromJson(Map<String, Object?> json) => _$CartFromJson(json);
 }

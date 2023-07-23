@@ -22,16 +22,15 @@ ProductPreview _$ProductPreviewFromJson(Map<String, dynamic> json) {
 mixin _$ProductPreview {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-  ProductCategoryPreview get categoryPreview =>
-      throw _privateConstructorUsedError;
   int get displayPrice => throw _privateConstructorUsedError;
   String get displayPriceAsString => throw _privateConstructorUsedError;
   int get price => throw _privateConstructorUsedError;
   String get priceAsString => throw _privateConstructorUsedError;
   String get currency => throw _privateConstructorUsedError;
-  String get imageUrl => throw _privateConstructorUsedError;
+  String get image1 => throw _privateConstructorUsedError;
   int get percentage => throw _privateConstructorUsedError;
   bool get isFavorite => throw _privateConstructorUsedError;
+  int get inStock => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -48,17 +47,15 @@ abstract class $ProductPreviewCopyWith<$Res> {
   $Res call(
       {String id,
       String name,
-      ProductCategoryPreview categoryPreview,
       int displayPrice,
       String displayPriceAsString,
       int price,
       String priceAsString,
       String currency,
-      String imageUrl,
+      String image1,
       int percentage,
-      bool isFavorite});
-
-  $ProductCategoryPreviewCopyWith<$Res> get categoryPreview;
+      bool isFavorite,
+      int inStock});
 }
 
 /// @nodoc
@@ -76,15 +73,15 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? categoryPreview = null,
     Object? displayPrice = null,
     Object? displayPriceAsString = null,
     Object? price = null,
     Object? priceAsString = null,
     Object? currency = null,
-    Object? imageUrl = null,
+    Object? image1 = null,
     Object? percentage = null,
     Object? isFavorite = null,
+    Object? inStock = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -95,10 +92,6 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryPreview: null == categoryPreview
-          ? _value.categoryPreview
-          : categoryPreview // ignore: cast_nullable_to_non_nullable
-              as ProductCategoryPreview,
       displayPrice: null == displayPrice
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
@@ -119,9 +112,9 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      image1: null == image1
+          ? _value.image1
+          : image1 // ignore: cast_nullable_to_non_nullable
               as String,
       percentage: null == percentage
           ? _value.percentage
@@ -131,16 +124,11 @@ class _$ProductPreviewCopyWithImpl<$Res, $Val extends ProductPreview>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      inStock: null == inStock
+          ? _value.inStock
+          : inStock // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $ProductCategoryPreviewCopyWith<$Res> get categoryPreview {
-    return $ProductCategoryPreviewCopyWith<$Res>(_value.categoryPreview,
-        (value) {
-      return _then(_value.copyWith(categoryPreview: value) as $Val);
-    });
   }
 }
 
@@ -155,18 +143,15 @@ abstract class _$$_ProductPreviewCopyWith<$Res>
   $Res call(
       {String id,
       String name,
-      ProductCategoryPreview categoryPreview,
       int displayPrice,
       String displayPriceAsString,
       int price,
       String priceAsString,
       String currency,
-      String imageUrl,
+      String image1,
       int percentage,
-      bool isFavorite});
-
-  @override
-  $ProductCategoryPreviewCopyWith<$Res> get categoryPreview;
+      bool isFavorite,
+      int inStock});
 }
 
 /// @nodoc
@@ -182,15 +167,15 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? name = null,
-    Object? categoryPreview = null,
     Object? displayPrice = null,
     Object? displayPriceAsString = null,
     Object? price = null,
     Object? priceAsString = null,
     Object? currency = null,
-    Object? imageUrl = null,
+    Object? image1 = null,
     Object? percentage = null,
     Object? isFavorite = null,
+    Object? inStock = null,
   }) {
     return _then(_$_ProductPreview(
       id: null == id
@@ -201,10 +186,6 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      categoryPreview: null == categoryPreview
-          ? _value.categoryPreview
-          : categoryPreview // ignore: cast_nullable_to_non_nullable
-              as ProductCategoryPreview,
       displayPrice: null == displayPrice
           ? _value.displayPrice
           : displayPrice // ignore: cast_nullable_to_non_nullable
@@ -225,9 +206,9 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
           ? _value.currency
           : currency // ignore: cast_nullable_to_non_nullable
               as String,
-      imageUrl: null == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      image1: null == image1
+          ? _value.image1
+          : image1 // ignore: cast_nullable_to_non_nullable
               as String,
       percentage: null == percentage
           ? _value.percentage
@@ -237,6 +218,10 @@ class __$$_ProductPreviewCopyWithImpl<$Res>
           ? _value.isFavorite
           : isFavorite // ignore: cast_nullable_to_non_nullable
               as bool,
+      inStock: null == inStock
+          ? _value.inStock
+          : inStock // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -247,15 +232,15 @@ class _$_ProductPreview extends _ProductPreview {
   const _$_ProductPreview(
       {required this.id,
       required this.name,
-      required this.categoryPreview,
       required this.displayPrice,
       required this.displayPriceAsString,
       required this.price,
       required this.priceAsString,
       required this.currency,
-      required this.imageUrl,
+      required this.image1,
       this.percentage = 0,
-      this.isFavorite = false})
+      this.isFavorite = false,
+      this.inStock = mockedInStock})
       : super._();
 
   factory _$_ProductPreview.fromJson(Map<String, dynamic> json) =>
@@ -265,8 +250,6 @@ class _$_ProductPreview extends _ProductPreview {
   final String id;
   @override
   final String name;
-  @override
-  final ProductCategoryPreview categoryPreview;
   @override
   final int displayPrice;
   @override
@@ -278,17 +261,20 @@ class _$_ProductPreview extends _ProductPreview {
   @override
   final String currency;
   @override
-  final String imageUrl;
+  final String image1;
   @override
   @JsonKey()
   final int percentage;
   @override
   @JsonKey()
   final bool isFavorite;
+  @override
+  @JsonKey()
+  final int inStock;
 
   @override
   String toString() {
-    return 'ProductPreview(id: $id, name: $name, categoryPreview: $categoryPreview, displayPrice: $displayPrice, displayPriceAsString: $displayPriceAsString, price: $price, priceAsString: $priceAsString, currency: $currency, imageUrl: $imageUrl, percentage: $percentage, isFavorite: $isFavorite)';
+    return 'ProductPreview(id: $id, name: $name, displayPrice: $displayPrice, displayPriceAsString: $displayPriceAsString, price: $price, priceAsString: $priceAsString, currency: $currency, image1: $image1, percentage: $percentage, isFavorite: $isFavorite, inStock: $inStock)';
   }
 
   @override
@@ -298,8 +284,6 @@ class _$_ProductPreview extends _ProductPreview {
             other is _$_ProductPreview &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.categoryPreview, categoryPreview) ||
-                other.categoryPreview == categoryPreview) &&
             (identical(other.displayPrice, displayPrice) ||
                 other.displayPrice == displayPrice) &&
             (identical(other.displayPriceAsString, displayPriceAsString) ||
@@ -309,12 +293,12 @@ class _$_ProductPreview extends _ProductPreview {
                 other.priceAsString == priceAsString) &&
             (identical(other.currency, currency) ||
                 other.currency == currency) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
+            (identical(other.image1, image1) || other.image1 == image1) &&
             (identical(other.percentage, percentage) ||
                 other.percentage == percentage) &&
             (identical(other.isFavorite, isFavorite) ||
-                other.isFavorite == isFavorite));
+                other.isFavorite == isFavorite) &&
+            (identical(other.inStock, inStock) || other.inStock == inStock));
   }
 
   @JsonKey(ignore: true)
@@ -323,15 +307,15 @@ class _$_ProductPreview extends _ProductPreview {
       runtimeType,
       id,
       name,
-      categoryPreview,
       displayPrice,
       displayPriceAsString,
       price,
       priceAsString,
       currency,
-      imageUrl,
+      image1,
       percentage,
-      isFavorite);
+      isFavorite,
+      inStock);
 
   @JsonKey(ignore: true)
   @override
@@ -351,15 +335,15 @@ abstract class _ProductPreview extends ProductPreview {
   const factory _ProductPreview(
       {required final String id,
       required final String name,
-      required final ProductCategoryPreview categoryPreview,
       required final int displayPrice,
       required final String displayPriceAsString,
       required final int price,
       required final String priceAsString,
       required final String currency,
-      required final String imageUrl,
+      required final String image1,
       final int percentage,
-      final bool isFavorite}) = _$_ProductPreview;
+      final bool isFavorite,
+      final int inStock}) = _$_ProductPreview;
   const _ProductPreview._() : super._();
 
   factory _ProductPreview.fromJson(Map<String, dynamic> json) =
@@ -369,8 +353,6 @@ abstract class _ProductPreview extends ProductPreview {
   String get id;
   @override
   String get name;
-  @override
-  ProductCategoryPreview get categoryPreview;
   @override
   int get displayPrice;
   @override
@@ -382,11 +364,13 @@ abstract class _ProductPreview extends ProductPreview {
   @override
   String get currency;
   @override
-  String get imageUrl;
+  String get image1;
   @override
   int get percentage;
   @override
   bool get isFavorite;
+  @override
+  int get inStock;
   @override
   @JsonKey(ignore: true)
   _$$_ProductPreviewCopyWith<_$_ProductPreview> get copyWith =>

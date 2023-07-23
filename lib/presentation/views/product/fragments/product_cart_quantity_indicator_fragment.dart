@@ -1,33 +1,31 @@
-import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/cupertino.dart';
 
-class ProductCartQuantityIndicatorFragment extends ConsumerWidget {
+class ProductCartQuantityIndicatorFragment extends StatelessWidget {
   final int availableQuantity;
   final double iconSize;
   final Color iconColor;
-  final void Function(int) onChange;
+  final void Function() onIncrement;
+  final void Function() onDecrement;
+  final int quantity;
 
   const ProductCartQuantityIndicatorFragment({
     Key? key,
     required this.availableQuantity,
     required this.iconSize,
     required this.iconColor,
-    required this.onChange,
+    required this.onIncrement,
+    required this.onDecrement,
+    required this.quantity,
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final viewmodel = ref.watch(
-        productCartQuantityViewModelProvider(availableQuantity).notifier);
-    final quantity =
-        ref.watch(productCartQuantityViewModelProvider(availableQuantity));
-
+  Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
-        color: CommonColors.gray100.asColor,
+        color: CommonColors.gray100.color,
         borderRadius: BorderRadius.circular(iconSize),
       ),
       child: Row(
@@ -36,9 +34,7 @@ class ProductCartQuantityIndicatorFragment extends ConsumerWidget {
         children: [
           CupertinoButton(
             padding: EdgeInsets.zero,
-            onPressed: () {
-              onChange(viewmodel.decrement());
-            },
+            onPressed: onDecrement,
             child: Icon(
               CarbonIcons.subtract_alt,
               size: iconSize,
@@ -48,9 +44,7 @@ class ProductCartQuantityIndicatorFragment extends ConsumerWidget {
           Text('$quantity'),
           CupertinoButton(
             padding: EdgeInsets.zero,
-            onPressed: () {
-              onChange(viewmodel.increment());
-            },
+            onPressed: onIncrement,
             child: Icon(
               CarbonIcons.add_filled,
               size: iconSize,

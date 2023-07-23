@@ -1,87 +1,123 @@
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
-import 'dart:developer' as developer;
 
-const _fakeProductPreview = ProductPreview(
-  id: 'id-product',
-  name: 'Thintwice product name',
-  categoryPreview: ProductCategoryPreview(
-    id: 'id-category',
-    name: 'Fake Category\'s name',
-  ),
-  displayPrice: 900,
-  displayPriceAsString: '900 FCFA',
-  price: 1000,
-  priceAsString: '1000 FCFA',
-  currency: 'XOF',
-  imageUrl:
-      'https://shoeslikepottery.com/en/pls-en/wp-content/uploads/2021/06/low-w-2-1200x796.jpg',
-  percentage: 10,
-  isFavorite: false,
-);
+class ProductUI extends StatelessWidget {
+  final Product product;
 
-class ProductUI extends ConsumerWidget {
-  final ProductPreview productPreview;
-
-  const ProductUI({Key? key, this.productPreview = _fakeProductPreview})
-      : super(key: key);
+  const ProductUI({Key? key, required this.product}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.watch(productViewModelProvider(productPreview));
-
+  Widget build(BuildContext context) {
     return RefreshableScaffold(
       header: HeaderFragment.product(
         title: const Text('Details Product').black,
-        background: AspectRatio(
-          aspectRatio: LayoutDimens.ar1_1,
-          child: vm.when(
-            data: (s) => ProductImageSliderFragment(product: s.product),
-            error: (_, s) => ImageFragment(imageUrl: productPreview.imageUrl),
-            loading: () => ImageFragment(imageUrl: productPreview.imageUrl),
+        background: Hero(
+          tag: product.id,
+          child: AspectRatio(
+            aspectRatio: LayoutDimens.ar1_1,
+            child: Consumer(
+              builder: (
+                BuildContext _,
+                WidgetRef ref,
+                Widget? __,
+              ) {
+                final productState =
+                    ref.watch(productViewModelProvider(product));
+                final imageIndex = ref.watch(productImageViewModelProvider);
+                final moveImageIndex = ref
+                    .read(productImageViewModelProvider.notifier)
+                    .moveImageIndex;
+
+                return productState.product.when(
+                  (value) => ProductImageSliderFragment(
+                    product: value,
+                    moveImage: moveImageIndex,
+                    currentImageIndex: imageIndex,
+                  ),
+                  idle: () => ImageFragment(imageUrl: product.image1),
+                  loading: () => ImageFragment(imageUrl: product.image1),
+                  error: (_, __) => ImageFragment(imageUrl: product.image1),
+                );
+              },
+            ),
           ),
         ),
       ),
       slivers: [
-        ProductNameFragment(productPreview: productPreview).sliverBox.sp12,
-        vm
-            .when(
-              data: (state) => ProductDescriptionFragment(
-                product: state.product,
-              ).animate().fade(),
-              error: (e, s) => const SizedBox.shrink(),
-              loading: () => const ProductDescriptionFragment.skeleton(),
-            )
-            .sliverBox
-            .sp12,
-        const Divider(thickness: LayoutDimens.p0_1).sliverBox.sp12,
+        ProductNameFragment(product: product).sliverBox.sp12,
+        Consumer(
+          builder: (
+            BuildContext _,
+            WidgetRef ref,
+            Widget? __,
+          ) {
+            final productState = ref.watch(productViewModelProvider(product));
+            return productState.product
+                .when(
+                  (product) {
+                    return ProductDescriptionFragment(product: product)
+                        .animate()
+                        .fade();
+                  },
+                  idle: () => const SizedBox.shrink(),
+                  loading: () => const ProductDescriptionFragment.skeleton(),
+                  error: (e, s) => const SizedBox.shrink(),
+                )
+                .sliverBox
+                .sp12;
+          },
+        ),
+        const SpaceDivider().sliverBox.sp12,
       ],
       overlays: [
         Align(
           alignment: Alignment.bottomCenter,
           child: SizedBox(
             height: LayoutDimens.s48,
-            child: Row(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: ProductCartQuantityIndicatorFragment(
-                    availableQuantity: 8,
-                    iconSize: LayoutDimens.s32,
-                    iconColor: CommonColors.gray700.asColor,
-                    onChange: (quantity) {
-                      developer.log('the new quantity = $quantity');
-                    },
-                  ),
-                ),
-                Flexible(
-                  flex: 2,
-                  child: SubmitButton(text: 'Add to cart', onPressed: () {}),
-                ),
-              ],
+            child: Consumer(
+              builder: (BuildContext context, WidgetRef ref, Widget? child) {
+                final cartProvider =
+                    productCartQuantityViewModelProvider(product);
+                final productProvider = productViewModelProvider(product);
+
+                final cartViewmodel = ref.watch(cartProvider.notifier);
+                final cartState = ref.watch(cartProvider);
+                final productState = ref.watch(productProvider);
+
+                return Row(
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Flexible(
+                      flex: 1,
+                      child: ProductCartQuantityIndicatorFragment(
+                        availableQuantity: product.inStock,
+                        iconSize: LayoutDimens.s32,
+                        iconColor: CommonColors.gray700.color,
+                        quantity: cartState.quantity,
+                        onIncrement: cartViewmodel.increment,
+                        onDecrement: cartViewmodel.decrement,
+                      ),
+                    ),
+                    Flexible(
+                      flex: 2,
+                      child: productState.product.when(
+                        (product) => SubmitButton(
+                          text: 'Add to cart',
+                          onPressed: cartState.quantity == 0
+                              ? null
+                              : () async => await cartViewmodel.add(product),
+                        ),
+                        idle: () => const SubmitButton(text: 'Add to cart'),
+                        loading: () => const SubmitButton(text: 'Add to cart'),
+                        error: (__, _) =>
+                            const SubmitButton(text: 'Add to cart'),
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
           ).p12,
         ),

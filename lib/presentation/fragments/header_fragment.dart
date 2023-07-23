@@ -1,7 +1,7 @@
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-enum _HeaderState { home, product, cart }
+enum _HeaderState { home, product, cart, favorite, account }
 
 class HeaderFragment extends StatelessWidget {
   final Widget title;
@@ -10,6 +10,16 @@ class HeaderFragment extends StatelessWidget {
 
   const HeaderFragment.home({Key? key, required this.title})
       : _state = _HeaderState.home,
+        background = const SizedBox.shrink(),
+        super(key: key);
+
+  const HeaderFragment.favorite({Key? key, required this.title})
+      : _state = _HeaderState.favorite,
+        background = const SizedBox.shrink(),
+        super(key: key);
+
+  const HeaderFragment.account({Key? key, required this.title})
+      : _state = _HeaderState.account,
         background = const SizedBox.shrink(),
         super(key: key);
 
@@ -36,8 +46,11 @@ class HeaderFragment extends StatelessWidget {
         _HeaderState.home => minHeight,
         _HeaderState.product => maxHeight,
         _HeaderState.cart => minHeight,
+        _HeaderState.favorite => minHeight,
+        _HeaderState.account => minHeight,
       },
-      backgroundColor: const Color(CommonColors.red10),
+      // backgroundColor: const Color(CommonColors.red10),
+      backgroundColor: CommonColors.white.color,
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
         final visible = constraints.biggest.aspectRatio > LayoutDimens.ar2_1;
         return FlexibleSpaceBar(
