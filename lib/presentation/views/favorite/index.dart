@@ -1,1 +1,1 @@
-export 'favorite_ui.dart';
+export 'favorite.ui.dart';

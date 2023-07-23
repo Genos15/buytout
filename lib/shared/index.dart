@@ -10,6 +10,8 @@ export 'package:freezed_annotation/freezed_annotation.dart';
 export 'package:auto_size_text/auto_size_text.dart';
 export 'package:go_router/go_router.dart';
 export 'package:sqflite/sqflite.dart';
+export 'package:flutter_dotenv/flutter_dotenv.dart';
+
 
 export 'domain/index.dart';
 export 'repository/index.dart';

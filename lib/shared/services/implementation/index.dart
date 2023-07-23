@@ -1,2 +1,2 @@
-export 'product_service_impl.dart';
-export 'cart_service_impl.dart';
+export 'product.service.impl.dart';
+export 'cart.service.impl.dart';

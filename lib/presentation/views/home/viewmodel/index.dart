@@ -1,2 +1,2 @@
-export 'home_viewmodel.dart';
-export 'home_viewmodel_state.dart';
+export 'home.viewmodel.dart';
+export 'home.viewmodel.state.dart';

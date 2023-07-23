@@ -1,2 +1,2 @@
-export 'spacer_line.dart';
-export 'space_divider.dart';
+export 'spacer.line.dart';
+export 'space.divider.dart';

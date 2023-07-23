@@ -1,5 +1,8 @@
-export 'header_fragment.dart';
-export 'image_fragment.dart';
-export 'refreshable_scaffold.dart';
-export 'submit_button.dart';
-export 'bottom_navigation_bar.dart';
+export 'header.dart';
+export 'image.viewer.dart';
+export 'refreshable.scaffold.dart';
+export 'submit.button.dart';
+export 'bottom.navigation.bar.dart';
+export 'product.card.dart';
+export 'quantity.indicator.dart';
+export 'image.slider.dart';

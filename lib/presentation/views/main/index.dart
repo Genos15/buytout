@@ -1,2 +1,2 @@
-export 'buytout_application_body.dart';
-export 'navigation_viewmodel.dart';
+export 'buytout.application.body.dart';
+export 'navigation.viewmodel.dart';

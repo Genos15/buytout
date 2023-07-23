@@ -1,1 +1,1 @@
-export 'cart_product_list_fragment.dart';
+export 'product-card.list.dart';

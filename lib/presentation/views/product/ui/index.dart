@@ -1,1 +1,1 @@
-export 'product_ui.dart';
+export 'product.ui.dart';

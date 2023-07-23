@@ -1,2 +1,2 @@
-export 'database_client.dart';
-export 'database_client_impl.dart';
+export 'database.client.dart';
+export 'database.client.impl.dart';

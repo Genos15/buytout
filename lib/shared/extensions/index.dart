@@ -1,4 +1,4 @@
-export 'widget_extensions.dart';
-export 'text_widget_extensions.dart';
-export 'textspan_widget_extensions.dart';
-export 'color_extension.dart';
+export 'widget.extension.dart';
+export 'text.widget.extension.dart';
+export 'textspan.widget.extension.dart';
+export 'color.extension.dart';

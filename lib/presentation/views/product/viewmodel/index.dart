@@ -1,5 +1,5 @@
-export 'product_viewmodel.dart';
-export 'product_cart_viewmodel.dart';
-export 'product_image_viewmodel.dart';
-export 'product_viewmodel_state.dart';
-export 'product_cart_viewmodel_state.dart';
+export 'product.viewmodel.dart';
+export 'product-cart.viewmodel.dart';
+export 'product-image.viewmodel.dart';
+export 'product.viewmodel.state.dart';
+export 'product-cart.viewmodel.state.dart';
