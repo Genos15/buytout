@@ -1,4 +1,5 @@
-import 'package:buytout/presentation/views/home/ui/home_view.dart';
+import 'package:buytout/config/index.dart';
+import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class BuytoutApplication extends StatelessWidget {
@@ -6,19 +7,23 @@ class BuytoutApplication extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return MaterialApp.router(
+      routerConfig: router,
+      title: 'Readige',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(fontSize: TextDimens.baseSize),
+        ),
         // textTheme: GoogleFonts.interTextTheme(textTheme),
-        // brightness: brightness,
-        // visualDensity: VisualDensity.adaptivePlatformDensity,
+        brightness: Brightness.light,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
         // dividerTheme: DividerThemeData(color: Colors.black.withOpacity(.04)),
         // scaffoldBackgroundColor: from(context).scaffoldBackground,
       ),
-      home: const HomeView(),
     );
   }
 }

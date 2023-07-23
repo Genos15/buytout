@@ -1,17 +1,16 @@
-sealed class Result<T> {}
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-class Success<T> extends Result<T> {
-  final T data;
+part 'result.freezed.dart';
 
-  Success(this.data);
+@freezed
+@immutable
+sealed class Result<T> with _$Result {
+  const factory Result.idle() = Idle;
+
+  const factory Result(T value) = Data;
+
+  const factory Result.loading() = Loading;
+
+  const factory Result.error([Exception? exception, StackTrace? stackTrace]) =
+      ErrorDetails;
 }
-
-class Failure<T> extends Result<T> {
-  final Exception exception;
-
-  Failure(this.exception);
-}
-
-class Loading<T> extends Result<T> {}
-
-class Idle<T> extends Result<Never> {}

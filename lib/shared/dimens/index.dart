@@ -1,2 +1,2 @@
-export 'card_dimens.dart';
-export 'layout_dimens.dart';
+export 'layout.dimens.dart';
+export 'text.dimens.dart';

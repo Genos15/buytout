@@ -1,2 +1,2 @@
-export 'card_colors.dart';
-export 'layout_colors.dart';
+export 'card.colors.dart';
+export 'common.colors.dart';

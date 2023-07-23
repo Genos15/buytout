@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:developer' as developer;
+import 'package:buytout/config/index.dart';
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
-
-import 'config/index.dart';
 
 bool get isInDebugMode {
   bool inDebugMode = false;
@@ -12,14 +10,15 @@ bool get isInDebugMode {
   return inDebugMode;
 }
 
-void main() {
+void main() async {
+  CachedNetworkImage.logLevel = CacheManagerLogLevel.debug;
   ErrorWidget.builder = (errorDetails) => const ErrorView();
 
   runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      // await initDi();
-      // await myErrorsHandler.initialize();
+      await dotenv.load(fileName: Environment.name);
+
       FlutterError.onError = (FlutterErrorDetails details) async {
         final dynamic exception = details.exception;
         final StackTrace? stackTrace = details.stack;
@@ -40,9 +39,7 @@ void main() {
     (error, stackTrace) async {
       if (isInDebugMode) {
         // In development mode simply print to console.
-        developer.log('Caught Dart Error!');
-        developer.log('$error');
-        developer.log('$stackTrace');
+        logger.e('Caught Dart Error!', error, stackTrace);
       } else {
         // In production
         // Report errors to a reporting service such as Sentry or Crashlytics
