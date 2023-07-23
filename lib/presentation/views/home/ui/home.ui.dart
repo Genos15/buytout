@@ -8,9 +8,33 @@ class HomeUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshableScaffold(
-      header: Header.home(title: const Text('Home').black),
+      header: Header.home(
+        title: TextTitle1(
+          'Showcase',
+          textAlign: TextAlign.start,
+          style: TextStyle(color: CommonColors.black900.color),
+        ),
+      ),
       slivers: [
+        const SliverPadding(
+          padding: EdgeInsets.all(LayoutDimens.p8),
+          sliver: SliverToBoxAdapter(
+            child: SectionSeparator(
+              title: 'Popular',
+              subtitle: 'Most paid product of the community',
+            ),
+          ),
+        ),
         const ProductListFragment.arrival().sliverBox,
+        const SliverPadding(
+          padding: EdgeInsets.all(LayoutDimens.p8),
+          sliver: SliverToBoxAdapter(
+            child: SectionSeparator(
+              title: 'Suggested for you',
+              subtitle: 'Based on area interests',
+            ),
+          ),
+        ),
         const ProductListFragment.best().sp8,
       ],
     );

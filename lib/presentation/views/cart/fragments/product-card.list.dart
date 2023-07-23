@@ -31,7 +31,7 @@ class ProductCartList extends StatelessWidget {
               borderRadius: BorderRadius.circular(8),
               child: AspectRatio(
                 aspectRatio: LayoutDimens.ar1_1,
-                child: ImageViewer(imageUrl: product.image1),
+                child: ImageViewer(url: product.image1),
               ),
             ),
             title: AutoSizeText(

@@ -45,7 +45,7 @@ class ImageSlider extends ConsumerWidget {
             return SizedBox(
               height: height,
               width: width,
-              child: ImageViewer(imageUrl: imageLinks.elementAt(index)),
+              child: ImageViewer(url: imageLinks.elementAt(index)),
             );
           },
         ),

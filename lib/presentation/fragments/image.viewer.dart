@@ -2,14 +2,14 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class ImageViewer extends StatelessWidget {
-  final String imageUrl;
+  final String url;
   final BoxFit fit;
   final Widget? placeholder;
   final Widget? error;
 
   const ImageViewer({
     Key? key,
-    required this.imageUrl,
+    required this.url,
     this.fit = BoxFit.cover,
     this.placeholder,
     this.error,
@@ -17,33 +17,33 @@ class ImageViewer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isValidUri = Uri.tryParse(imageUrl)?.hasAbsolutePath ?? false;
+    final isValidUri = Uri.tryParse(url)?.hasAbsolutePath ?? false;
 
     if (!isValidUri) {
-      return const _DefaultError();
+      return const _ImageError();
     }
 
     return CachedNetworkImage(
-      imageUrl: imageUrl,
+      imageUrl: url,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
           image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
         ),
       ),
       placeholder: (context, url) => switch (placeholder) {
-        (Widget? w) when w != null => w,
-        _ => const _DefaultPlaceholder(),
+        (Widget? component) when component != null => component,
+        _ => const _ImagePlaceholder(),
       },
       errorWidget: (context, url, error) => switch (placeholder) {
-        (Widget? w) when w != null => w,
-        _ => const _DefaultError(),
+        (Widget? component) when component != null => component,
+        _ => const _ImageError(),
       },
     );
   }
 }
 
-class _DefaultPlaceholder extends StatelessWidget {
-  const _DefaultPlaceholder({Key? key}) : super(key: key);
+class _ImagePlaceholder extends StatelessWidget {
+  const _ImagePlaceholder({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,8 +51,8 @@ class _DefaultPlaceholder extends StatelessWidget {
   }
 }
 
-class _DefaultError extends StatelessWidget {
-  const _DefaultError({Key? key}) : super(key: key);
+class _ImageError extends StatelessWidget {
+  const _ImageError({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

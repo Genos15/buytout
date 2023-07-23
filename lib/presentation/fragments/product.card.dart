@@ -59,7 +59,7 @@ class _PreviewCardAtomic extends StatelessWidget {
             children: [
               AspectRatio(
                 aspectRatio: LayoutDimens.ar16_9,
-                child: ImageViewer(imageUrl: product.image1),
+                child: ImageViewer(url: product.image1),
               ).pOnly(bottom: LayoutDimens.p4),
               Text.rich(
                 TextSpan(
@@ -101,7 +101,7 @@ class _ShowcaseCardAtomic extends StatelessWidget {
                 tag: product.id,
                 child: AspectRatio(
                   aspectRatio: LayoutDimens.ar1_1,
-                  child: ImageViewer(imageUrl: product.image1),
+                  child: ImageViewer(url: product.image1),
                 ),
               ),
               Text.rich(
