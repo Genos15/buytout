@@ -7,29 +7,51 @@ class Header extends StatelessWidget {
   final Widget title;
   final Widget background;
   final _HeaderState _state;
+  final EdgeInsets padding;
+  final bool centerTitle;
 
-  const Header.home({Key? key, required this.title})
-      : _state = _HeaderState.home,
+  const Header.home({
+    Key? key,
+    required this.title,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = false,
+  })  : _state = _HeaderState.home,
         background = const SizedBox.shrink(),
         super(key: key);
 
-  const Header.favorite({Key? key, required this.title})
-      : _state = _HeaderState.favorite,
+  const Header.favorite({
+    Key? key,
+    required this.title,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = true,
+  })  : _state = _HeaderState.favorite,
         background = const SizedBox.shrink(),
         super(key: key);
 
-  const Header.account({Key? key, required this.title})
-      : _state = _HeaderState.account,
+  const Header.account({
+    Key? key,
+    required this.title,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = true,
+  })  : _state = _HeaderState.account,
         background = const SizedBox.shrink(),
         super(key: key);
 
-  const Header.product(
-      {Key? key, required this.title, required this.background})
-      : _state = _HeaderState.product,
+  const Header.product({
+    Key? key,
+    required this.title,
+    required this.background,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = true,
+  })  : _state = _HeaderState.product,
         super(key: key);
 
-  const Header.cart({Key? key, required this.title})
-      : _state = _HeaderState.cart,
+  const Header.cart({
+    Key? key,
+    required this.title,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = true,
+  })  : _state = _HeaderState.cart,
         background = const SizedBox.shrink(),
         super(key: key);
 
@@ -54,11 +76,12 @@ class Header extends StatelessWidget {
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
         final visible = constraints.biggest.aspectRatio > LayoutDimens.ar2_1;
         return FlexibleSpaceBar(
-          centerTitle: true,
+          centerTitle: centerTitle,
           title: visible ? title : null,
           collapseMode: CollapseMode.parallax,
           expandedTitleScale: TextDimens.lg,
           background: background,
+          titlePadding: padding,
         );
       }),
     );

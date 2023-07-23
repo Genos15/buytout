@@ -44,4 +44,106 @@ extension TextWidgetExtension on Widget {
 
     return Text(textWidget.data!, style: blackStyle);
   }
+
+  Widget get title1 {
+    if (this is! AutoSizeText && this is! Text) {
+      return this;
+    }
+
+    if (this is AutoSizeText) {
+      final textWidget = this as AutoSizeText;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return AutoSizeText(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.xl2,
+      );
+    } else {
+      final textWidget = this as Text;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return Text(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.xl2,
+      );
+    }
+  }
+
+  Widget get title2 {
+    if (this is! AutoSizeText && this is! Text) {
+      return this;
+    }
+
+    if (this is AutoSizeText) {
+      final textWidget = this as AutoSizeText;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return AutoSizeText(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.xl,
+      );
+    } else {
+      final textWidget = this as Text;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return Text(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.xl,
+      );
+    }
+  }
+
+  Widget get title3 {
+    if (this is! AutoSizeText && this is! Text) {
+      return this;
+    }
+
+    if (this is AutoSizeText) {
+      final textWidget = this as AutoSizeText;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return AutoSizeText(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.lg,
+      );
+    } else {
+      final textWidget = this as Text;
+      final content = textWidget.data;
+
+      if (content == null) {
+        return this;
+      }
+
+      return Text(
+        content,
+        style: textWidget.style,
+        textScaleFactor: TextDimens.lg,
+      );
+    }
+  }
 }

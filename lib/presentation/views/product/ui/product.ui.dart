@@ -35,9 +35,9 @@ class ProductUI extends StatelessWidget {
                     moveImage: moveImageIndex,
                     currentImageIndex: imageIndex,
                   ),
-                  idle: () => ImageViewer(imageUrl: product.image1),
-                  loading: () => ImageViewer(imageUrl: product.image1),
-                  error: (_, __) => ImageViewer(imageUrl: product.image1),
+                  idle: () => ImageViewer(url: product.image1),
+                  loading: () => ImageViewer(url: product.image1),
+                  error: (_, __) => ImageViewer(url: product.image1),
                 );
               },
             ),

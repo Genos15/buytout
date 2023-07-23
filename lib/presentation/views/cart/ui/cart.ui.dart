@@ -10,7 +10,13 @@ class CartUI extends ConsumerWidget {
     final cartResult = ref.watch(cartViewModelProvider);
 
     return RefreshableScaffold(
-      header: Header.home(title: const Text('Cart').black),
+      header: Header.cart(
+        title: Text(
+          'Cart',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: CommonColors.black900.color),
+        ),
+      ),
       slivers: [
         cartResult.when(
           (cart) => ProductCartList(cart: cart),
