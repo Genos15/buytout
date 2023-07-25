@@ -1,3 +1,4 @@
+import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
@@ -84,6 +85,33 @@ class Header extends StatelessWidget {
           titlePadding: padding,
         );
       }),
+      automaticallyImplyLeading: _state != _HeaderState.product,
+      leading: switch (_state) {
+        _HeaderState.product => IconButton.filledTonal(
+            icon: const Icon(CarbonIcons.arrow_left),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        _ => null
+      },
+      actions: switch (_state) {
+        _HeaderState.home => [
+            Padding(
+              padding: padding,
+              child: IconButton.filledTonal(
+                icon: const Icon(CarbonIcons.search),
+                onPressed: () {
+                  showSearch(
+                    context: context,
+                    delegate: ProductSearchDelegate(),
+                  );
+                },
+              ),
+            ),
+          ],
+        _ => null
+      },
     );
   }
 }

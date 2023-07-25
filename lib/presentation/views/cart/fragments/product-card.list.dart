@@ -62,7 +62,7 @@ class ProductCartList extends StatelessWidget {
               width: LayoutDimens.s112,
               child: QuantityIndicator(
                 availableQuantity: 8,
-                iconSize: LayoutDimens.s24,
+                iconSize: LayoutDimens.s16,
                 iconColor: CommonColors.gray700.color,
                 quantity: min(quantity, 100),
                 onIncrement: () {},

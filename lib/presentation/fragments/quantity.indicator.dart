@@ -1,5 +1,5 @@
 import 'package:buytout/shared/index.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class QuantityIndicator extends StatelessWidget {
   final int availableQuantity;
@@ -32,23 +32,39 @@ class QuantityIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          CupertinoButton(
+          // CupertinoButton(
+          //   padding: EdgeInsets.zero,
+          //   onPressed: onDecrement,
+          //   child: Icon(
+          //     CarbonIcons.subtract_alt,
+          //     size: iconSize,
+          //     color: iconColor,
+          //   ),
+          // ),
+          IconButton.outlined(
             padding: EdgeInsets.zero,
             onPressed: onDecrement,
-            child: Icon(
-              CarbonIcons.subtract_alt,
+            icon: Icon(
+              CarbonIcons.subtract,
               size: iconSize,
-              color: iconColor,
             ),
           ),
-          Text('$quantity'),
-          CupertinoButton(
+          AutoSizeText('$quantity'),
+          // CupertinoButton(
+          //   padding: EdgeInsets.zero,
+          //   onPressed: onIncrement,
+          //   child: Icon(
+          //     CarbonIcons.add_filled,
+          //     size: iconSize,
+          //     color: iconColor,
+          //   ),
+          // ),
+          IconButton.filledTonal(
             padding: EdgeInsets.zero,
             onPressed: onIncrement,
-            child: Icon(
-              CarbonIcons.add_filled,
+            icon: Icon(
+              CarbonIcons.add,
               size: iconSize,
-              color: iconColor,
             ),
           ),
         ],
