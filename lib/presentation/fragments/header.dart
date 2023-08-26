@@ -2,7 +2,7 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-enum _HeaderState { home, product, cart, favorite, account }
+enum _HeaderState { home, product, cart, favorite, account, category }
 
 class Header extends StatelessWidget {
   final Widget title;
@@ -26,6 +26,15 @@ class Header extends StatelessWidget {
     this.padding = const EdgeInsets.all(LayoutDimens.p8),
     this.centerTitle = true,
   })  : _state = _HeaderState.favorite,
+        background = const SizedBox.shrink(),
+        super(key: key);
+
+  const Header.category({
+    Key? key,
+    required this.title,
+    this.padding = const EdgeInsets.all(LayoutDimens.p8),
+    this.centerTitle = true,
+  })  : _state = _HeaderState.category,
         background = const SizedBox.shrink(),
         super(key: key);
 
@@ -58,7 +67,7 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final maxHeight = MediaQuery.of(context).size.width;
+    final maxHeight = MediaQuery.sizeOf(context).width;
     final minHeight = Theme.of(context).appBarTheme.toolbarHeight;
 
     return SliverAppBar(
@@ -71,6 +80,7 @@ class Header extends StatelessWidget {
         _HeaderState.cart => minHeight,
         _HeaderState.favorite => minHeight,
         _HeaderState.account => minHeight,
+        _HeaderState.category => minHeight,
       },
       // backgroundColor: const Color(CommonColors.red10),
       backgroundColor: CommonColors.white.color,
@@ -85,9 +95,16 @@ class Header extends StatelessWidget {
           titlePadding: padding,
         );
       }),
-      automaticallyImplyLeading: _state != _HeaderState.product,
+      automaticallyImplyLeading:
+          _state != _HeaderState.product || _state != _HeaderState.category,
       leading: switch (_state) {
-        _HeaderState.product => IconButton.filledTonal(
+        // _HeaderState.product || _HeaderState.category => IconButton.filledTonal(
+        //     icon: const Icon(CarbonIcons.arrow_left),
+        //     onPressed: () {
+        //       Navigator.pop(context);
+        //     },
+        //   ),
+        _HeaderState.product || _HeaderState.category => IconButton(
             icon: const Icon(CarbonIcons.arrow_left),
             onPressed: () {
               Navigator.pop(context);

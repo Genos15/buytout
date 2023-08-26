@@ -13,9 +13,26 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: 'details',
           builder: (context, state) {
-            // todo: check if the argument is ok
+            try {
+              state.extra as Product;
+            } on Exception {
+              throw Exception('the product argument must be set');
+            }
             final product = state.extra as Product;
             return ProductUI(product: product);
+          },
+        ),
+        GoRoute(
+          path: 'category',
+          builder: (context, state) {
+            try {
+              state.extra as Category;
+            } on Exception {
+              throw Exception('the category argument must be set');
+            }
+
+            final productCategory = state.extra as Category;
+            return CategoryUI(productCategory: productCategory);
           },
         ),
       ],

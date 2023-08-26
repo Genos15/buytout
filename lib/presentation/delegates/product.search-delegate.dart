@@ -1,3 +1,4 @@
+import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
@@ -31,9 +32,8 @@ class ProductSearchDelegate extends SearchDelegate<String> {
 
   @override
   Widget buildResults(BuildContext context) {
-
     //clear the old search list
-//     searchResult.clear();
+    // searchResult.clear();
 //
 // //find the elements that starts with the same query letters.
 // // allNames is a list that contains all your data ( you can replace it here by an http request or a query from your database )
@@ -55,11 +55,11 @@ class ProductSearchDelegate extends SearchDelegate<String> {
 //           })),
 //     );
 //
-    return const Text('buildResults');
+    return SearchResult(input: query);
   }
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    return const Text('buildSuggestions');
+    return SearchSuggestion(input: query);
   }
 }

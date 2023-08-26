@@ -1,22 +1,31 @@
 import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-class BuytoutApplication extends StatelessWidget {
+final rootScaffoldMessengerKeyProvider =
+    Provider((ref) => GlobalKey<ScaffoldMessengerState>());
+
+class BuytoutApplication extends ConsumerWidget {
   const BuytoutApplication({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final rootScaffoldMessengerKey = ref.read(rootScaffoldMessengerKeyProvider);
+
     return MaterialApp.router(
+      scaffoldMessengerKey: rootScaffoldMessengerKey,
       routerConfig: router,
       title: 'Readige',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: CommonColors.main.color),
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
-        textTheme: const TextTheme(
-          bodyMedium: TextStyle(fontSize: TextDimens.baseSize),
+        textTheme: GoogleFonts.dmSansTextTheme(
+          Theme.of(context).textTheme.copyWith(
+                bodyMedium: const TextStyle(fontSize: TextDimens.baseSize),
+              ),
         ),
         // textTheme: GoogleFonts.interTextTheme(textTheme),
         brightness: Brightness.light,

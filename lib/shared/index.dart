@@ -23,3 +23,4 @@ export 'dimens/index.dart';
 export 'logger/index.dart';
 export 'database/index.dart';
 export 'http/index.dart';
+export 'theme/index.dart';

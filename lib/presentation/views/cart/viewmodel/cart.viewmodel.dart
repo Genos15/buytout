@@ -2,7 +2,6 @@ import 'package:buytout/shared/index.dart';
 
 final cartViewModelProvider =
     StateNotifierProvider.autoDispose<CartViewModel, Result<Cart>>((ref) {
-  // final notifier = ValueNotifier
   final service = ref.watch(cartServiceProvider);
   return CartViewModel(service);
 });
@@ -40,6 +39,15 @@ class CartViewModel extends StateNotifier<Result<Cart>> {
         logger.e('Error cart', e, s);
       },
     );
+  }
+
+  int _deliveryPrice() {
+    return 350;
+  }
+
+  String displayDeliveryPriceAsString() {
+    final priceBuffer = [_deliveryPrice(), 'FCFA'];
+    return priceBuffer.join(' ');
   }
 
   @override

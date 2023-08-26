@@ -74,6 +74,7 @@ class _RefreshableScaffoldAndroid extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: RefreshIndicator(
           onRefresh: onRefresh ?? () async {},
           child: Stack(
@@ -119,6 +120,7 @@ class _RefreshableScaffoldIOS extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
             CustomScrollView(

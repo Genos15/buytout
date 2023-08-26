@@ -36,7 +36,7 @@ class _BestSellerAtomic extends StatelessWidget {
           crossAxisCount: 2,
           childAspectRatio: LayoutDimens.ar1_14,
           crossAxisSpacing: LayoutDimens.s4,
-          children: List.generate(3, (_) => const ProductCard.skeleton1()),
+          children: List.generate(3, (_) => const ProductCard.skeleton2()),
         );
       } else {
         return SliverGrid.builder(

@@ -7,6 +7,7 @@ class CartUI extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final viewmodel = ref.read(cartViewModelProvider.notifier);
     final cartResult = ref.watch(cartViewModelProvider);
 
     return RefreshableScaffold(
@@ -18,29 +19,41 @@ class CartUI extends ConsumerWidget {
         ),
       ),
       slivers: [
-        cartResult.when(
-          (cart) => ProductCartList(cart: cart),
-          idle: () => const SizedBox.shrink().sliverBox,
-          loading: () => const SizedBox.shrink().sliverBox,
-          error: (e, s) => const SizedBox.shrink().sliverBox,
-        ),
+        switch (cartResult) {
+          (Data<Cart> data) => ProductCartList(cart: data.value),
+          _ => const SizedBox.shrink().sliverBox
+        },
         const SpaceDivider().sliverBox,
         // starting from here
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
-          children: [Text('Subtotal'), Text('800 FCFA')],
+          children: [
+            const AutoSizeText('Subtotal'),
+            switch (cartResult) {
+              Data<Cart>(value: var cart) => AutoSizeText(
+                  cart.displayTotalPriceAsString(),
+                ),
+              _ => const SizedBox.shrink()
+            },
+          ],
         ).sliverBox.sp12,
-        const Row(
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
-          children: [Text('Delivery fee'), Text('250 FCFA')],
+          children: [
+            const AutoSizeText('Delivery fee'),
+            AutoSizeText(viewmodel.displayDeliveryPriceAsString()),
+          ],
         ).sliverBox.sp12,
         const SpaceDivider().sliverBox,
         const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           mainAxisSize: MainAxisSize.max,
-          children: [Text('Total'), Text('1050 FCFA')],
+          children: [
+            AutoSizeText('Total'),
+            AutoSizeText('1050 FCFA'),
+          ],
         ).sliverBox.sp12,
       ],
       overlays: [
