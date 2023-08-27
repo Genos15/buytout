@@ -3,74 +3,69 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class ImageSlider extends ConsumerWidget {
-  final Product product;
-  final void Function(int) moveImage;
-  final int currentImageIndex;
+  final List<String> images;
+  final void Function(int) onMove;
+  final int position;
 
   const ImageSlider({
     Key? key,
-    required this.product,
-    required this.moveImage,
-    required this.currentImageIndex,
+    required this.images,
+    required this.onMove,
+    required this.position,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    assert(product is ProductOutput);
-    final product_ = product as ProductOutput;
-
-    final height = MediaQuery.of(context).size.height;
-    final width = MediaQuery.of(context).size.width;
-
-    final imageLinks = [
-      product_.image1,
-      product_.image2,
-      product_.image3,
-      product_.image4,
-      product_.image5,
-    ].nonNulls;
+    final height = MediaQuery.sizeOf(context).height;
+    final width = MediaQuery.sizeOf(context).width;
 
     return Stack(
       children: [
         CarouselSlider.builder(
-          itemCount: imageLinks.length,
+          itemCount: images.length,
           options: CarouselOptions(
             height: height,
             viewportFraction: 1.0,
             enlargeCenterPage: false,
             enableInfiniteScroll: false,
-            onPageChanged: (index, _) => moveImage(index),
+            onPageChanged: (newImageIndex, _) => onMove(newImageIndex),
           ),
           itemBuilder: (context, index, _) {
             return SizedBox(
               height: height,
               width: width,
-              child: ImageViewer(url: imageLinks.elementAt(index)),
+              child: ImageViewer(url: images[index]),
             );
           },
         ),
         Align(
           alignment: Alignment.bottomCenter,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imageLinks.toList().asMap().entries.map((image) {
-              return Container(
-                width: LayoutDimens.p12,
-                height: LayoutDimens.p12,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: currentImageIndex == image.key
-                      ? CommonColors.gray700.color
-                      : CommonColors.gray300.color,
-                  border: Border.all(
-                    width: LayoutDimens.s2,
-                    color: CommonColors.gray50.color,
-                    style: BorderStyle.solid,
+          child: Padding(
+            padding: const EdgeInsets.all(LayoutDimens.p16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: images.asMap().entries.map((image) {
+                return Padding(
+                  padding: const EdgeInsets.all(LayoutDimens.p4),
+                  child: Container(
+                    width: LayoutDimens.p12,
+                    height: LayoutDimens.p12,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: position == image.key
+                          ? CommonColors.gray700.color
+                          : CommonColors.gray300.color,
+                      border: Border.all(
+                        width: LayoutDimens.s2,
+                        color: CommonColors.gray50.color,
+                        style: BorderStyle.solid,
+                      ),
+                    ),
                   ),
-                ),
-              ).p4;
-            }).toList(growable: false),
-          ).p16.animate().fade(),
+                );
+              }).toList(growable: false),
+            ).animate().fade(),
+          ),
         ),
       ],
     );

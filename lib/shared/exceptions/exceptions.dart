@@ -1,4 +1,5 @@
 import 'package:buytout/config/index.dart';
+import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 abstract class Exceptions {
@@ -11,5 +12,16 @@ abstract class Exceptions {
       "Nous avons rencontré des problèmes. Si l'erreur persiste, veuillez contacter notre service d'assistance 🙂",
     );
     // todo: logging & monitoring the error
+
+    logger.e('Propagation', error, stackTrace);
+  }
+
+  static void monitor(Object? error, StackTrace? stackTrace) {
+    // SnackBarManager.of(context).error(
+    //   "Nous avons rencontré des problèmes. Si l'erreur persiste, veuillez contacter notre service d'assistance 🙂",
+    // );
+    // todo: logging & monitoring the error
+
+    logger.e('Propagation', error, stackTrace);
   }
 }

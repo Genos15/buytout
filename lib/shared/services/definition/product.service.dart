@@ -12,4 +12,15 @@ abstract interface class ProductService {
   });
 
   Future<Result<Product>> fetchProductById({required String productId});
+
+  Future<Iterable<ProdLite>> getProductByCategoryId({
+    required String productCategoryId,
+    required int first,
+    String? after,
+  });
+
+  Future<int> getTotalProductCount({required String productCategoryId});
+
+  Future<ProdDetails> getProductById({required String productId});
+
 }

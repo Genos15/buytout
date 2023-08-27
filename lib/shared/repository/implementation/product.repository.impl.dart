@@ -3,20 +3,26 @@ import 'dart:isolate';
 import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/services.dart';
+import 'package:graphql/client.dart';
 
-final productRepoProvider = Provider.autoDispose<ProductRepo>((ref) {
+final productRepositoryProvider =
+    Provider.autoDispose<ProductRepository>((ref) {
   final db = ref.watch(databaseProvider);
-  return ProductRepoImpl(db);
+  final gqlClient = ref.watch(gqlClientProvider);
+
+  return ProductRepositoryImpl(db, gqlClient.value);
 });
 
 const kImageExtension = 'jpg';
 
-class ProductRepoImpl implements ProductRepo {
+class ProductRepositoryImpl implements ProductRepository {
   final DatabaseClient client;
+  final GraphQLClient gqlClient;
+
   static const kPageSize = 50;
   final rootIsolateToken = RootIsolateToken.instance;
 
-  ProductRepoImpl(this.client) {
+  ProductRepositoryImpl(this.client, this.gqlClient) {
     init(database: client.database);
   }
 
@@ -142,5 +148,69 @@ class ProductRepoImpl implements ProductRepo {
         conflictAlgorithm: ConflictAlgorithm.replace,
       );
     });
+  }
+
+  @override
+  Future<Iterable<ProdLite>> getProductByCategoryId({
+    required String productCategoryId,
+    required int first,
+    String? after,
+  }) async {
+    var options = QueryOptions(
+      document: categoryProductRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['categoryProducts'],
+      variables: {
+        'categoryId': productCategoryId,
+        'first': first,
+        'after': after,
+        'searchText': null,
+      },
+    );
+    var apiResult = await gqlClient.query(options);
+    var nodes = ConnectionHelper.deserialize(apiResult.parsedData);
+    return nodes.map((node) => ProdLite.fromJson(node));
+  }
+
+  @override
+  Future<int> getTotalProductCount({required String productCategoryId}) async {
+    var options = QueryOptions(
+      document: categoryProductCountRequest,
+      fetchPolicy: FetchPolicy.noCache,
+      cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+      optimisticResult: true,
+      parserFn: (data) => data['category'],
+      variables: {
+        'categoryId': productCategoryId,
+      },
+    );
+
+    var apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      Exceptions.monitor(apiResult.exception, StackTrace.current);
+    }
+
+    return 91;
+  }
+
+  @override
+  Future<ProdDetails> getProductById({required String productId}) async {
+    var options = QueryOptions(
+      document: productRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['product'],
+      variables: {
+        'productId': productId,
+      },
+    );
+
+    var apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      Exceptions.monitor(apiResult.exception, StackTrace.current);
+    }
+
+    return ProdDetails.fromJson(apiResult.parsedData);
   }
 }

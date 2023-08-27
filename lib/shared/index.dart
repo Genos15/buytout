@@ -12,6 +12,16 @@ export 'package:go_router/go_router.dart';
 export 'package:sqflite/sqflite.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
 
+/// GraphQL exports
+export 'package:graphql/src/core/mutation_options.dart';
+export 'package:graphql/src/core/query_options.dart';
+export 'package:graphql/src/core/policies.dart';
+export 'package:graphql/src/core/query_result.dart';
+export 'package:graphql/src/utilities/helpers.dart';
+export 'package:graphql/src/exceptions/exceptions_next.dart';
+export 'package:gql/src/ast/ast.dart';
+export 'package:intl/intl.dart';
+
 
 export 'domain/index.dart';
 export 'repository/index.dart';
@@ -24,3 +34,5 @@ export 'logger/index.dart';
 export 'database/index.dart';
 export 'http/index.dart';
 export 'theme/index.dart';
+export 'requests/index.dart';
+export 'utils/index.dart';

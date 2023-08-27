@@ -11,28 +11,31 @@ final GoRouter router = GoRouter(
       },
       routes: <RouteBase>[
         GoRoute(
-          path: 'details',
-          builder: (context, state) {
-            try {
-              state.extra as Product;
-            } on Exception {
-              throw Exception('the product argument must be set');
-            }
-            final product = state.extra as Product;
-            return ProductUI(product: product);
-          },
-        ),
-        GoRoute(
           path: 'category',
           builder: (context, state) {
             try {
               state.extra as Category;
-            } on Exception {
-              throw Exception('the category argument must be set');
+            } catch (error, stack) {
+              Exceptions.monitor(error, stack);
+              return const ErrorView();
             }
 
             final productCategory = state.extra as Category;
             return CategoryUI(productCategory: productCategory);
+          },
+        ),
+        GoRoute(
+          path: 'details',
+          builder: (context, state) {
+            try {
+              state.extra as ProdLite;
+            } catch (error, stack) {
+              Exceptions.monitor(error, stack);
+              return const ErrorView();
+            }
+
+            final product = state.extra as ProdLite;
+            return ProductUI(product: product);
           },
         ),
       ],

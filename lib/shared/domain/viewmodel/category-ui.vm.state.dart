@@ -12,7 +12,7 @@ class CategoryUiState with _$CategoryUiState {
   const factory CategoryUiState({
     required String categoryId,
     required int totalProductCount,
-    required List<Product> products,
+    required List<ProdLite> products,
   }) = _CategoryUiState;
 
   factory CategoryUiState.fromJson(Map<String, dynamic> json) =>

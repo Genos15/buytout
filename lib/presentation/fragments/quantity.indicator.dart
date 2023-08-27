@@ -32,15 +32,6 @@ class QuantityIndicator extends StatelessWidget {
         mainAxisSize: MainAxisSize.max,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // CupertinoButton(
-          //   padding: EdgeInsets.zero,
-          //   onPressed: onDecrement,
-          //   child: Icon(
-          //     CarbonIcons.subtract_alt,
-          //     size: iconSize,
-          //     color: iconColor,
-          //   ),
-          // ),
           IconButton.outlined(
             padding: EdgeInsets.zero,
             onPressed: onDecrement,
@@ -49,16 +40,7 @@ class QuantityIndicator extends StatelessWidget {
               size: iconSize,
             ),
           ),
-          AutoSizeText('$quantity'),
-          // CupertinoButton(
-          //   padding: EdgeInsets.zero,
-          //   onPressed: onIncrement,
-          //   child: Icon(
-          //     CarbonIcons.add_filled,
-          //     size: iconSize,
-          //     color: iconColor,
-          //   ),
-          // ),
+          AutoSizeText(quantity.toString(), maxLines: 1),
           IconButton.filledTonal(
             padding: EdgeInsets.zero,
             onPressed: onIncrement,

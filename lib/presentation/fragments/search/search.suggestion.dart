@@ -36,15 +36,15 @@ class SearchSuggestion extends StatelessWidget {
             child: TextTitle2('Product you might like'),
           ),
         ),
-        SliverPadding(
-          padding: const EdgeInsets.all(LayoutDimens.p8),
-          sliver: SliverGrid.count(
-            crossAxisCount: 2,
-            childAspectRatio: LayoutDimens.ar1_14,
-            crossAxisSpacing: LayoutDimens.s4,
-            children: List.generate(3, (_) => const ProductCard.skeleton2()),
-          ),
-        ),
+        // SliverPadding(
+        //   padding: const EdgeInsets.all(LayoutDimens.p8),
+        //   sliver: SliverGrid.count(
+        //     crossAxisCount: 2,
+        //     childAspectRatio: LayoutDimens.ar1_14,
+        //     crossAxisSpacing: LayoutDimens.s4,
+        //     children: List.generate(3, (_) => const ProductCard.skeleton2()),
+        //   ),
+        // ),
       ],
     );
   }

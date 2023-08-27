@@ -4,12 +4,12 @@ import 'package:buytout/shared/index.dart';
 final cartServiceProvider =
     Provider.autoDispose<CartService>((ref) => CartServiceImpl(
           cartRepository: ref.watch(cartRepositoryProvider),
-          productRepository: ref.watch(productRepoProvider),
+          productRepository: ref.watch(productRepositoryProvider),
         ));
 
 class CartServiceImpl implements CartService {
   final CartRepository cartRepository;
-  final ProductRepo productRepository;
+  final ProductRepository productRepository;
 
   CartServiceImpl({
     required this.cartRepository,

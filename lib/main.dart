@@ -30,10 +30,10 @@ void main() async {
           Zone.current.handleUncaughtError(exception, stackTrace!);
         }
       };
-      // Intl.defaultLocale = 'fr';
+      Intl.defaultLocale = 'fr';
       // initializeDateFormatting();
       runApp(const ProviderScope(
-        child: BuytoutApplication(),
+        child: GQLProvider(child: BuytoutApplication()),
       ));
     },
     (error, stackTrace) async {

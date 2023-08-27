@@ -1,12 +1,13 @@
 import 'package:buytout/shared/index.dart';
 
+const kFetchInterval = 20;
+
 final categoryUiVmProvider = StateNotifierProvider.autoDispose
     .family<CategoryUiVm, CategoryUiVmState, Category>((ref, category) {
   final productService = ref.watch(productServiceProvider);
   return CategoryUiVm(productService, category);
 });
 
-/// the expression "Vm" means viewmodel
 class CategoryUiVm extends StateNotifier<CategoryUiVmState> {
   CategoryUiVm(this._productService, this._productCategory)
       : super(const AsyncValue.loading()) {
@@ -16,18 +17,27 @@ class CategoryUiVm extends StateNotifier<CategoryUiVmState> {
   final ProductService _productService;
   final Category _productCategory;
 
-  void _load([int first = 50]) async {
-    await Future.delayed(5.seconds);
+  void _load([int first = kFetchInterval]) async {
+    try {
+      final totalProductFound = await _productService.getTotalProductCount(
+        productCategoryId: _productCategory.categoryId,
+      );
 
-    const categoryUiState = CategoryUiState(
-      categoryId: '',
-      totalProductCount: 0,
-      products: <Product>[],
-    );
+      final products = await _productService.getProductByCategoryId(
+        productCategoryId: _productCategory.categoryId,
+        first: first,
+      );
 
-    state = const AsyncData(categoryUiState);
-    // state = AsyncError(Error(), StackTrace.current);
+      var categoryUiState = CategoryUiState(
+        categoryId: _productCategory.categoryId,
+        totalProductCount: totalProductFound,
+        products: products.toList(),
+      );
+
+      state = AsyncValue.data(categoryUiState);
+    } catch (error, stack) {
+      state = AsyncValue.error(error, stack);
+    }
   }
-
-  void _loadMore(String after, [int first = 50]) {}
+// void _loadMore(String after, [int first = kFetchInterval]) {}
 }

@@ -7,4 +7,10 @@ class Environment {
   static String get baseURL => dotenv.get('BASE_URL');
 
   static String get imageBaseURL => dotenv.get('IMAGE_BASE_URL');
+
+  static String get gqlWsLinkRef => dotenv.get('GQL_WS_LINK_REF');
+
+  static String get gqlBaseLinkRef => dotenv.get('GQL_BASE_LINK_REF');
+
+  static String get imageLink => 'https://placehold.co/600x400.png';
 }

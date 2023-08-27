@@ -1,127 +1,155 @@
+import 'package:buytout/config/index.dart';
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class ProductUI extends StatelessWidget {
-  final Product product;
+class ProductUI extends ConsumerWidget {
+  final ProdLite product;
 
   const ProductUI({Key? key, required this.product}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final productUiProvider = productUiVmProvider(product);
+    final vmState = ref.watch(productUiProvider);
+
+    ref.listen(
+      productUiProvider,
+      (_, currentState) => currentState.whenOrNull(
+        error: (error, stacktrace) {
+          Exceptions.propagate(context, error, stacktrace);
+        },
+      ),
+    );
+
+    final productDisplayPrice =
+        CurrencyHelper.format(product.pricePerCurrency.xaf);
+
     return RefreshableScaffold(
       header: Header.product(
-        title: const Text('Details Product').black,
-        background: Hero(
-          tag: product.id,
-          child: AspectRatio(
-            aspectRatio: LayoutDimens.ar1_1,
-            child: Consumer(
-              builder: (
-                BuildContext _,
-                WidgetRef ref,
-                Widget? __,
-              ) {
-                final productState =
-                    ref.watch(productViewModelProvider(product));
-                final imageIndex = ref.watch(productImageViewModelProvider);
-                final moveImageIndex = ref
-                    .read(productImageViewModelProvider.notifier)
-                    .moveImageIndex;
-
-                return productState.product.when(
-                  (value) => ImageSlider(
-                    product: value,
-                    moveImage: moveImageIndex,
-                    currentImageIndex: imageIndex,
-                  ),
-                  idle: () => ImageViewer(url: product.image1),
-                  loading: () => ImageViewer(url: product.image1),
-                  error: (_, __) => ImageViewer(url: product.image1),
-                );
-              },
-            ),
-          ),
+        title: const AutoSizeText('Detail'),
+        background: _ProductUiHeader(
+          vmState: vmState,
+          product: product,
         ),
       ),
       slivers: [
-        ProductName(product: product).sliverBox.sp12,
-        Consumer(
-          builder: (
-            BuildContext _,
-            WidgetRef ref,
-            Widget? __,
-          ) {
-            final productState = ref.watch(productViewModelProvider(product));
-            return productState.product
-                .when(
-                  (product) {
-                    return ProductDescription(product: product)
-                        .animate()
-                        .fade();
-                  },
-                  idle: () => const SizedBox.shrink(),
-                  loading: () => const ProductDescription.skeleton(),
-                  error: (e, s) => const SizedBox.shrink(),
-                )
-                .sliverBox
-                .sp12;
-          },
+        SliverPadding(
+          padding: const EdgeInsets.all(LayoutDimens.p16),
+          sliver: SliverToBoxAdapter(
+            child: AutoSizeText.rich(
+              TextSpan(children: [
+                TextSpan(
+                  text: product.productNameEn,
+                  style: AppTextStyles.normalBoldOf(context),
+                ),
+                TextSpanWidgetExtension.breaker,
+                TextSpan(
+                  text: productDisplayPrice,
+                  style: AppTextStyles.normalOf(context),
+                ),
+              ]),
+            ),
+          ),
         ),
-        const SpaceDivider().sliverBox.sp12,
+        // const SpaceDivider().sliverBox.sp12,
       ],
       overlays: [
         Align(
           alignment: Alignment.bottomCenter,
-          child: SizedBox(
-            height: LayoutDimens.s48,
-            child: Consumer(
-              builder: (BuildContext context, WidgetRef ref, Widget? child) {
-                final cartProvider =
-                    productCartQuantityViewModelProvider(product);
-                final productProvider = productViewModelProvider(product);
-
-                final cartViewmodel = ref.watch(cartProvider.notifier);
-                final cartState = ref.watch(cartProvider);
-                final productState = ref.watch(productProvider);
-
-                return Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Flexible(
-                      flex: 1,
-                      child: QuantityIndicator(
-                        availableQuantity: product.inStock,
-                        iconSize: LayoutDimens.s32,
-                        iconColor: CommonColors.gray700.color,
-                        quantity: cartState.quantity,
-                        onIncrement: cartViewmodel.increment,
-                        onDecrement: cartViewmodel.decrement,
-                      ),
-                    ),
-                    Flexible(
-                      flex: 2,
-                      child: productState.product.when(
-                        (product) => SubmitButton(
-                          text: 'Add to cart',
-                          onPressed: cartState.quantity == 0
-                              ? null
-                              : () async => await cartViewmodel.add(product),
-                        ),
-                        idle: () => const SubmitButton(text: 'Add to cart'),
-                        loading: () => const SubmitButton(text: 'Add to cart'),
-                        error: (__, _) =>
-                            const SubmitButton(text: 'Add to cart'),
-                      ),
-                    ),
-                  ],
-                );
-              },
+          child: vmState.maybeMap(
+            data: (productUiState) => _ProductUiFooter(
+              product: productUiState.value.product,
             ),
-          ).p12,
+            loading: (_) => const CircularProgressIndicator.adaptive(),
+            orElse: () => const SizedBox.shrink(),
+          ),
         ),
       ],
+    );
+  }
+}
+
+class _ProductUiHeader extends ConsumerWidget {
+  final ProdLite product;
+  final ProductUiVmState vmState;
+
+  const _ProductUiHeader({
+    required this.vmState,
+    required this.product,
+  });
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final imageIndex = ref.watch(imageSliverVmProvider);
+    final moveImageIndex =
+        ref.read(imageSliverVmProvider.notifier).moveImageIndex;
+
+    return Hero(
+      tag: product.productId,
+      child: AspectRatio(
+        aspectRatio: LayoutDimens.ar1_1,
+        child: vmState.maybeMap(
+          data: (productUiState) => ImageSlider(
+            images: [
+              Environment.imageLink,
+              Environment.imageLink,
+              Environment.imageLink,
+              Environment.imageLink,
+            ],
+            onMove: moveImageIndex,
+            position: imageIndex,
+          ),
+          orElse: () => ImageViewer(url: Environment.imageLink),
+        ),
+      ),
+    );
+  }
+}
+
+class _ProductUiFooter extends ConsumerWidget {
+  final ProdDetails product;
+
+  const _ProductUiFooter({required this.product});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final productCartProvider = productCartVmProvider(product);
+    final productCartVm = ref.watch(productCartProvider.notifier);
+    final productCartVmState = ref.watch(productCartProvider);
+
+    return Padding(
+      padding: const EdgeInsets.all(LayoutDimens.p16),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Flexible(
+            flex: 2,
+            child: SizedBox(
+              height: LayoutDimens.s48,
+              child: QuantityIndicator(
+                availableQuantity: product.stockQuantity,
+                iconSize: LayoutDimens.s32,
+                iconColor: CommonColors.gray700.color,
+                quantity: productCartVmState.maybeMap(
+                  data: (productCartState) => productCartState.value.quantity,
+                  orElse: () => 0,
+                ),
+                onIncrement: productCartVm.increment,
+                onDecrement: productCartVm.decrement,
+              ),
+            ),
+          ),
+          const Flexible(
+            flex: 3,
+            child: SizedBox(
+              height: LayoutDimens.s48,
+              child: SubmitButton(text: 'Ajouter au panier', onPressed: null),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
