@@ -61,7 +61,10 @@ class ProductUI extends ConsumerWidget {
             data: (productUiState) => _ProductUiFooter(
               product: productUiState.value.product,
             ),
-            loading: (_) => const CircularProgressIndicator.adaptive(),
+            loading: (_) => const Padding(
+              padding: EdgeInsets.all(LayoutDimens.p16),
+              child: CircularProgressIndicator.adaptive(),
+            ),
             orElse: () => const SizedBox.shrink(),
           ),
         ),
