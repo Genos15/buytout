@@ -12,52 +12,49 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
     this.inStock,
     this.product,
     this.cartService,
-  ) : super(
-          AsyncValue.data(
-            ProductCartUiState(
-              quantity: 1,
-              product: product,
-            ),
-          ),
-        );
+  ) : super(ProductCartUiState(quantity: 1, product: product));
 
   final int inStock;
   final ProdDetails product;
   final CartService cartService;
 
   int increment() {
-    return state.maybeMap(
-      data: (productCartUiState) {
-        final oldQuantity = productCartUiState.value.quantity;
-        final newQuantity = min(inStock, oldQuantity + 1);
-        final newState = ProductCartUiState(
-          quantity: newQuantity,
-          product: product,
-        );
-        state = AsyncValue.data(newState);
-        return newQuantity;
-      },
-      orElse: () => 0,
-    );
+    final quantity = min(inStock, state.quantity + 1);
+    state = state.copyWith(quantity: quantity);
+    return quantity;
   }
 
   int decrement() {
-    return state.maybeMap(
-      data: (productCartUiState) {
-        final oldQuantity = productCartUiState.value.quantity;
-        final newQuantity = max(oldQuantity - 1, 0);
-        final newState = ProductCartUiState(
-          quantity: newQuantity,
-          product: product,
-        );
-        state = AsyncValue.data(newState);
-        return newQuantity;
-      },
-      orElse: () => 0,
-    );
+    final quantity = max(state.quantity - 1, 0);
+    state = state.copyWith(quantity: quantity);
+    return quantity;
   }
 
-  Future<void> add(Product product) async {
+  void addToCart({
+    required ProdDetails product,
+    required Future<bool?> Function() onAuthenticateUser,
+    required void Function(Object, StackTrace) onError,
+  }) async {
+    try {
+      if (!mounted) {
+        throw 'impossible to perform this action';
+      }
+      await Future.delayed(2.seconds);
+      // we need to add the guard to the function
+      // so that we continue only if the customer is logged
+      bool? isUserLogged = false;
+
+      if (!isUserLogged) {
+        isUserLogged = await onAuthenticateUser.call();
+        if (isUserLogged == null || !isUserLogged) {
+          throw 'you need to be logged in order to add the basket';
+        }
+      }
+
+      return;
+    } catch (error, stacktrace) {
+      onError(error, stacktrace);
+    }
     // await cartService.addToCart(
     //   product: product,
     //   quantity: state.quantity,

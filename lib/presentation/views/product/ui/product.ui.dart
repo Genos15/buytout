@@ -135,24 +135,40 @@ class _ProductUiFooter extends ConsumerWidget {
                 availableQuantity: product.stockQuantity,
                 iconSize: LayoutDimens.s32,
                 iconColor: CommonColors.gray700.color,
-                quantity: productCartVmState.maybeMap(
-                  data: (productCartState) => productCartState.value.quantity,
-                  orElse: () => 0,
-                ),
+                quantity: productCartVmState.quantity,
                 onIncrement: productCartVm.increment,
                 onDecrement: productCartVm.decrement,
               ),
             ),
           ),
-          const Flexible(
+          const SizedBox(width: LayoutDimens.s16),
+          Flexible(
             flex: 3,
             child: SizedBox(
               height: LayoutDimens.s48,
-              child: SubmitButton(text: 'Ajouter au panier', onPressed: null),
+              child: SubmitButton(
+                text: 'Ajouter',
+                onPressed: () => productCartVm.addToCart(
+                  product: product,
+                  onAuthenticateUser: () => _openLoginUi(context),
+                  onError: (error, stacktrace) {
+                    Exceptions.propagate(context, error, stacktrace);
+                  },
+                ),
+              ),
             ),
           ),
         ],
       ),
     );
   }
+
+  Future<bool?> _openLoginUi(BuildContext context) async =>
+      await showModalBottomSheet<bool?>(
+        isScrollControlled: false,
+        isDismissible: false,
+        enableDrag: false,
+        context: context,
+        builder: (context) => const LoginUi(),
+      );
 }

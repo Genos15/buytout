@@ -1,20 +1,23 @@
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class SubmitButton extends StatelessWidget {
+final buttonLoadingStateProvider = StateProvider<bool>((ref) => false);
+
+class SubmitButton extends ConsumerWidget {
   final double height;
   final double width;
   final int color;
   final double minSize;
   final double borderRadius;
   final String text;
-  final void Function()? onPressed;
+  final VoidCallback? onPressed;
 
   const SubmitButton({
     Key? key,
     this.height = LayoutDimens.s48,
     this.width = double.infinity,
-    this.color = CommonColors.amber300,
+    this.color = CommonColors.teal100,
     this.minSize = LayoutDimens.s32,
     this.borderRadius = LayoutDimens.s32,
     required this.text,
@@ -22,16 +25,29 @@ class SubmitButton extends StatelessWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final isLoading = ref.watch(buttonLoadingStateProvider);
     return SizedBox(
       height: height,
       width: width,
       child: CupertinoButton(
         color: color.color,
-        onPressed: onPressed,
+        onPressed: isLoading
+            ? null
+            : () async {
+                ref.read(buttonLoadingStateProvider.notifier).state = true;
+                await Future(() => onPressed?.call());
+                ref.read(buttonLoadingStateProvider.notifier).state = false;
+              },
         minSize: minSize,
         borderRadius: BorderRadius.circular(borderRadius),
-        child: Text(text).black,
+        child: isLoading
+            ? const CircularProgressIndicator.adaptive()
+            : AutoSizeText(
+                text,
+                maxLines: 1,
+                style: AppTextStyles.normalOf(context),
+              ),
       ),
     );
   }

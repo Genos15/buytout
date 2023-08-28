@@ -18,4 +18,4 @@ class ProductCartUiState with _$ProductCartUiState {
       _$ProductCartUiStateFromJson(json);
 }
 
-typedef ProductCartUiVmState = AsyncValue<ProductCartUiState>;
+typedef ProductCartUiVmState = ProductCartUiState;
