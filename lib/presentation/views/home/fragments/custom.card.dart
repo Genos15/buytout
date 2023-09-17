@@ -54,7 +54,7 @@ class CustomCard extends StatelessWidget {
                       ),
                       child: Container(
                         padding: const EdgeInsets.all(LayoutDimens.s4),
-                        color: CommonColors.white.color,
+                        color: CommonColors.white.toColor,
                         child: AutoSizeText(
                           categoryName!,
                           style: AppTextStyles.specialLargeBoldOf(context),

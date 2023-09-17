@@ -47,7 +47,7 @@ class _ImagePlaceholder extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(color: CommonColors.red10.color);
+    return Container(color: CommonColors.red10.toColor);
   }
 }
 
@@ -57,11 +57,11 @@ class _ImageError extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: CommonColors.red10.color,
+      color: CommonColors.red10.toColor,
       child: Center(
         child: Icon(
           CarbonIcons.in_progress_error,
-          color: CommonColors.red300.color,
+          color: CommonColors.red300.toColor,
           size: LayoutDimens.s32,
         ),
       ),

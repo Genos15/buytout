@@ -1,34 +1,33 @@
-import 'package:flutter/material.dart';
-import 'package:graphql_flutter/graphql_flutter.dart';
+import 'dart:async';
 
+import 'package:graphql_flutter/graphql_flutter.dart';
 import 'domain/graphql.link.builder.dart';
 import 'graphql.custom-auth.link.dart';
 
-abstract class GQLClientBuilder {
-  static ValueNotifier<GraphQLClient> construct({
+class GQLClientFactory {
+  GraphQLClient? _instance;
+
+  GraphQLClient get instance => _instance!;
+
+  GQLClientFactory({
     required String wsLinkRef,
     required String baseLinkRef,
+    required FutureOr<Map<String, String>> Function() getHeaders,
   }) {
-    var link = GraphQLLinkBuilder()
+    final link = GraphQLLinkBuilder()
         .setBaseHttpLink(baseLinkRef)
         .setWebSocketLink(wsLinkRef)
-        .setCustomLink(CustomAuthLink(otherHeaders: {}))
+        .setCustomLink(CustomAuthLink(getHeaders: getHeaders))
         .build();
 
-    return _buildClient(link);
-  }
-
-  static ValueNotifier<GraphQLClient> _buildClient(Link link) {
-    return ValueNotifier(
-      GraphQLClient(
-        link: link,
-        cache: GraphQLCache(),
-        defaultPolicies: DefaultPolicies(
-          watchMutation: Policies(
-            fetch: FetchPolicy.cacheAndNetwork,
-            error: ErrorPolicy.none,
-            cacheReread: CacheRereadPolicy.mergeOptimistic,
-          ),
+    _instance ??= GraphQLClient(
+      link: link,
+      cache: GraphQLCache(),
+      defaultPolicies: DefaultPolicies(
+        watchMutation: Policies(
+          fetch: FetchPolicy.cacheAndNetwork,
+          error: ErrorPolicy.none,
+          cacheReread: CacheRereadPolicy.mergeOptimistic,
         ),
       ),
     );

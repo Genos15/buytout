@@ -1,10 +1,17 @@
 import 'dart:math';
+import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 
 final productCartVmProvider = StateNotifierProvider.autoDispose
     .family<ProductCartUiVm, ProductCartUiVmState, ProdDetails>((ref, product) {
   final service = ref.watch(cartServiceProvider);
-  return ProductCartUiVm(product.stockQuantity, product, service);
+  final tokenManager = ref.read(tokenManagerProvider);
+  return ProductCartUiVm(
+    product.stockQuantity,
+    product,
+    service,
+    tokenManager,
+  );
 });
 
 class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
@@ -12,11 +19,13 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
     this.inStock,
     this.product,
     this.cartService,
+    this.tokenManager,
   ) : super(ProductCartUiState(quantity: 1, product: product));
 
   final int inStock;
   final ProdDetails product;
   final CartService cartService;
+  final TokenManager tokenManager;
 
   int increment() {
     final quantity = min(inStock, state.quantity + 1);
@@ -32,26 +41,30 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
 
   void addToCart({
     required ProdDetails product,
-    required Future<bool?> Function() onAuthenticateUser,
+    required int quantity,
+    required Future<bool> Function() onAuthenticateUser,
     required void Function(Object, StackTrace) onError,
+    required void Function() onSuccess,
   }) async {
     try {
       if (!mounted) {
         throw 'impossible to perform this action';
       }
-      await Future.delayed(2.seconds);
       // we need to add the guard to the function
       // so that we continue only if the customer is logged
-      bool? isUserLogged = false;
-
+      bool isUserLogged = await tokenManager.isUserLogged();
       if (!isUserLogged) {
-        isUserLogged = await onAuthenticateUser.call();
-        if (isUserLogged == null || !isUserLogged) {
+        isUserLogged = await onAuthenticateUser();
+        if (!isUserLogged) {
           throw 'you need to be logged in order to add the basket';
         }
       }
 
-      return;
+      await cartService.addToCart(
+        productId: product.productId,
+        quantity: quantity,
+      );
+      onSuccess();
     } catch (error, stacktrace) {
       onError(error, stacktrace);
     }

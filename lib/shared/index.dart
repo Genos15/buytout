@@ -11,6 +11,8 @@ export 'package:auto_size_text/auto_size_text.dart';
 export 'package:go_router/go_router.dart';
 export 'package:sqflite/sqflite.dart';
 export 'package:flutter_dotenv/flutter_dotenv.dart';
+export 'package:shared_preferences/shared_preferences.dart';
+export 'package:graphql_flutter/graphql_flutter.dart' hide JsonSerializable;
 
 /// GraphQL exports
 export 'package:graphql/src/core/mutation_options.dart';
@@ -22,7 +24,6 @@ export 'package:graphql/src/exceptions/exceptions_next.dart';
 export 'package:gql/src/ast/ast.dart';
 export 'package:intl/intl.dart';
 
-
 export 'domain/index.dart';
 export 'repository/index.dart';
 export 'services/index.dart';
@@ -32,7 +33,6 @@ export 'colors/index.dart';
 export 'dimens/index.dart';
 export 'logger/index.dart';
 export 'database/index.dart';
-export 'http/index.dart';
 export 'theme/index.dart';
 export 'requests/index.dart';
 export 'utils/index.dart';

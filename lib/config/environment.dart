@@ -12,5 +12,11 @@ class Environment {
 
   static String get gqlBaseLinkRef => dotenv.get('GQL_BASE_LINK_REF');
 
+  static String get anonymousUserName => dotenv.get('ANONYMOUS_USER_NAME');
+
+  static String get anonymousHeaderName => dotenv.get('ANONYMOUS_HEADER_NAME');
+
+  static String get refreshTokenHeaderName => dotenv.get('REFRESH_TOKEN_HEADER_NAME');
+
   static String get imageLink => 'https://placehold.co/600x400.png';
 }

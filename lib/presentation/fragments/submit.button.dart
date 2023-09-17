@@ -2,12 +2,10 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-final buttonLoadingStateProvider = StateProvider<bool>((ref) => false);
-
-class SubmitButton extends ConsumerWidget {
+class SubmitButton extends StatefulWidget {
   final double height;
   final double width;
-  final int color;
+  final int bgColor;
   final double minSize;
   final double borderRadius;
   final String text;
@@ -17,7 +15,7 @@ class SubmitButton extends ConsumerWidget {
     Key? key,
     this.height = LayoutDimens.s48,
     this.width = double.infinity,
-    this.color = CommonColors.teal100,
+    this.bgColor = CommonColors.teal100,
     this.minSize = LayoutDimens.s32,
     this.borderRadius = LayoutDimens.s32,
     required this.text,
@@ -25,29 +23,44 @@ class SubmitButton extends ConsumerWidget {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final isLoading = ref.watch(buttonLoadingStateProvider);
+  State<SubmitButton> createState() => _SubmitButtonState();
+}
+
+class _SubmitButtonState extends State<SubmitButton> {
+  late bool isLoading;
+
+  @override
+  void initState() {
+    isLoading = false;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return SizedBox(
-      height: height,
-      width: width,
+      height: widget.height,
+      width: widget.width,
       child: CupertinoButton(
-        color: color.color,
+        color: widget.bgColor.toColor,
         onPressed: isLoading
             ? null
             : () async {
-                ref.read(buttonLoadingStateProvider.notifier).state = true;
-                await Future(() => onPressed?.call());
-                ref.read(buttonLoadingStateProvider.notifier).state = false;
-              },
-        minSize: minSize,
-        borderRadius: BorderRadius.circular(borderRadius),
+          try {
+            setState(() => isLoading = true);
+            await Future(() => widget.onPressed?.call());
+          } finally {
+            setState(() => isLoading = false);
+          }
+        },
+        minSize: widget.minSize,
+        borderRadius: BorderRadius.circular(widget.borderRadius),
         child: isLoading
             ? const CircularProgressIndicator.adaptive()
             : AutoSizeText(
-                text,
-                maxLines: 1,
-                style: AppTextStyles.normalOf(context),
-              ),
+          widget.text,
+          maxLines: 1,
+          style: AppTextStyles.normalOf(context),
+        ),
       ),
     );
   }

@@ -7,61 +7,94 @@ class CartUI extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final viewmodel = ref.read(cartViewModelProvider.notifier);
-    final cartResult = ref.watch(cartViewModelProvider);
+    // final viewmodel = ref.read(cartViewModelProvider.notifier);
+    final cartUiVmState = ref.watch(cartUiVmProvider);
 
     return RefreshableScaffold(
       header: Header.cart(
         title: Text(
           'Cart',
           textAlign: TextAlign.center,
-          style: TextStyle(color: CommonColors.black900.color),
+          style: TextStyle(color: CommonColors.black900.toColor),
         ),
       ),
-      slivers: [
-        switch (cartResult) {
-          (Data<Cart> data) => ProductCartList(cart: data.value),
-          _ => const SizedBox.shrink().sliverBox
-        },
-        const SpaceDivider().sliverBox,
-        // starting from here
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const AutoSizeText('Subtotal'),
-            switch (cartResult) {
-              Data<Cart>(value: var cart) => AutoSizeText(
-                  cart.displayTotalPriceAsString(),
+      slivers: switch (cartUiVmState) {
+        AsyncData(requireValue: final cartUiState) => [
+            // switch (cartResult) {
+            //   (Data<Cart> data) => ProductCartList(cart: data.value),
+            //   _ => const SizedBox.shrink().sliverBox
+            // },
+            // starting from here
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   mainAxisSize: MainAxisSize.max,
+            //   children: [
+            //     const AutoSizeText('Subtotal'),
+            //     switch (cartResult) {
+            //       Data<Cart>(value: var cart) => AutoSizeText(
+            //           cart.displayTotalPriceAsString(),
+            //         ),
+            //       _ => const SizedBox.shrink()
+            //     },
+            //   ],
+            // ).sliverBox.sp12,
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   mainAxisSize: MainAxisSize.max,
+            //   children: [
+            //     const AutoSizeText('Delivery fee'),
+            //     AutoSizeText(viewmodel.displayDeliveryPriceAsString()),
+            //   ],
+            // ).sliverBox.sp12,
+            // const SpaceDivider().sliverBox,
+            SliverPadding(
+              padding: const EdgeInsets.all(LayoutDimens.p12),
+              sliver: SliverToBoxAdapter(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisSize: MainAxisSize.max,
+                  children: [
+                    const AutoSizeText('Total'),
+                    AutoSizeText(cartUiState.cart.totalAmount.toString()),
+                  ],
                 ),
-              _ => const SizedBox.shrink()
-            },
+              ),
+            ),
           ],
-        ).sliverBox.sp12,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            const AutoSizeText('Delivery fee'),
-            AutoSizeText(viewmodel.displayDeliveryPriceAsString()),
-          ],
-        ).sliverBox.sp12,
-        const SpaceDivider().sliverBox,
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            AutoSizeText('Total'),
-            AutoSizeText('1050 FCFA'),
-          ],
-        ).sliverBox.sp12,
-      ],
+        AsyncLoading() => [_CartUILoading()],
+        _ => [_CartUIEmpty()],
+      },
       overlays: [
         Align(
           alignment: Alignment.bottomCenter,
-          child: SubmitButton(text: 'Check out', onPressed: () {}).p12,
+          child: SubmitButton(text: 'Commander', onPressed: () {}).p12,
         ),
       ],
+    );
+  }
+}
+
+class _CartUILoading extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return const SliverFillRemaining(
+      child: Center(
+        child: CircularProgressIndicator.adaptive(),
+      ),
+    );
+  }
+}
+
+class _CartUIEmpty extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return SliverFillRemaining(
+      child: Center(
+        child: AutoSizeText(
+          "Votre panier est vide",
+          style: AppTextStyles.normalOf(context),
+        ),
+      ),
     );
   }
 }

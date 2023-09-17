@@ -1,62 +1,56 @@
-import 'package:buytout/shared/domain/product-cart.item.d.dart';
+import 'dart:isolate';
+
+import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 
 final cartRepositoryProvider = Provider.autoDispose<CartRepository>((ref) {
-  final db = ref.watch(databaseProvider);
-  return CartRepositoryImpl(db);
+  final gqlClient = ref.watch(gqlClientProvider);
+  return CartRepositoryImpl(gqlClient);
 });
 
 class CartRepositoryImpl implements CartRepository {
-  final DatabaseClient client;
+  final GraphQLClient gqlClient;
 
-  CartRepositoryImpl(this.client) {
-    // init(database: client.database);
-  }
+  CartRepositoryImpl(this.gqlClient);
 
   @override
-  Future<bool> clear() {
-    // TODO: implement clear
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Cart> find() {
-    // TODO: implement find
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Cart> update({required Cart cart}) {
-    // TODO: implement update
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Iterable<ProductCartItem>> findAll() async {
-    final database = client.database;
-    if (database == null) {
-      // throw DatabaseNotReadyException();
-      return [];
-    }
-    final cartMap = await database.query('cart_products', orderBy: "id");
-    final cartProducts = cartMap.map((e) {
-      return Map<String, Object>.from(e)
-        ..putIfAbsent('runtimeType', () => 'output');
-    }).map(ProductCartItem.fromJson);
-
-    return cartProducts;
-  }
-
-  @override
-  Future<int> insert({required ProductCartItem productCartItem}) async {
-    final database = client.database;
-    if (database == null) {
-      throw DatabaseNotReadyException();
-    }
-    return await database.insert(
-      'cart_products',
-      productCartItem.toJson()..remove('runtimeType'),
-      conflictAlgorithm: ConflictAlgorithm.replace,
+  Future<bool> addToCart({
+    required String productId,
+    required int quantity,
+  }) async {
+    final options = MutationOptions(
+      document: addToCartRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['addToCart'],
+      variables: {
+        'productId': productId,
+        'quantity': quantity,
+      },
     );
+
+    final apiResult = await gqlClient.mutate(options);
+
+    if (apiResult.hasException) {
+      throw apiResult.exception!;
+    }
+
+    return !apiResult.hasException;
+  }
+
+  @override
+  Future<OrderStatement> getCart() async {
+    var options = QueryOptions(
+      document: getCartRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['orderStatement'],
+    );
+
+    var apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      throw apiResult.exception!;
+    }
+
+    return Isolate.run(() => OrderStatement.fromJson(apiResult.parsedData));
   }
 }

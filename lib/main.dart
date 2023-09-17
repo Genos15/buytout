@@ -33,7 +33,8 @@ void main() async {
       Intl.defaultLocale = 'fr';
       // initializeDateFormatting();
       runApp(const ProviderScope(
-        child: GQLProvider(child: BuytoutApplication()),
+        // child: GQLProvider(child: BuytoutApplication()),
+        child: BuytoutApplication(),
       ));
     },
     (error, stackTrace) async {

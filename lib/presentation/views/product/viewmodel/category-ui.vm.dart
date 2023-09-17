@@ -5,6 +5,7 @@ const kFetchInterval = 20;
 final categoryUiVmProvider = StateNotifierProvider.autoDispose
     .family<CategoryUiVm, CategoryUiVmState, Category>((ref, category) {
   final productService = ref.watch(productServiceProvider);
+
   return CategoryUiVm(productService, category);
 });
 
@@ -13,6 +14,7 @@ class CategoryUiVm extends StateNotifier<CategoryUiVmState> {
       : super(const AsyncValue.loading()) {
     _load();
   }
+
 
   final ProductService _productService;
   final Category _productCategory;

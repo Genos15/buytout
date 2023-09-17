@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:io';
 import 'package:graphql_flutter/graphql_flutter.dart';
 import 'package:graphql/client.dart';
 
@@ -10,52 +9,40 @@ typedef OnException = FutureOr<String> Function(
 );
 
 class CustomAuthLink extends _AsyncReqTransformLink {
-  CustomAuthLink({
-    this.headerKey = HttpHeaders.authorizationHeader,
-    this.otherHeaders,
-  }) : super(
-            requestTransformer:
-                transform(headerKey: headerKey, otherHeaders: otherHeaders));
+  CustomAuthLink({required this.getHeaders})
+      : super(transformer: transform(getHeaders: getHeaders));
 
-  final String headerKey;
-  final Map<String, String>? otherHeaders;
+  final FutureOr<Map<String, String>> Function() getHeaders;
 
   static RequestTransformer transform({
-    required String headerKey,
-    Map<String, String>? otherHeaders,
+    required FutureOr<Map<String, String>> Function() getHeaders,
   }) {
     return (Request request) async {
-      final token = _token(token: otherHeaders?[headerKey]);
+      final additionalHeaders = await getHeaders();
       return request.updateContextEntry<HttpLinkHeaders>((headers) {
         final pushedHeaders = <String, String>{
           ...?headers?.headers,
-          ...?otherHeaders,
-          if (token != null) headerKey: token,
+          ...additionalHeaders,
         };
-        // log('-- pushed-headers: \n${prettyJson(pushedHeaders)}');
+
         return HttpLinkHeaders(headers: pushedHeaders);
       });
     };
   }
-
-  static String? _token({String? token}) {
-    return 'Bearer anonymous token';
-  }
 }
 
 class _AsyncReqTransformLink extends Link {
-  final RequestTransformer requestTransformer;
+  final RequestTransformer transformer;
 
-  _AsyncReqTransformLink({required this.requestTransformer});
+  _AsyncReqTransformLink({required this.transformer});
 
   @override
   Stream<Response> request(
     Request request, [
     NextLink? forward,
   ]) async* {
-    final req = await requestTransformer(request);
+    final req = await transformer(request);
 
     yield* forward!(req);
   }
 }
-

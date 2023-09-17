@@ -10,7 +10,7 @@ class Header extends StatelessWidget {
   final _HeaderState _state;
   final EdgeInsets padding;
   final bool centerTitle;
-  final void Function(BuildContext, bool)? onCloseLogin;
+  final void Function()? onCloseLogin;
 
   const Header.home({
     Key? key,
@@ -101,7 +101,7 @@ class Header extends StatelessWidget {
         _HeaderState.login => minHeight,
       },
       // backgroundColor: const Color(CommonColors.red10),
-      backgroundColor: CommonColors.white.color,
+      backgroundColor: CommonColors.white.toColor,
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
         final visible = constraints.biggest.aspectRatio > LayoutDimens.ar2_1;
         return FlexibleSpaceBar(
@@ -151,10 +151,7 @@ class Header extends StatelessWidget {
               padding: padding,
               child: IconButton(
                 icon: const Icon(CarbonIcons.close),
-                onPressed: () {
-                  const isUserLogged = false;
-                  onCloseLogin?.call(context, isUserLogged);
-                },
+                onPressed: onCloseLogin,
               ),
             ),
           ],

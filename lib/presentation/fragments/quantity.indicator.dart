@@ -25,7 +25,7 @@ class QuantityIndicator extends StatelessWidget {
       height: double.infinity,
       padding: EdgeInsets.zero,
       decoration: BoxDecoration(
-        color: CommonColors.gray100.color,
+        color: CommonColors.gray100.toColor,
         borderRadius: BorderRadius.circular(iconSize),
       ),
       child: Row(

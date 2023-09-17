@@ -41,7 +41,7 @@ class SearchInlineListItem extends StatelessWidget {
               TextSpan(text: title),
               TextSpan(
                 text: ' dans $category',
-                style: TextStyle(color: CommonColors.gray600.color),
+                style: TextStyle(color: CommonColors.gray600.toColor),
               ),
             ],
           ),

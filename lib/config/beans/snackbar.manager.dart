@@ -7,18 +7,18 @@ class _SnackBarHelper {
   _SnackBarHelper(this.context);
 
   void success(String message) {
-    _showSnackBar(message, Colors.green);
+    _showSnackBar(message, CommonColors.success);
   }
 
   void error(String message) {
-    _showSnackBar(message, CommonColors.red400.color);
+    _showSnackBar(message, CommonColors.error);
   }
 
   void warning(String message) {
-    _showSnackBar(message, Colors.orange);
+    _showSnackBar(message, CommonColors.warning);
   }
 
-  void _showSnackBar(String message, Color color) {
+  void _showSnackBar(String message, int color) {
     var sm = ScaffoldMessenger.of(context);
 
     if (!sm.mounted) {
@@ -27,7 +27,7 @@ class _SnackBarHelper {
 
     var snackBar = SnackBar(
       content: AutoSizeText(message),
-      backgroundColor: color,
+      backgroundColor: Color(color),
     );
 
     sm.hideCurrentSnackBar();

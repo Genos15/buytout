@@ -14,8 +14,8 @@ class BottomNavigationBarM3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      backgroundColor: CommonColors.white.color,
-      shadowColor: CommonColors.white.color,
+      backgroundColor: CommonColors.white.toColor,
+      shadowColor: CommonColors.white.toColor,
       onDestinationSelected: onDestinationSelected,
       selectedIndex: index,
       destinations: const <NavigationDestination>[

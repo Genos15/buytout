@@ -1,1 +1,1 @@
-export 'cart.viewmodel.dart';
+export 'cart-ui.vm.dart';

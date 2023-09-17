@@ -1,7 +1,7 @@
 abstract class ConnectionHelper {
   static List<dynamic> deserialize(dynamic parsedData) {
     if (parsedData == null || parsedData['edges'] == null) {
-      throw 'impossible to deserialize connection edges';
+      throw 'Impossible to deserialize connection edges';
     }
 
     var edgesList = parsedData['edges'] as List;

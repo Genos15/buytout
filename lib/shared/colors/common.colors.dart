@@ -40,6 +40,11 @@ abstract class CommonColors {
 
   static const int teal100 = 0xFFade8f4;
 
+  static const int success = 0xFF24a148;
+  static const int warning = 0xFFf1c21b;
+  static const int info = 0xFF0043ce;
+  static const int error = 0xFFfa4d56;
+
   /// definition of default colors
   static const int main = 0xfff9f9f9;
 }

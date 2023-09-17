@@ -19,7 +19,7 @@ class SectionSeparator extends StatelessWidget {
           TextSubtitle(
             subtitle_,
             textAlign: TextAlign.start,
-            style: TextStyle(color: CommonColors.gray700.color),
+            style: TextStyle(color: CommonColors.gray700.toColor),
           ),
       ],
     );

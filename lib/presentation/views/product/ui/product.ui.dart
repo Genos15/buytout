@@ -134,7 +134,7 @@ class _ProductUiFooter extends ConsumerWidget {
               child: QuantityIndicator(
                 availableQuantity: product.stockQuantity,
                 iconSize: LayoutDimens.s32,
-                iconColor: CommonColors.gray700.color,
+                iconColor: CommonColors.gray700.toColor,
                 quantity: productCartVmState.quantity,
                 onIncrement: productCartVm.increment,
                 onDecrement: productCartVm.decrement,
@@ -150,9 +150,13 @@ class _ProductUiFooter extends ConsumerWidget {
                 text: 'Ajouter',
                 onPressed: () => productCartVm.addToCart(
                   product: product,
+                  quantity: productCartVmState.quantity,
                   onAuthenticateUser: () => _openLoginUi(context),
                   onError: (error, stacktrace) {
                     Exceptions.propagate(context, error, stacktrace);
+                  },
+                  onSuccess: () {
+                    SnackBarManager.of(context).success('Le produit est dans le panier 😎');
                   },
                 ),
               ),
@@ -163,12 +167,15 @@ class _ProductUiFooter extends ConsumerWidget {
     );
   }
 
-  Future<bool?> _openLoginUi(BuildContext context) async =>
-      await showModalBottomSheet<bool?>(
-        isScrollControlled: false,
-        isDismissible: false,
-        enableDrag: false,
-        context: context,
-        builder: (context) => const LoginUi(),
-      );
+  Future<bool> _openLoginUi(BuildContext context) async {
+    final isLogged = await showModalBottomSheet<bool?>(
+      isScrollControlled: false,
+      isDismissible: false,
+      enableDrag: false,
+      context: context,
+      builder: (context) => const LoginUi(),
+    );
+
+    return isLogged ?? false;
+  }
 }
