@@ -6,8 +6,12 @@ var _request = gql(
       orderStatement {
         totalAmount
         productTotalAmount
-        deliveryAmount
-        currency
+        deliveryFee
+        serviceFee
+        currencyDetail {
+          currencyCode
+          currencySymbol
+        }
         products {
           product {
             productId

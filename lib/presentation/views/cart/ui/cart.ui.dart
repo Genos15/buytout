@@ -7,94 +7,94 @@ class CartUI extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // final viewmodel = ref.read(cartViewModelProvider.notifier);
+    final vm = ref.watch(cartUiVmProvider.notifier);
     final cartUiVmState = ref.watch(cartUiVmProvider);
 
     return RefreshableScaffold(
-      header: Header.cart(
-        title: Text(
+      onRefresh: () async {
+        vm.fetchCurrentCart();
+      },
+      header: const Header.cart(
+        title: AutoSizeText(
           'Cart',
           textAlign: TextAlign.center,
-          style: TextStyle(color: CommonColors.black900.toColor),
+          style: TextStyle(color: Color(CommonColors.black900)),
         ),
       ),
       slivers: switch (cartUiVmState) {
-        AsyncData(requireValue: final cartUiState) => [
-            // switch (cartResult) {
-            //   (Data<Cart> data) => ProductCartList(cart: data.value),
-            //   _ => const SizedBox.shrink().sliverBox
-            // },
-            // starting from here
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   mainAxisSize: MainAxisSize.max,
-            //   children: [
-            //     const AutoSizeText('Subtotal'),
-            //     switch (cartResult) {
-            //       Data<Cart>(value: var cart) => AutoSizeText(
-            //           cart.displayTotalPriceAsString(),
-            //         ),
-            //       _ => const SizedBox.shrink()
-            //     },
-            //   ],
-            // ).sliverBox.sp12,
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   mainAxisSize: MainAxisSize.max,
-            //   children: [
-            //     const AutoSizeText('Delivery fee'),
-            //     AutoSizeText(viewmodel.displayDeliveryPriceAsString()),
-            //   ],
-            // ).sliverBox.sp12,
-            // const SpaceDivider().sliverBox,
+        AsyncData() => [
+            ProductCartList(items: vm.items, currencyDetail: vm.currencyDetail),
             SliverPadding(
               padding: const EdgeInsets.all(LayoutDimens.p12),
               sliver: SliverToBoxAdapter(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisSize: MainAxisSize.max,
+                child: Table(
                   children: [
-                    const AutoSizeText('Total'),
-                    AutoSizeText(cartUiState.cart.totalAmount.toString()),
+                    TableRow(
+                      children: [
+                        const AutoSizeText('Sous-total'),
+                        AutoSizeText(
+                          vm.productTotalAmount,
+                          textAlign: TextAlign.end,
+                        ),
+                      ],
+                    ),
+                    getSpaceBetween(),
+                    TableRow(
+                      children: [
+                        const AutoSizeText('Frais de service'),
+                        AutoSizeText(vm.serviceFee, textAlign: TextAlign.end),
+                      ],
+                    ),
+                    getSpaceBetween(),
+                    TableRow(
+                      children: [
+                        const AutoSizeText('Frais de livraison'),
+                        AutoSizeText(vm.deliveryFee, textAlign: TextAlign.end),
+                      ],
+                    ),
+                    getSpaceBetween(),
+                    TableRow(
+                      children: [
+                        const AutoSizeText('Total'),
+                        AutoSizeText(vm.totalAmount, textAlign: TextAlign.end),
+                      ],
+                    ),
                   ],
                 ),
               ),
             ),
+            SliverPadding(
+              padding: const EdgeInsets.all(LayoutDimens.p12),
+              sliver: SliverToBoxAdapter(
+                child: SubmitButton(text: 'Commander', onPressed: () {}),
+              ),
+            )
           ],
-        AsyncLoading() => [_CartUILoading()],
-        _ => [_CartUIEmpty()],
+        AsyncLoading() => [
+            const SliverFillRemaining(
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ),
+          ],
+        _ => [
+            SliverFillRemaining(
+              child: Center(
+                child: AutoSizeText(
+                  "Votre panier est vide",
+                  style: AppTextStyles.normalOf(context),
+                ),
+              ),
+            ),
+          ],
       },
-      overlays: [
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SubmitButton(text: 'Commander', onPressed: () {}).p12,
-        ),
-      ],
     );
   }
-}
 
-class _CartUILoading extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const SliverFillRemaining(
-      child: Center(
-        child: CircularProgressIndicator.adaptive(),
-      ),
-    );
-  }
-}
-
-class _CartUIEmpty extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverFillRemaining(
-      child: Center(
-        child: AutoSizeText(
-          "Votre panier est vide",
-          style: AppTextStyles.normalOf(context),
-        ),
-      ),
-    );
-  }
+  TableRow getSpaceBetween() => const TableRow(
+        children: <Widget>[
+          SizedBox(height: LayoutDimens.s12),
+          SizedBox(height: LayoutDimens.s12),
+        ],
+      );
 }

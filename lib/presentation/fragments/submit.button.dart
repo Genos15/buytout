@@ -41,7 +41,7 @@ class _SubmitButtonState extends State<SubmitButton> {
       height: widget.height,
       width: widget.width,
       child: CupertinoButton(
-        color: widget.bgColor.toColor,
+        color: Color(widget.bgColor),
         onPressed: isLoading
             ? null
             : () async {

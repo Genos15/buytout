@@ -6,6 +6,9 @@ class SpaceDivider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Divider(thickness: LayoutDimens.p0_1);
+    return const Divider(
+      thickness: LayoutDimens.p0_5,
+      color: Color(CommonColors.gray100),
+    );
   }
 }

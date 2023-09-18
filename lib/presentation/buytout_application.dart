@@ -19,7 +19,9 @@ class BuytoutApplication extends ConsumerWidget {
       title: 'Readige',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: CommonColors.main.toColor),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(CommonColors.main),
+        ),
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
         textTheme: GoogleFonts.dmSansTextTheme(

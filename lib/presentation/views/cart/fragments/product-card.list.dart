@@ -1,73 +1,83 @@
+import 'dart:math';
+
+import 'package:buytout/config/index.dart';
+import 'package:buytout/presentation/index.dart';
+import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class ProductCartList extends StatelessWidget {
-  const ProductCartList({Key? key}) : super(key: key);
+  final CurrencyDetail currencyDetail;
+  final List<ShoppingCartItem> items;
+
+  const ProductCartList({
+    Key? key,
+    required this.items,
+    required this.currencyDetail,
+  }) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return const SizedBox.shrink();
-    // final itemCount = cart.products.length;
-    // return SliverList.separated(
-    //   itemCount: itemCount,
-    //   itemBuilder: (BuildContext context, int index) {
-    //     final productList = cart.products.entries.elementAt(index);
-    //     final (quantity, product) = productList.value;
-    //
-    //     return Card(
-    //       margin: EdgeInsets.zero,
-    //       elevation: LayoutDimens.s0,
-    //       child: ListTile(
-    //         contentPadding: const EdgeInsets.symmetric(
-    //           horizontal: LayoutDimens.p12,
-    //         ),
-    //         // isThreeLine: true,
-    //         leading: ClipRRect(
-    //           borderRadius: BorderRadius.circular(8),
-    //           child: AspectRatio(
-    //             aspectRatio: LayoutDimens.ar1_1,
-    //             child: ImageViewer(url: product.image1),
-    //           ),
-    //         ),
-    //         title: AutoSizeText(
-    //           product.name,
-    //           maxLines: 1,
-    //           overflow: TextOverflow.ellipsis,
-    //         ),
-    //         // subtitle: Column(
-    //         //   mainAxisSize: MainAxisSize.min,
-    //         //   crossAxisAlignment: CrossAxisAlignment.start,
-    //         //   children: switch (product) {
-    //         //     ProductOutput(:final description) => [
-    //         //         AutoSizeText(
-    //         //           description,
-    //         //           maxLines: 1,
-    //         //           overflow: TextOverflow.ellipsis,
-    //         //         ),
-    //         //         AutoSizeText(
-    //         //           product.displayPriceAsString,
-    //         //           maxLines: 1,
-    //         //         ),
-    //         //       ],
-    //         //     ProductInput() => [],
-    //         //   },
-    //         // ),
-    //         trailing: SizedBox(
-    //           height: LayoutDimens.s36,
-    //           width: LayoutDimens.s112,
-    //           child: QuantityIndicator(
-    //             availableQuantity: 8,
-    //             iconSize: LayoutDimens.s16,
-    //             iconColor: CommonColors.gray700.color,
-    //             quantity: min(quantity, 100),
-    //             onIncrement: () {},
-    //             onDecrement: () {},
-    //           ),
-    //         ),
-    //       ),
-    //     );
-    //   },
-    //   separatorBuilder: (BuildContext context, int index) =>
-    //       const SpaceDivider(),
-    // );
+  Widget build(context) {
+    return SliverList.separated(
+      itemCount: items.length,
+      itemBuilder: (context, index) {
+        final shoppingCartItem = items.elementAt(index);
+
+        return _ProductCartItem(
+          item: shoppingCartItem,
+          currencyDetail: currencyDetail,
+        );
+      },
+      separatorBuilder: (context, index) => const SpaceDivider(),
+    );
+  }
+}
+
+class _ProductCartItem extends StatelessWidget {
+  final ShoppingCartItem item;
+  final CurrencyDetail currencyDetail;
+
+  const _ProductCartItem({required this.item, required this.currencyDetail});
+
+  @override
+  Widget build(context) {
+    final product = item.product;
+    final quantity = item.quantity;
+    final productXafPrice = product.pricePerCurrency.xaf;
+
+    final productPrice = CurrencyHelper.formatByCode(
+      productXafPrice,
+      currencyDetail.currencyCode,
+    );
+
+    return Card(
+      margin: EdgeInsets.zero,
+      elevation: LayoutDimens.s0,
+      child: ListTile(
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: LayoutDimens.p12,
+        ),
+        leading: ClipRRect(
+          borderRadius: BorderRadius.circular(LayoutDimens.s8),
+          child: AspectRatio(
+            aspectRatio: LayoutDimens.ar1_1,
+            child: ImageViewer(url: Environment.imageLink),
+          ),
+        ),
+        title: AutoSizeText(product.productNameEn, maxLines: 1),
+        subtitle: AutoSizeText(productPrice, maxLines: 1),
+        trailing: SizedBox(
+          height: LayoutDimens.s36,
+          width: LayoutDimens.s112,
+          child: QuantityIndicator(
+            availableQuantity: 8,
+            iconSize: LayoutDimens.s20,
+            iconColor: const Color(CommonColors.gray700),
+            quantity: min(quantity, 100),
+            onIncrement: () {},
+            onDecrement: () {},
+          ),
+        ),
+      ),
+    );
   }
 }

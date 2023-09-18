@@ -11,17 +11,20 @@ _$_OrderStatement _$$_OrderStatementFromJson(Map<String, dynamic> json) =>
       products: (json['products'] as List<dynamic>)
           .map((e) => ShoppingCartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
-      deliveryAmount: json['deliveryAmount'] as int,
+      deliveryFee: json['deliveryFee'] as int,
+      serviceFee: json['serviceFee'] as int,
       productTotalAmount: json['productTotalAmount'] as int,
       totalAmount: json['totalAmount'] as int,
-      currency: json['currency'] as String,
+      currencyDetail: CurrencyDetail.fromJson(
+          json['currencyDetail'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_OrderStatementToJson(_$_OrderStatement instance) =>
     <String, dynamic>{
       'products': instance.products,
-      'deliveryAmount': instance.deliveryAmount,
+      'deliveryFee': instance.deliveryFee,
+      'serviceFee': instance.serviceFee,
       'productTotalAmount': instance.productTotalAmount,
       'totalAmount': instance.totalAmount,
-      'currency': instance.currency,
+      'currencyDetail': instance.currencyDetail,
     };

@@ -133,8 +133,8 @@ class _ProductUiFooter extends ConsumerWidget {
               height: LayoutDimens.s48,
               child: QuantityIndicator(
                 availableQuantity: product.stockQuantity,
-                iconSize: LayoutDimens.s32,
-                iconColor: CommonColors.gray700.toColor,
+                iconSize: LayoutDimens.s36,
+                iconColor: const Color(CommonColors.gray700),
                 quantity: productCartVmState.quantity,
                 onIncrement: productCartVm.increment,
                 onDecrement: productCartVm.decrement,

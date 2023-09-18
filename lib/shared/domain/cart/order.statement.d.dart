@@ -11,10 +11,11 @@ class OrderStatement with _$OrderStatement {
 
   const factory OrderStatement({
     required List<ShoppingCartItem> products,
-    required int deliveryAmount,
+    required int deliveryFee,
+    required int serviceFee,
     required int productTotalAmount,
     required int totalAmount,
-    required String currency,
+    required CurrencyDetail currencyDetail,
   }) = _OrderStatement;
 
   factory OrderStatement.fromJson(Map<String, dynamic> json) =>

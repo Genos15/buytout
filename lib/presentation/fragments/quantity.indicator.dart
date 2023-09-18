@@ -21,35 +21,41 @@ class QuantityIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        color: CommonColors.gray100.toColor,
-        borderRadius: BorderRadius.circular(iconSize),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          IconButton.outlined(
-            padding: EdgeInsets.zero,
-            onPressed: onDecrement,
-            icon: Icon(
-              CarbonIcons.subtract,
-              size: iconSize,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(iconSize),
+      child: Container(
+        color: const Color(CommonColors.gray50),
+        constraints: BoxConstraints(
+          maxWidth: double.infinity,
+          maxHeight: iconSize,
+          minHeight: iconSize,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              flex: 1,
+              child: IconButton.outlined(
+                padding: EdgeInsets.zero,
+                onPressed: onDecrement,
+                icon: Icon(CarbonIcons.subtract, size: iconSize),
+              ),
             ),
-          ),
-          AutoSizeText(quantity.toString(), maxLines: 1),
-          IconButton.filledTonal(
-            padding: EdgeInsets.zero,
-            onPressed: onIncrement,
-            icon: Icon(
-              CarbonIcons.add,
-              size: iconSize,
+            Flexible(
+              flex: 1,
+              child: AutoSizeText(quantity.toString(), maxLines: 1),
             ),
-          ),
-        ],
+            Flexible(
+              flex: 1,
+              child: IconButton.filledTonal(
+                padding: EdgeInsets.zero,
+                onPressed: onIncrement,
+                icon: Icon(CarbonIcons.add, size: iconSize),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -21,10 +21,11 @@ OrderStatement _$OrderStatementFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$OrderStatement {
   List<ShoppingCartItem> get products => throw _privateConstructorUsedError;
-  int get deliveryAmount => throw _privateConstructorUsedError;
+  int get deliveryFee => throw _privateConstructorUsedError;
+  int get serviceFee => throw _privateConstructorUsedError;
   int get productTotalAmount => throw _privateConstructorUsedError;
   int get totalAmount => throw _privateConstructorUsedError;
-  String get currency => throw _privateConstructorUsedError;
+  CurrencyDetail get currencyDetail => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,10 +41,13 @@ abstract class $OrderStatementCopyWith<$Res> {
   @useResult
   $Res call(
       {List<ShoppingCartItem> products,
-      int deliveryAmount,
+      int deliveryFee,
+      int serviceFee,
       int productTotalAmount,
       int totalAmount,
-      String currency});
+      CurrencyDetail currencyDetail});
+
+  $CurrencyDetailCopyWith<$Res> get currencyDetail;
 }
 
 /// @nodoc
@@ -60,19 +64,24 @@ class _$OrderStatementCopyWithImpl<$Res, $Val extends OrderStatement>
   @override
   $Res call({
     Object? products = null,
-    Object? deliveryAmount = null,
+    Object? deliveryFee = null,
+    Object? serviceFee = null,
     Object? productTotalAmount = null,
     Object? totalAmount = null,
-    Object? currency = null,
+    Object? currencyDetail = null,
   }) {
     return _then(_value.copyWith(
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ShoppingCartItem>,
-      deliveryAmount: null == deliveryAmount
-          ? _value.deliveryAmount
-          : deliveryAmount // ignore: cast_nullable_to_non_nullable
+      deliveryFee: null == deliveryFee
+          ? _value.deliveryFee
+          : deliveryFee // ignore: cast_nullable_to_non_nullable
+              as int,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
       productTotalAmount: null == productTotalAmount
           ? _value.productTotalAmount
@@ -82,11 +91,19 @@ class _$OrderStatementCopyWithImpl<$Res, $Val extends OrderStatement>
           ? _value.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
+      currencyDetail: null == currencyDetail
+          ? _value.currencyDetail
+          : currencyDetail // ignore: cast_nullable_to_non_nullable
+              as CurrencyDetail,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrencyDetailCopyWith<$Res> get currencyDetail {
+    return $CurrencyDetailCopyWith<$Res>(_value.currencyDetail, (value) {
+      return _then(_value.copyWith(currencyDetail: value) as $Val);
+    });
   }
 }
 
@@ -100,10 +117,14 @@ abstract class _$$_OrderStatementCopyWith<$Res>
   @useResult
   $Res call(
       {List<ShoppingCartItem> products,
-      int deliveryAmount,
+      int deliveryFee,
+      int serviceFee,
       int productTotalAmount,
       int totalAmount,
-      String currency});
+      CurrencyDetail currencyDetail});
+
+  @override
+  $CurrencyDetailCopyWith<$Res> get currencyDetail;
 }
 
 /// @nodoc
@@ -118,19 +139,24 @@ class __$$_OrderStatementCopyWithImpl<$Res>
   @override
   $Res call({
     Object? products = null,
-    Object? deliveryAmount = null,
+    Object? deliveryFee = null,
+    Object? serviceFee = null,
     Object? productTotalAmount = null,
     Object? totalAmount = null,
-    Object? currency = null,
+    Object? currencyDetail = null,
   }) {
     return _then(_$_OrderStatement(
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
               as List<ShoppingCartItem>,
-      deliveryAmount: null == deliveryAmount
-          ? _value.deliveryAmount
-          : deliveryAmount // ignore: cast_nullable_to_non_nullable
+      deliveryFee: null == deliveryFee
+          ? _value.deliveryFee
+          : deliveryFee // ignore: cast_nullable_to_non_nullable
+              as int,
+      serviceFee: null == serviceFee
+          ? _value.serviceFee
+          : serviceFee // ignore: cast_nullable_to_non_nullable
               as int,
       productTotalAmount: null == productTotalAmount
           ? _value.productTotalAmount
@@ -140,10 +166,10 @@ class __$$_OrderStatementCopyWithImpl<$Res>
           ? _value.totalAmount
           : totalAmount // ignore: cast_nullable_to_non_nullable
               as int,
-      currency: null == currency
-          ? _value.currency
-          : currency // ignore: cast_nullable_to_non_nullable
-              as String,
+      currencyDetail: null == currencyDetail
+          ? _value.currencyDetail
+          : currencyDetail // ignore: cast_nullable_to_non_nullable
+              as CurrencyDetail,
     ));
   }
 }
@@ -153,10 +179,11 @@ class __$$_OrderStatementCopyWithImpl<$Res>
 class _$_OrderStatement extends _OrderStatement {
   const _$_OrderStatement(
       {required final List<ShoppingCartItem> products,
-      required this.deliveryAmount,
+      required this.deliveryFee,
+      required this.serviceFee,
       required this.productTotalAmount,
       required this.totalAmount,
-      required this.currency})
+      required this.currencyDetail})
       : _products = products,
         super._();
 
@@ -172,17 +199,19 @@ class _$_OrderStatement extends _OrderStatement {
   }
 
   @override
-  final int deliveryAmount;
+  final int deliveryFee;
+  @override
+  final int serviceFee;
   @override
   final int productTotalAmount;
   @override
   final int totalAmount;
   @override
-  final String currency;
+  final CurrencyDetail currencyDetail;
 
   @override
   String toString() {
-    return 'OrderStatement(products: $products, deliveryAmount: $deliveryAmount, productTotalAmount: $productTotalAmount, totalAmount: $totalAmount, currency: $currency)';
+    return 'OrderStatement(products: $products, deliveryFee: $deliveryFee, serviceFee: $serviceFee, productTotalAmount: $productTotalAmount, totalAmount: $totalAmount, currencyDetail: $currencyDetail)';
   }
 
   @override
@@ -191,14 +220,16 @@ class _$_OrderStatement extends _OrderStatement {
         (other.runtimeType == runtimeType &&
             other is _$_OrderStatement &&
             const DeepCollectionEquality().equals(other._products, _products) &&
-            (identical(other.deliveryAmount, deliveryAmount) ||
-                other.deliveryAmount == deliveryAmount) &&
+            (identical(other.deliveryFee, deliveryFee) ||
+                other.deliveryFee == deliveryFee) &&
+            (identical(other.serviceFee, serviceFee) ||
+                other.serviceFee == serviceFee) &&
             (identical(other.productTotalAmount, productTotalAmount) ||
                 other.productTotalAmount == productTotalAmount) &&
             (identical(other.totalAmount, totalAmount) ||
                 other.totalAmount == totalAmount) &&
-            (identical(other.currency, currency) ||
-                other.currency == currency));
+            (identical(other.currencyDetail, currencyDetail) ||
+                other.currencyDetail == currencyDetail));
   }
 
   @JsonKey(ignore: true)
@@ -206,10 +237,11 @@ class _$_OrderStatement extends _OrderStatement {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_products),
-      deliveryAmount,
+      deliveryFee,
+      serviceFee,
       productTotalAmount,
       totalAmount,
-      currency);
+      currencyDetail);
 
   @JsonKey(ignore: true)
   @override
@@ -228,10 +260,11 @@ class _$_OrderStatement extends _OrderStatement {
 abstract class _OrderStatement extends OrderStatement {
   const factory _OrderStatement(
       {required final List<ShoppingCartItem> products,
-      required final int deliveryAmount,
+      required final int deliveryFee,
+      required final int serviceFee,
       required final int productTotalAmount,
       required final int totalAmount,
-      required final String currency}) = _$_OrderStatement;
+      required final CurrencyDetail currencyDetail}) = _$_OrderStatement;
   const _OrderStatement._() : super._();
 
   factory _OrderStatement.fromJson(Map<String, dynamic> json) =
@@ -240,13 +273,15 @@ abstract class _OrderStatement extends OrderStatement {
   @override
   List<ShoppingCartItem> get products;
   @override
-  int get deliveryAmount;
+  int get deliveryFee;
+  @override
+  int get serviceFee;
   @override
   int get productTotalAmount;
   @override
   int get totalAmount;
   @override
-  String get currency;
+  CurrencyDetail get currencyDetail;
   @override
   @JsonKey(ignore: true)
   _$$_OrderStatementCopyWith<_$_OrderStatement> get copyWith =>

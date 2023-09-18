@@ -100,8 +100,7 @@ class Header extends StatelessWidget {
         _HeaderState.category => minHeight,
         _HeaderState.login => minHeight,
       },
-      // backgroundColor: const Color(CommonColors.red10),
-      backgroundColor: CommonColors.white.toColor,
+      backgroundColor: const Color(CommonColors.white),
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
         final visible = constraints.biggest.aspectRatio > LayoutDimens.ar2_1;
         return FlexibleSpaceBar(

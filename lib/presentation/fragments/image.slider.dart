@@ -53,11 +53,11 @@ class ImageSlider extends ConsumerWidget {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: position == image.key
-                          ? CommonColors.gray700.toColor
-                          : CommonColors.gray300.toColor,
+                          ? const Color(CommonColors.gray700)
+                          : const Color(CommonColors.gray300),
                       border: Border.all(
                         width: LayoutDimens.s2,
-                        color: CommonColors.gray50.toColor,
+                        color: const Color(CommonColors.gray50),
                         style: BorderStyle.solid,
                       ),
                     ),

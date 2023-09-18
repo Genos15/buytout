@@ -17,7 +17,7 @@ class OutfitAdsTmp extends StatelessWidget {
         horizontal: LayoutDimens.p16,
         vertical: LayoutDimens.p8,
       ),
-      backgroundColor: CommonColors.teal100.toColor,
+      backgroundColor: const Color(CommonColors.teal100),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
