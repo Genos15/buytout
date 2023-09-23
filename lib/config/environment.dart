@@ -1,8 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-class Environment {
-  static String get name => kReleaseMode ? '.env.prod' : '.env';
+abstract class Environment {
+  static String get name =>
+      kReleaseMode ? '.env.production' : '.env.development';
 
   static String get baseURL => dotenv.get('BASE_URL');
 
@@ -16,7 +17,8 @@ class Environment {
 
   static String get anonymousHeaderName => dotenv.get('ANONYMOUS_HEADER_NAME');
 
-  static String get refreshTokenHeaderName => dotenv.get('REFRESH_TOKEN_HEADER_NAME');
+  static String get refreshTokenHeaderName =>
+      dotenv.get('REFRESH_TOKEN_HEADER_NAME');
 
-  static String get imageLink => 'https://placehold.co/600x400.png';
+  static String get imageLink => dotenv.get('IMAGE_LINK');
 }

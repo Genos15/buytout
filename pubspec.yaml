@@ -82,8 +82,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - .env
-    - .env.prod
+    - .env.development
+    - .env.production
     - assets/fake_product_preview.json
 
   # To add assets to your application, add an assets section, like this:

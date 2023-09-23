@@ -36,3 +36,4 @@ export 'database/index.dart';
 export 'theme/index.dart';
 export 'requests/index.dart';
 export 'utils/index.dart';
+export 'viewmodel/index.dart';

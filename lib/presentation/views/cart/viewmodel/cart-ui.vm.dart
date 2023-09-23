@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:buytout/shared/index.dart';
 
 final cartUiVmProvider =
@@ -6,33 +8,20 @@ final cartUiVmProvider =
   return CartUiVm(service);
 });
 
-const _kDefaultState = CartUiState(
-  cart: OrderStatement(
-    products: [],
-    deliveryFee: 0,
-    serviceFee: 0,
-    productTotalAmount: 0,
-    totalAmount: 0,
-    currencyDetail: CurrencyDetail(
-      currencyCode: '',
-      currencySymbol: '',
-    ),
-  ),
-);
-
 class CartUiVm extends StateNotifier<CartUiVmState> {
   final CartService service;
 
-  CartUiVm(this.service) : super(const AsyncValue.data(_kDefaultState)) {
+  CartUiVm(this.service) : super(const AsyncValue.data(defaultCartUiState)) {
     service.addListener(onAddCart);
-    fetchCurrentCart();
+    unawaited(fetchCurrentCart());
   }
 
-  void onAddCart() async {
-    fetchCurrentCart();
+  FutureOr<void> onAddCart() async {
+    await fetchCurrentCart();
+    logger.d('cart updated');
   }
 
-  void fetchCurrentCart() async {
+  Future<void> fetchCurrentCart() async {
     try {
       if (!mounted) {
         logger.d('cart view is not mounted');
@@ -41,8 +30,12 @@ class CartUiVm extends StateNotifier<CartUiVmState> {
 
       state = const AsyncValue.loading();
       final orderStatement = await service.getCart();
+
+      if (orderStatement.products.isEmpty) {
+        throw Exception('the cart has no products');
+      }
+
       state = AsyncValue.data(CartUiState(cart: orderStatement));
-      // this.updateShouldNotify(old, current)
     } on Object catch (error, stacktrace) {
       Exceptions.monitor(error, stacktrace);
       state = AsyncValue.error(error, stacktrace);

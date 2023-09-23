@@ -20,7 +20,7 @@ class CartRepositoryImpl implements CartRepository {
   }) async {
     final options = MutationOptions(
       document: addToCartRequest,
-      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      fetchPolicy: FetchPolicy.networkOnly,
       parserFn: (data) => data['addToCart'],
       variables: {
         'productId': productId,
@@ -41,11 +41,11 @@ class CartRepositoryImpl implements CartRepository {
   Future<OrderStatement> getCart() async {
     var options = QueryOptions(
       document: getCartRequest,
-      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      fetchPolicy: FetchPolicy.networkOnly,
       parserFn: (data) => data['orderStatement'],
     );
 
-    var apiResult = await gqlClient.query(options);
+    final apiResult = await gqlClient.query(options);
 
     if (apiResult.hasException) {
       throw apiResult.exception!;

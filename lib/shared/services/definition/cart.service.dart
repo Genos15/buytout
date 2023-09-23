@@ -1,4 +1,6 @@
 
+import 'dart:async';
+
 import 'package:buytout/shared/index.dart';
 
 abstract interface class CartService {
@@ -10,9 +12,9 @@ abstract interface class CartService {
 
   Future<OrderStatement> getCart();
 
-  void addListener(void Function() listener);
+  void addListener(FutureOr<void> Function() listener);
 
-  void removeListener(void Function() listener);
+  void removeListener(FutureOr<void> Function() listener);
 
   int getListenerCount();
 }

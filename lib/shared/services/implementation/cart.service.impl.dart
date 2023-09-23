@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:buytout/shared/index.dart';
 
 final cartServiceProvider =
@@ -12,7 +14,7 @@ class CartServiceImpl implements CartService {
     required this.cartRepository,
   });
 
-  final List<void Function()> listeners = [];
+  final List<FutureOr<void> Function()> listeners = [];
 
   @override
   Future<bool> addToCart({
@@ -20,9 +22,10 @@ class CartServiceImpl implements CartService {
     required int quantity,
   }) async {
     await cartRepository.addToCart(productId: productId, quantity: quantity);
-    // notify all listeners
+
+    /// notify all [listeners] that the product has been added in cart
     for (var listener in listeners) {
-      listener.call();
+      await Future.microtask(() => listener.call());
     }
 
     return true;
