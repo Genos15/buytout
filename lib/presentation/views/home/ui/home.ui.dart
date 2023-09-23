@@ -27,7 +27,8 @@ class HomeUI extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RefreshableScaffold(
-      header: Header.home(
+      header: Header(
+        bottomNavState: BottomNavState.home,
         title: TextTitle1(
           'Showcase',
           textAlign: TextAlign.start,

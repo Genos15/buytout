@@ -26,7 +26,9 @@ class ProductUI extends ConsumerWidget {
         CurrencyHelper.format(product.pricePerCurrency.xaf);
 
     return RefreshableScaffold(
-      header: Header.product(
+      header: Header(
+        centerTitle: true,
+        bottomNavState: BottomNavState.product,
         title: const AutoSizeText('Detail'),
         background: _ProductUiHeader(
           vmState: vmState,

@@ -5,3 +5,4 @@ export 'cart/index.dart';
 
 export 'result.dart';
 export 'category.d.dart';
+export 'bottom.nav/bottom.nav-state.dart';

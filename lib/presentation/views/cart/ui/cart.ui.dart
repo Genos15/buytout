@@ -14,7 +14,9 @@ class CartUI extends ConsumerWidget {
       onRefresh: () async {
         vm.fetchCurrentCart();
       },
-      header: const Header.cart(
+      header: const Header(
+        bottomNavState: BottomNavState.cart,
+        centerTitle: true,
         title: AutoSizeText(
           'Cart',
           textAlign: TextAlign.center,
@@ -66,7 +68,14 @@ class CartUI extends ConsumerWidget {
             SliverPadding(
               padding: const EdgeInsets.all(LayoutDimens.p12),
               sliver: SliverToBoxAdapter(
-                child: SubmitButton(text: 'Commander', onPressed: () {}),
+                child: SubmitButton(
+                  text: 'Commander',
+                  onPressed: () {
+                    vm.goToOrderSummaryPage((statement) {
+                      context.go('/order-summary', extra: statement);
+                    });
+                  },
+                ),
               ),
             )
           ],

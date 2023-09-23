@@ -2,85 +2,23 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-enum _HeaderState { home, product, cart, favorite, account, category, login }
-
 class Header extends StatelessWidget {
   final Widget title;
   final Widget background;
-  final _HeaderState _state;
+  final BottomNavState bottomNavState;
   final EdgeInsets padding;
   final bool centerTitle;
   final void Function()? onCloseLogin;
 
-  const Header.home({
+  const Header({
     Key? key,
+    required this.bottomNavState,
     required this.title,
     this.padding = const EdgeInsets.all(LayoutDimens.p8),
     this.centerTitle = false,
-  })  : _state = _HeaderState.home,
-        onCloseLogin = null,
-        background = const SizedBox.shrink(),
-        super(key: key);
-
-  const Header.login({
-    Key? key,
-    required this.title,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = false,
-    required this.onCloseLogin,
-  })  : _state = _HeaderState.login,
-        background = const SizedBox.shrink(),
-        super(key: key);
-
-  const Header.favorite({
-    Key? key,
-    required this.title,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = true,
-  })  : _state = _HeaderState.favorite,
-        onCloseLogin = null,
-        background = const SizedBox.shrink(),
-        super(key: key);
-
-  const Header.category({
-    Key? key,
-    required this.title,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = true,
-  })  : _state = _HeaderState.category,
-        onCloseLogin = null,
-        background = const SizedBox.shrink(),
-        super(key: key);
-
-  const Header.account({
-    Key? key,
-    required this.title,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = true,
-  })  : _state = _HeaderState.account,
-        onCloseLogin = null,
-        background = const SizedBox.shrink(),
-        super(key: key);
-
-  const Header.product({
-    Key? key,
-    required this.title,
-    required this.background,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = true,
-  })  : _state = _HeaderState.product,
-        onCloseLogin = null,
-        super(key: key);
-
-  const Header.cart({
-    Key? key,
-    required this.title,
-    this.padding = const EdgeInsets.all(LayoutDimens.p8),
-    this.centerTitle = true,
-  })  : _state = _HeaderState.cart,
-        onCloseLogin = null,
-        background = const SizedBox.shrink(),
-        super(key: key);
+    this.onCloseLogin,
+    this.background = const SizedBox.shrink(),
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -91,14 +29,9 @@ class Header extends StatelessWidget {
       pinned: true,
       floating: false,
       collapsedHeight: minHeight,
-      expandedHeight: switch (_state) {
-        _HeaderState.home => minHeight,
-        _HeaderState.product => maxHeight,
-        _HeaderState.cart => minHeight,
-        _HeaderState.favorite => minHeight,
-        _HeaderState.account => minHeight,
-        _HeaderState.category => minHeight,
-        _HeaderState.login => minHeight,
+      expandedHeight: switch (bottomNavState) {
+        BottomNavState.product => maxHeight,
+        _ => minHeight,
       },
       backgroundColor: const Color(CommonColors.white),
       flexibleSpace: LayoutBuilder(builder: (context, constraints) {
@@ -112,26 +45,22 @@ class Header extends StatelessWidget {
           titlePadding: padding,
         );
       }),
-      automaticallyImplyLeading:
-          _state != _HeaderState.product || _state != _HeaderState.category,
-      leading: switch (_state) {
-        // _HeaderState.product || _HeaderState.category => IconButton.filledTonal(
-        //     icon: const Icon(CarbonIcons.arrow_left),
-        //     onPressed: () {
-        //       Navigator.pop(context);
-        //     },
-        //   ),
-        _HeaderState.product || _HeaderState.category => IconButton(
-            icon: const Icon(CarbonIcons.arrow_left),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-          ),
-        _HeaderState.login => const SizedBox.shrink(),
-        _ => null
+      automaticallyImplyLeading: switch (bottomNavState) {
+        BottomNavState.product || BottomNavState.category => false,
+        _ => true,
       },
-      actions: switch (_state) {
-        _HeaderState.home => [
+      leading: switch (bottomNavState) {
+        BottomNavState.product ||
+        BottomNavState.category ||
+        BottomNavState.orderSummary =>
+          IconButton(
+            icon: const Icon(CarbonIcons.arrow_left),
+            onPressed: () => Navigator.pop(context),
+          ),
+        _ => const SizedBox.shrink(),
+      },
+      actions: switch (bottomNavState) {
+        BottomNavState.home => [
             Padding(
               padding: padding,
               child: IconButton.filledTonal(
@@ -145,7 +74,7 @@ class Header extends StatelessWidget {
               ),
             ),
           ],
-        _HeaderState.login => [
+        BottomNavState.login => [
             Padding(
               padding: padding,
               child: IconButton(

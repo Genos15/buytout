@@ -15,7 +15,8 @@ class LoginUi extends ConsumerWidget {
     final loginUiVm = ref.read(loginUiVmProvider.notifier);
 
     return RefreshableScaffold(
-      header: Header.login(
+      header: Header(
+        bottomNavState: BottomNavState.login,
         title: const AutoSizeText('Bienvenu'),
         onCloseLogin: () {
           const isUserLogged = false;

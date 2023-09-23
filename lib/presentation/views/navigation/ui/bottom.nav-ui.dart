@@ -3,19 +3,21 @@ import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
 class BuytoutApplicationBody extends ConsumerWidget {
-  final int initialIndex;
+  final BottomNavState initialPage;
 
-  const BuytoutApplicationBody({Key? key, this.initialIndex = 0})
-      : super(key: key);
+  const BuytoutApplicationBody({
+    Key? key,
+    this.initialPage = BottomNavState.home,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final vm = ref.read(navigationViewModelProvider(initialIndex).notifier);
-    final currentIndex = ref.watch(navigationViewModelProvider(initialIndex));
+    final vm = ref.read(bottomNavUiVmProvider(initialPage).notifier);
+    final vmState = ref.watch(bottomNavUiVmProvider(initialPage));
 
     return Scaffold(
       body: IndexedStack(
-        index: currentIndex,
+        index: vmState.current.index,
         children: const [
           HomeUI(),
           CartUI(),
@@ -24,8 +26,8 @@ class BuytoutApplicationBody extends ConsumerWidget {
         ],
       ),
       bottomNavigationBar: BottomNavigationBarM3(
-        index: currentIndex,
-        onDestinationSelected: vm.changeIndex,
+        index: vmState.current.index,
+        onDestinationSelected: vm.changePage,
       ),
     );
   }

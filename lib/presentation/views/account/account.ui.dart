@@ -7,12 +7,18 @@ class AccountUI extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RefreshableScaffold(
-      header: Header.account(
-        title: const AutoSizeText('Account').black,
+    return const RefreshableScaffold(
+      header: Header(
+        bottomNavState: BottomNavState.account,
+        centerTitle: true,
+        title: AutoSizeText(
+          'Me',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: Color(CommonColors.black900)),
+        ),
       ),
-      slivers: const [],
-      overlays: const [],
+      slivers: [],
+      overlays: [],
     );
   }
 }

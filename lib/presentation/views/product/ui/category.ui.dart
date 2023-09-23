@@ -22,7 +22,9 @@ class CategoryUI extends ConsumerWidget {
     );
 
     return RefreshableScaffold(
-      header: Header.category(
+      header: Header(
+        bottomNavState: BottomNavState.category,
+        centerTitle: true,
         padding: const EdgeInsets.symmetric(vertical: LayoutDimens.p16),
         title: AutoSizeText(
           productCategory.categoryNameEn.toUpperCase(),

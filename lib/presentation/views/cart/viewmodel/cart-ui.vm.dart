@@ -48,48 +48,54 @@ class CartUiVm extends StateNotifier<CartUiVmState> {
     super.dispose();
   }
 
-  CurrencyDetail get currencyDetail {
+  OrderStatement get _orderStatement {
     assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
-    return cart.currencyDetail;
+    return state.requireValue.cart;
+  }
+
+  CurrencyDetail get currencyDetail {
+    return _orderStatement.currencyDetail;
   }
 
   String get deliveryFee {
-    assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
     final currencyCode = currencyDetail.currencyCode;
 
-    return CurrencyHelper.formatByCode(cart.deliveryFee, currencyCode);
+    return CurrencyHelper.formatByCode(
+      _orderStatement.deliveryFee,
+      currencyCode,
+    );
   }
 
   String get serviceFee {
-    assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
     final currencyCode = currencyDetail.currencyCode;
 
-    return CurrencyHelper.formatByCode(cart.serviceFee, currencyCode);
+    return CurrencyHelper.formatByCode(
+      _orderStatement.serviceFee,
+      currencyCode,
+    );
   }
 
   String get productTotalAmount {
-    assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
     final currencyCode = currencyDetail.currencyCode;
 
-    return CurrencyHelper.formatByCode(cart.productTotalAmount, currencyCode);
+    return CurrencyHelper.formatByCode(
+      _orderStatement.productTotalAmount,
+      currencyCode,
+    );
   }
 
   String get totalAmount {
-    assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
     final currencyCode = currencyDetail.currencyCode;
 
-    return CurrencyHelper.formatByCode(cart.totalAmount, currencyCode);
+    return CurrencyHelper.formatByCode(
+      _orderStatement.totalAmount,
+      currencyCode,
+    );
   }
 
-  List<ShoppingCartItem> get items {
-    assert(mounted && state.hasValue, 'Cart Ui state must have a value');
-    final cart = state.requireValue.cart;
+  List<ShoppingCartItem> get items => _orderStatement.products;
 
-    return cart.products;
+  void goToOrderSummaryPage(void Function(OrderStatement) onCommit) {
+    onCommit(_orderStatement);
   }
 }
