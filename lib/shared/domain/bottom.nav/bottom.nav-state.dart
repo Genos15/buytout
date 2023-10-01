@@ -5,7 +5,7 @@ const kAccountBottomIndex = 3;
 const kCategoryBottomIndex = -1;
 const kProductBottomIndex = -1;
 const kLoginBottomIndex = -1;
-const kOrderSummaryBottomIndex = -1;
+const kDefaultIndex = -1;
 
 enum BottomNavState {
   home(kHomeBottomIndex),
@@ -14,8 +14,8 @@ enum BottomNavState {
   account(kAccountBottomIndex),
   product(kProductBottomIndex),
   login(kLoginBottomIndex),
-  orderSummary(kOrderSummaryBottomIndex),
-  category(kCategoryBottomIndex);
+  category(kCategoryBottomIndex),
+  defaultUi(kDefaultIndex);
 
   final int id;
 

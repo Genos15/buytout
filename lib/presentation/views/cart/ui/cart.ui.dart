@@ -2,8 +2,8 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class CartUI extends ConsumerWidget {
-  const CartUI({Key? key}) : super(key: key);
+class CartUi extends ConsumerWidget {
+  const CartUi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,7 +18,7 @@ class CartUI extends ConsumerWidget {
         bottomNavState: BottomNavState.cart,
         centerTitle: true,
         title: AutoSizeText(
-          'Cart',
+          'Mon panier',
           textAlign: TextAlign.center,
           style: TextStyle(color: Color(CommonColors.black900)),
         ),

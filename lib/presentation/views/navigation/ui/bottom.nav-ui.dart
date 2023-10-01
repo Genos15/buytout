@@ -19,10 +19,10 @@ class BuytoutApplicationBody extends ConsumerWidget {
       body: IndexedStack(
         index: vmState.current.index,
         children: const [
-          HomeUI(),
-          CartUI(),
-          FavoriteUI(),
-          AccountUI(),
+          HomeUi(),
+          CartUi(),
+          FavoriteUi(),
+          AccountUi(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBarM3(

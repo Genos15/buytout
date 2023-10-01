@@ -25,6 +25,8 @@ class Header extends StatelessWidget {
     final maxHeight = MediaQuery.sizeOf(context).width;
     final minHeight = Theme.of(context).appBarTheme.toolbarHeight;
 
+    final canNavigateBack = Navigator.canPop(context);
+
     return SliverAppBar(
       pinned: true,
       floating: false,
@@ -52,7 +54,7 @@ class Header extends StatelessWidget {
       leading: switch (bottomNavState) {
         BottomNavState.product ||
         BottomNavState.category ||
-        BottomNavState.orderSummary =>
+        BottomNavState.defaultUi when canNavigateBack == true =>
           IconButton(
             icon: const Icon(CarbonIcons.arrow_left),
             onPressed: () => Navigator.pop(context),

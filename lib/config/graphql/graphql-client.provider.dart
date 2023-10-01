@@ -3,7 +3,8 @@ import 'dart:async';
 import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 
-final _headerGenerator = Provider<FutureOr<Map<String, String>> Function()>(
+final _headerGenerator =
+    Provider.autoDispose<FutureOr<Map<String, String>> Function()>(
   (ref) => () {
     final tokenManager = ref.read(tokenManagerProvider);
 
@@ -16,7 +17,7 @@ final _headerGenerator = Provider<FutureOr<Map<String, String>> Function()>(
 );
 
 final gqlClientProvider = Provider.autoDispose((ref) {
-  final getHeaders = ref.read(_headerGenerator);
+  final getHeaders = ref.watch(_headerGenerator);
 
   final factory = GQLClientFactory(
     wsLinkRef: Environment.gqlWsLinkRef,

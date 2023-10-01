@@ -21,4 +21,8 @@ const _$BottomNavStateEnumMap = {
   BottomNavState.cart: 'cart',
   BottomNavState.favorite: 'favorite',
   BottomNavState.account: 'account',
+  BottomNavState.product: 'product',
+  BottomNavState.login: 'login',
+  BottomNavState.defaultUi: 'defaultUi',
+  BottomNavState.category: 'category',
 };

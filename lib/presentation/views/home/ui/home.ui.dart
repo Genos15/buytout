@@ -3,8 +3,8 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class HomeUI extends StatelessWidget {
-  const HomeUI({super.key});
+class HomeUi extends StatelessWidget {
+  const HomeUi({super.key});
 
   static const kCategories = [
     Category(

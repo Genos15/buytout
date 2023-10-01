@@ -1,17 +1,10 @@
 import 'dart:math';
-import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 
 final productCartVmProvider = StateNotifierProvider.autoDispose
     .family<ProductCartUiVm, ProductCartUiVmState, ProdDetails>((ref, product) {
   final service = ref.watch(cartServiceProvider);
-  final tokenManager = ref.read(tokenManagerProvider);
-  return ProductCartUiVm(
-    product.stockQuantity,
-    product,
-    service,
-    tokenManager,
-  );
+  return ProductCartUiVm(product.stockQuantity, product, service);
 });
 
 class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
@@ -19,13 +12,11 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
     this.inStock,
     this.product,
     this.cartService,
-    this.tokenManager,
   ) : super(ProductCartUiState(quantity: 1, product: product));
 
   final int inStock;
   final ProdDetails product;
   final CartService cartService;
-  final TokenManager tokenManager;
 
   int increment() {
     final quantity = min(inStock, state.quantity + 1);
@@ -39,9 +30,10 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
     return quantity;
   }
 
-  void addToCart({
+  Future<void> addToCart({
     required ProdDetails product,
     required int quantity,
+    required isUserLogged,
     required Future<bool> Function() onAuthenticateUser,
     required void Function(Object, StackTrace) onError,
     required void Function() onSuccess,
@@ -52,7 +44,6 @@ class ProductCartUiVm extends StateNotifier<ProductCartUiVmState> {
       }
       // we need to add the guard to the function
       // so that we continue only if the customer is logged
-      bool isUserLogged = await tokenManager.isUserLogged();
       if (!isUserLogged) {
         isUserLogged = await onAuthenticateUser();
         if (!isUserLogged) {

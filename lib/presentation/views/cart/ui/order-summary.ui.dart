@@ -11,7 +11,7 @@ class OrderSummaryUi extends StatelessWidget {
   Widget build(BuildContext context) {
     return const RefreshableScaffold(
       header: Header(
-        bottomNavState: BottomNavState.orderSummary,
+        bottomNavState: BottomNavState.defaultUi,
         centerTitle: true,
         title: AutoSizeText(
           'Order Summary',

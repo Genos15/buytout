@@ -150,17 +150,24 @@ class _ProductUiFooter extends ConsumerWidget {
               height: LayoutDimens.s48,
               child: SubmitButton(
                 text: 'Ajouter',
-                onPressed: () => productCartVm.addToCart(
-                  product: product,
-                  quantity: productCartVmState.quantity,
-                  onAuthenticateUser: () => _openLoginUi(context),
-                  onError: (error, stacktrace) {
-                    Exceptions.propagate(context, error, stacktrace);
-                  },
-                  onSuccess: () {
-                    SnackBarManager.of(context).success('Le produit est dans le panier 😎');
-                  },
-                ),
+                onPressed: () async {
+                  final authState = AppContextProvider.authStateOf(context);
+
+                  await productCartVm.addToCart(
+                    product: product,
+                    quantity: productCartVmState.quantity,
+                    isUserLogged: authState.isLogged,
+                    onAuthenticateUser: () => _openLoginUi(context),
+                    onError: (error, stacktrace) {
+                      Exceptions.propagate(context, error, stacktrace);
+                    },
+                    onSuccess: () {
+                      ref.invalidate(authManagerProvider);
+                      SnackBarManager.of(context)
+                          .success('Le produit est dans le panier 😎');
+                    },
+                  );
+                },
               ),
             ),
           ),

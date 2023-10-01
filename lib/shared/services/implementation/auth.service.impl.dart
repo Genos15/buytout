@@ -19,7 +19,7 @@ class AuthServiceImpl implements AuthService {
   }
 
   @override
-  Future<Token> register({required String code, required String email}) async{
+  Future<Token> register({required String code, required String email}) async {
     final token = await authRepository.register(code: code, email: email);
     await tokenManager.saveToken(token);
     return token;
