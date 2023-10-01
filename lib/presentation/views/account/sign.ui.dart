@@ -14,8 +14,16 @@ class SignUi extends ConsumerWidget {
     required this.title,
   });
 
+  void notifyEmitter(BuildContext context, bool result) {
+    // Navigator.of(context, rootNavigator: false).pop(result);
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.watch(loginUiVmProvider);
+
+    final loginUiVm = ref.read(loginUiVmProvider.notifier);
+
     return RefreshableScaffold(
       header: Header(
         bottomNavState: BottomNavState.defaultUi,
@@ -26,12 +34,48 @@ class SignUi extends ConsumerWidget {
           style: const TextStyle(color: Color(CommonColors.black900)),
         ),
       ),
-      slivers: const [
-        SliverFillRemaining(
-          child: Center(
-            child: AutoSizeText('Connectez vous'),
+      slivers: [
+        const SliverPadding(
+          padding: EdgeInsets.all(LayoutDimens.p16),
+          sliver: SliverToBoxAdapter(
+            child: AutoSizeText('Here we add the form to send email to user'),
           ),
-        )
+        ),
+        if (loginUiVm.displayEmailForm)
+          SliverPadding(
+            padding: const EdgeInsets.all(LayoutDimens.p16),
+            sliver: SliverToBoxAdapter(
+              child: EmailForm(
+                onSubmit: (emailValue) async {
+                  await loginUiVm.consumeEmail(
+                    email: emailValue,
+                    onError: (error, stacktrace) {
+                      Exceptions.propagate(context, error, stacktrace);
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
+        if (loginUiVm.displayCodeForm)
+          SliverPadding(
+            padding: const EdgeInsets.all(LayoutDimens.p16),
+            sliver: SliverToBoxAdapter(
+              child: CodeForm(
+                onSubmit: (codeAsString) async {
+                  await loginUiVm.consumeValidationCode(
+                    code: codeAsString,
+                    onError: (error, stacktrace) {
+                      Exceptions.propagate(context, error, stacktrace);
+                    },
+                    onSuccess: () {
+                      notifyEmitter(context, true);
+                    },
+                  );
+                },
+              ),
+            ),
+          ),
       ],
     );
   }
