@@ -1,12 +1,13 @@
+import 'package:buytout/config/index.dart';
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class FavoriteUi extends StatelessWidget {
+class FavoriteUi extends ConsumerWidget {
   const FavoriteUi({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final authState = AppContextProvider.authStateOf(context);
 
     if (!authState.isLogged) {
@@ -14,6 +15,12 @@ class FavoriteUi extends StatelessWidget {
         authState: authState,
         fallback: const FavoriteUi(),
         title: 'Les favoris',
+        onSuccess: () {
+          ref.invalidate(authManagerProvider);
+        },
+        onError: (message) {
+          SnackBarManager.of(context).error(message);
+        },
       );
     }
 

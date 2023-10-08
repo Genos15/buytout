@@ -112,7 +112,7 @@ class _ProductUiHeader extends ConsumerWidget {
   }
 }
 
-class _ProductUiFooter extends ConsumerWidget {
+class _ProductUiFooter extends ConsumerWidget with CanLoginMixin {
   final ProdDetails product;
 
   const _ProductUiFooter({required this.product});
@@ -157,7 +157,7 @@ class _ProductUiFooter extends ConsumerWidget {
                     product: product,
                     quantity: productCartVmState.quantity,
                     isUserLogged: authState.isLogged,
-                    onAuthenticateUser: () => _openLoginUi(context),
+                    onAuthenticateUser: () => onSign(context),
                     onError: (error, stacktrace) {
                       Exceptions.propagate(context, error, stacktrace);
                     },
@@ -174,17 +174,5 @@ class _ProductUiFooter extends ConsumerWidget {
         ],
       ),
     );
-  }
-
-  Future<bool> _openLoginUi(BuildContext context) async {
-    final isLogged = await showModalBottomSheet<bool?>(
-      isScrollControlled: false,
-      isDismissible: false,
-      enableDrag: false,
-      context: context,
-      builder: (context) => const LoginUi(),
-    );
-
-    return isLogged ?? false;
   }
 }

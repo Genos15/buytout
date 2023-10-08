@@ -1,29 +1,28 @@
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class SignUi extends ConsumerWidget {
+const _kErrorMessage =
+    "Une erreur s'est produite lors votre tentative de connexion";
+
+class SignUi extends StatelessWidget with CanLoginMixin {
   final AuthState authState;
   final Widget fallback;
   final String title;
+  final void Function()? onSuccess;
+  final void Function(String message)? onError;
 
   const SignUi({
     super.key,
     required this.authState,
     required this.fallback,
     required this.title,
+    this.onSuccess,
+    this.onError,
   });
 
-  void notifyEmitter(BuildContext context, bool result) {
-    // Navigator.of(context, rootNavigator: false).pop(result);
-  }
-
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    ref.watch(loginUiVmProvider);
-
-    final loginUiVm = ref.read(loginUiVmProvider.notifier);
-
+  Widget build(BuildContext context) {
     return RefreshableScaffold(
       header: Header(
         bottomNavState: BottomNavState.defaultUi,
@@ -35,47 +34,22 @@ class SignUi extends ConsumerWidget {
         ),
       ),
       slivers: [
-        const SliverPadding(
-          padding: EdgeInsets.all(LayoutDimens.p16),
+        SliverPadding(
+          padding: const EdgeInsets.all(LayoutDimens.p16),
           sliver: SliverToBoxAdapter(
-            child: AutoSizeText('Here we add the form to send email to user'),
+            child: TextSubmitButton(
+              onPressed: () async {
+                final isLogged = await onSign(context);
+                if (isLogged) {
+                  onSuccess?.call();
+                } else {
+                  onError?.call(_kErrorMessage);
+                }
+              },
+              text: 'Je me connecte',
+            ),
           ),
         ),
-        if (loginUiVm.displayEmailForm)
-          SliverPadding(
-            padding: const EdgeInsets.all(LayoutDimens.p16),
-            sliver: SliverToBoxAdapter(
-              child: EmailForm(
-                onSubmit: (emailValue) async {
-                  await loginUiVm.consumeEmail(
-                    email: emailValue,
-                    onError: (error, stacktrace) {
-                      Exceptions.propagate(context, error, stacktrace);
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
-        if (loginUiVm.displayCodeForm)
-          SliverPadding(
-            padding: const EdgeInsets.all(LayoutDimens.p16),
-            sliver: SliverToBoxAdapter(
-              child: CodeForm(
-                onSubmit: (codeAsString) async {
-                  await loginUiVm.consumeValidationCode(
-                    code: codeAsString,
-                    onError: (error, stacktrace) {
-                      Exceptions.propagate(context, error, stacktrace);
-                    },
-                    onSuccess: () {
-                      notifyEmitter(context, true);
-                    },
-                  );
-                },
-              ),
-            ),
-          ),
       ],
     );
   }

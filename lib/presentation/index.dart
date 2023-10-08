@@ -4,3 +4,4 @@ export 'views/navigation/ui/bottom.nav-ui.dart';
 export 'atomic/index.dart';
 export 'fragments/index.dart';
 export 'delegates/index.dart';
+export 'mixin/index.dart';

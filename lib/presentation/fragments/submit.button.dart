@@ -45,23 +45,70 @@ class _SubmitButtonState extends State<SubmitButton> {
         onPressed: isLoading
             ? null
             : () async {
-          try {
-            setState(() => isLoading = true);
-            await Future(() => widget.onPressed?.call());
-          } finally {
-            setState(() => isLoading = false);
-          }
-        },
+                try {
+                  setState(() => isLoading = true);
+                  await Future(() => widget.onPressed?.call());
+                } finally {
+                  setState(() => isLoading = false);
+                }
+              },
         minSize: widget.minSize,
         borderRadius: BorderRadius.circular(widget.borderRadius),
         child: isLoading
             ? const CircularProgressIndicator.adaptive()
             : AutoSizeText(
-          widget.text,
-          maxLines: 1,
-          style: AppTextStyles.normalOf(context),
-        ),
+                widget.text,
+                maxLines: 1,
+                style: AppTextStyles.normalOf(context),
+              ),
       ),
+    );
+  }
+}
+
+class TextSubmitButton extends StatefulWidget {
+  final String text;
+  final VoidCallback? onPressed;
+
+  const TextSubmitButton({
+    Key? key,
+    required this.text,
+    this.onPressed,
+  }) : super(key: key);
+
+  @override
+  State<TextSubmitButton> createState() => _TextSubmitButtonState();
+}
+
+class _TextSubmitButtonState extends State<TextSubmitButton> {
+  late bool isLoading;
+
+  @override
+  void initState() {
+    isLoading = false;
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      style: TextButton.styleFrom(
+        foregroundColor: const Color(CommonColors.info),
+        disabledForegroundColor: const Color(CommonColors.error),
+      ),
+      onPressed: isLoading
+          ? null
+          : () async {
+              try {
+                setState(() => isLoading = true);
+                await Future(() => widget.onPressed?.call());
+              } finally {
+                setState(() => isLoading = false);
+              }
+            },
+      child: isLoading
+          ? const CircularProgressIndicator.adaptive()
+          : AutoSizeText(widget.text),
     );
   }
 }
