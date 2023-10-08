@@ -32,45 +32,6 @@ class CartUi extends ConsumerWidget {
               ),
             ),
             ProductCartList(items: vm.items, currencyDetail: vm.currencyDetail),
-            // SliverPadding(
-            //   padding: const EdgeInsets.all(LayoutDimens.p12),
-            //   sliver: SliverToBoxAdapter(
-            //     child: Table(
-            //       children: [
-            //         TableRow(
-            //           children: [
-            //             const AutoSizeText('Sous-total'),
-            //             AutoSizeText(
-            //               vm.productTotalAmount,
-            //               textAlign: TextAlign.end,
-            //             ),
-            //           ],
-            //         ),
-            //         getSpaceBetween(),
-            //         TableRow(
-            //           children: [
-            //             const AutoSizeText('Frais de service'),
-            //             AutoSizeText(vm.serviceFee, textAlign: TextAlign.end),
-            //           ],
-            //         ),
-            //         getSpaceBetween(),
-            //         TableRow(
-            //           children: [
-            //             const AutoSizeText('Frais de livraison'),
-            //             AutoSizeText(vm.deliveryFee, textAlign: TextAlign.end),
-            //           ],
-            //         ),
-            //         getSpaceBetween(),
-            //         TableRow(
-            //           children: [
-            //             const AutoSizeText('Total'),
-            //             AutoSizeText(vm.totalAmount, textAlign: TextAlign.end),
-            //           ],
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
           ],
         AsyncLoading() => [
             const SliverFillRemaining(
@@ -91,40 +52,34 @@ class CartUi extends ConsumerWidget {
           ],
       },
       overlays: [
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.all(LayoutDimens.p12),
-            decoration: const BoxDecoration(
-              color: Color(CommonColors.white),
-              border: Border(
-                top: BorderSide(
-                  color: Color(CommonColors.gray20_carbon),
-                  width: _kDividerWidth,
+        if (cartUiVmState.hasValue)
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(LayoutDimens.p12),
+              decoration: const BoxDecoration(
+                color: Color(CommonColors.white),
+                border: Border(
+                  top: BorderSide(
+                    color: Color(CommonColors.gray20_carbon),
+                    width: _kDividerWidth,
+                  ),
                 ),
               ),
+              child: TextSubmitButton(
+                text: 'Confirmer la commande',
+                onPressed: () {
+                  vm.goToOrderSummaryPage((statement) {
+                    context.go('/order-summary', extra: statement);
+                  });
+                },
+              ),
             ),
-            child: TextSubmitButton(
-              text: 'Confirmer la commande',
-              onPressed: () {
-                vm.goToOrderSummaryPage((statement) {
-                  context.go('/order-summary', extra: statement);
-                });
-              },
-            ),
-          ),
-        )
+          )
       ],
     );
   }
-
-// TableRow getSpaceBetween() => const TableRow(
-//       children: <Widget>[
-//         SizedBox(height: LayoutDimens.s12),
-//         SizedBox(height: LayoutDimens.s12),
-//       ],
-//     );
 }
 
 const _kDividerWidth = 0.5;

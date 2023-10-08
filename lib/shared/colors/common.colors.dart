@@ -46,7 +46,7 @@ abstract class CommonColors {
   static const int error = 0xFFfa4d56;
 
 
-  static const int gray10 = 0xFFf4f4f4;
+  static const int gray10_carbon = 0xFFf4f4f4;
   static const int gray30_carbon = 0xFFc6c6c6;
   static const int gray20_carbon = 0xFFe0e0e0;
   static const int gray100_carbon = 0xFF161616;

@@ -9,20 +9,20 @@ class OrderSummaryUi extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const RefreshableScaffold(
-      header: Header(
+    return RefreshableScaffold(
+      header: const Header(
         bottomNavState: BottomNavState.defaultUi,
         centerTitle: true,
         title: AutoSizeText(
-          'Order Summary',
+          'Résumé de la commande',
           textAlign: TextAlign.center,
           style: TextStyle(color: Color(CommonColors.black900)),
         ),
       ),
       slivers: [
-        SliverToBoxAdapter(
-          child: AutoSizeText('Summary of Order'),
-        )
+        const SliverToBoxAdapter(child: AutoSizeText('Panier recap')),
+        const SliverToBoxAdapter(child: AutoSizeText('Adresse de livraison')),
+        SliverToBoxAdapter(child: OrderSummaryFooter(statement: statement))
       ],
     );
   }
