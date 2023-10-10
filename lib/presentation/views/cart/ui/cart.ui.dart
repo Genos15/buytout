@@ -11,6 +11,7 @@ class CartUi extends ConsumerWidget {
     final cartUiVmState = ref.watch(cartUiVmProvider);
 
     return RefreshableScaffold(
+      background: CommonColors.white,
       onRefresh: () async {
         vm.fetchCurrentCart();
       },
@@ -32,6 +33,7 @@ class CartUi extends ConsumerWidget {
               ),
             ),
             ProductCartList(items: vm.items, currencyDetail: vm.currencyDetail),
+            const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.s96)),
           ],
         AsyncLoading() => [
             const SliverFillRemaining(

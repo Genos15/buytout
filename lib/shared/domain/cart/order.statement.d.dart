@@ -21,3 +21,12 @@ class OrderStatement with _$OrderStatement {
   factory OrderStatement.fromJson(Map<String, dynamic> json) =>
       _$OrderStatementFromJson(json);
 }
+
+const kDefaultOrderStatement = OrderStatement(
+  products: [],
+  deliveryFee: 0,
+  serviceFee: 0,
+  productTotalAmount: 0,
+  totalAmount: 0,
+  currencyDetail: kDefaultCurrencyDetail,
+);

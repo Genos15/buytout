@@ -17,3 +17,5 @@ class AuthState with _$AuthState {
   factory AuthState.fromJson(Map<String, dynamic> json) =>
       _$AuthStateFromJson(json);
 }
+
+const kDefaultAuthState = AuthState(user: null, isLogged: false);

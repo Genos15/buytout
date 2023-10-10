@@ -23,6 +23,7 @@ mixin _$Category {
   String get categoryId => throw _privateConstructorUsedError;
   String? get parentCategoryId => throw _privateConstructorUsedError;
   String get categoryNameEn => throw _privateConstructorUsedError;
+  String get imageUrl => throw _privateConstructorUsedError;
   Map<String, dynamic> get categoryNameOtherLanguages =>
       throw _privateConstructorUsedError;
 
@@ -41,6 +42,7 @@ abstract class $CategoryCopyWith<$Res> {
       {String categoryId,
       String? parentCategoryId,
       String categoryNameEn,
+      String imageUrl,
       Map<String, dynamic> categoryNameOtherLanguages});
 }
 
@@ -60,6 +62,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? categoryId = null,
     Object? parentCategoryId = freezed,
     Object? categoryNameEn = null,
+    Object? imageUrl = null,
     Object? categoryNameOtherLanguages = null,
   }) {
     return _then(_value.copyWith(
@@ -74,6 +77,10 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
       categoryNameEn: null == categoryNameEn
           ? _value.categoryNameEn
           : categoryNameEn // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       categoryNameOtherLanguages: null == categoryNameOtherLanguages
           ? _value.categoryNameOtherLanguages
@@ -94,6 +101,7 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       {String categoryId,
       String? parentCategoryId,
       String categoryNameEn,
+      String imageUrl,
       Map<String, dynamic> categoryNameOtherLanguages});
 }
 
@@ -111,6 +119,7 @@ class __$$_CategoryCopyWithImpl<$Res>
     Object? categoryId = null,
     Object? parentCategoryId = freezed,
     Object? categoryNameEn = null,
+    Object? imageUrl = null,
     Object? categoryNameOtherLanguages = null,
   }) {
     return _then(_$_Category(
@@ -125,6 +134,10 @@ class __$$_CategoryCopyWithImpl<$Res>
       categoryNameEn: null == categoryNameEn
           ? _value.categoryNameEn
           : categoryNameEn // ignore: cast_nullable_to_non_nullable
+              as String,
+      imageUrl: null == imageUrl
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
       categoryNameOtherLanguages: null == categoryNameOtherLanguages
           ? _value._categoryNameOtherLanguages
@@ -141,6 +154,7 @@ class _$_Category extends _Category {
       {required this.categoryId,
       this.parentCategoryId = null,
       required this.categoryNameEn,
+      this.imageUrl = '',
       final Map<String, dynamic> categoryNameOtherLanguages = const {}})
       : _categoryNameOtherLanguages = categoryNameOtherLanguages,
         super._();
@@ -155,6 +169,9 @@ class _$_Category extends _Category {
   final String? parentCategoryId;
   @override
   final String categoryNameEn;
+  @override
+  @JsonKey()
+  final String imageUrl;
   final Map<String, dynamic> _categoryNameOtherLanguages;
   @override
   @JsonKey()
@@ -167,7 +184,7 @@ class _$_Category extends _Category {
 
   @override
   String toString() {
-    return 'Category(categoryId: $categoryId, parentCategoryId: $parentCategoryId, categoryNameEn: $categoryNameEn, categoryNameOtherLanguages: $categoryNameOtherLanguages)';
+    return 'Category(categoryId: $categoryId, parentCategoryId: $parentCategoryId, categoryNameEn: $categoryNameEn, imageUrl: $imageUrl, categoryNameOtherLanguages: $categoryNameOtherLanguages)';
   }
 
   @override
@@ -181,6 +198,8 @@ class _$_Category extends _Category {
                 other.parentCategoryId == parentCategoryId) &&
             (identical(other.categoryNameEn, categoryNameEn) ||
                 other.categoryNameEn == categoryNameEn) &&
+            (identical(other.imageUrl, imageUrl) ||
+                other.imageUrl == imageUrl) &&
             const DeepCollectionEquality().equals(
                 other._categoryNameOtherLanguages,
                 _categoryNameOtherLanguages));
@@ -193,6 +212,7 @@ class _$_Category extends _Category {
       categoryId,
       parentCategoryId,
       categoryNameEn,
+      imageUrl,
       const DeepCollectionEquality().hash(_categoryNameOtherLanguages));
 
   @JsonKey(ignore: true)
@@ -214,6 +234,7 @@ abstract class _Category extends Category {
       {required final String categoryId,
       final String? parentCategoryId,
       required final String categoryNameEn,
+      final String imageUrl,
       final Map<String, dynamic> categoryNameOtherLanguages}) = _$_Category;
   const _Category._() : super._();
 
@@ -225,6 +246,8 @@ abstract class _Category extends Category {
   String? get parentCategoryId;
   @override
   String get categoryNameEn;
+  @override
+  String get imageUrl;
   @override
   Map<String, dynamic> get categoryNameOtherLanguages;
   @override

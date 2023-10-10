@@ -15,45 +15,44 @@ class ProductCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () => context.go('/details', extra: product),
-      child: Card(
+      child: Container(
         key: UniqueKey(),
-        elevation: LayoutDimens.e0,
-        child: SizedBox(
-          width: LayoutDimens.s192,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Hero(
-                tag: product.productId,
-                child: AspectRatio(
-                  aspectRatio: LayoutDimens.ar1_1,
-                  child: ImageViewer(url: Environment.imageLink),
+        width: LayoutDimens.s192,
+        decoration: const BoxDecoration(),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Hero(
+              tag: product.productId,
+              child: AspectRatio(
+                aspectRatio: LayoutDimens.ar1_1,
+                child: ImageViewer(url: Environment.imageLink),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: LayoutDimens.s4),
+              child: AutoSizeText.rich(
+                textAlign: TextAlign.start,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: productDisplayPrice,
+                      style: AppTextStyles.normalBoldOf(context),
+                    ),
+                    TextSpanWidgetExtension.breaker,
+                    TextSpan(
+                      text: product.productNameEn,
+                      style: AppTextStyles.smallOf(context),
+                    )
+                  ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: LayoutDimens.s4),
-                child: AutoSizeText.rich(
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  TextSpan(
-                    children: [
-                      TextSpan(
-                        text: productDisplayPrice,
-                        style: AppTextStyles.normalBoldOf(context),
-                      ),
-                      TextSpanWidgetExtension.breaker,
-                      TextSpan(
-                        text: product.productNameEn,
-                        style: AppTextStyles.smallOf(context),
-                      )
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

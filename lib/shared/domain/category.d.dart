@@ -13,6 +13,7 @@ class Category with _$Category {
     required String categoryId,
     @Default(null) String? parentCategoryId,
     required String categoryNameEn,
+    @Default('') String imageUrl,
     @Default({}) Map<String, dynamic> categoryNameOtherLanguages,
   }) = _Category;
 

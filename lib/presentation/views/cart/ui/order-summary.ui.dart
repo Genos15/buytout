@@ -21,7 +21,11 @@ class OrderSummaryUi extends StatelessWidget {
       ),
       slivers: [
         const SliverToBoxAdapter(child: AutoSizeText('Panier recap')),
+        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
         const SliverToBoxAdapter(child: AutoSizeText('Adresse de livraison')),
+        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
+        SliverToBoxAdapter(child: CartPreview(statement: statement)),
+        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
         SliverToBoxAdapter(child: OrderSummaryFooter(statement: statement))
       ],
     );

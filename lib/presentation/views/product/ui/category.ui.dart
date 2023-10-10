@@ -22,6 +22,7 @@ class CategoryUI extends ConsumerWidget {
     );
 
     return RefreshableScaffold(
+      background: CommonColors.white,
       header: Header(
         bottomNavState: BottomNavState.category,
         centerTitle: true,

@@ -23,6 +23,6 @@ const _$BottomNavStateEnumMap = {
   BottomNavState.account: 'account',
   BottomNavState.product: 'product',
   BottomNavState.login: 'login',
-  BottomNavState.defaultUi: 'defaultUi',
   BottomNavState.category: 'category',
+  BottomNavState.defaultUi: 'defaultUi',
 };

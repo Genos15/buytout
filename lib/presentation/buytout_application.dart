@@ -14,8 +14,10 @@ class BuytoutApplication extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rootScaffoldMessengerKey = ref.read(rootScaffoldMessengerKeyProvider);
     final authStateAsync = ref.watch(authManagerProvider);
+    final cartUiStateAsync = ref.watch(cartUiVmProvider);
 
-    var authState = const AuthState(user: null, isLogged: false);
+    var authState = kDefaultAuthState;
+    var orderStatementState = kDefaultOrderStatement;
 
     if (!authStateAsync.isLoading &&
         !authStateAsync.isReloading &&
@@ -24,8 +26,16 @@ class BuytoutApplication extends ConsumerWidget {
       authState = authStateAsync.requireValue;
     }
 
+    if (!cartUiStateAsync.isLoading &&
+        !cartUiStateAsync.isReloading &&
+        !cartUiStateAsync.hasError &&
+        cartUiStateAsync.hasValue) {
+      orderStatementState = cartUiStateAsync.requireValue.cart;
+    }
+
     return AppContextProvider(
       authState: authState,
+      statement: orderStatementState,
       child: MaterialApp.router(
         scaffoldMessengerKey: rootScaffoldMessengerKey,
         routerConfig: router,

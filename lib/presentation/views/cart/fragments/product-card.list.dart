@@ -49,33 +49,29 @@ class _ProductCartItem extends StatelessWidget {
       currencyDetail.currencyCode,
     );
 
-    return Card(
-      margin: EdgeInsets.zero,
-      elevation: LayoutDimens.s0,
-      child: ListTile(
-        contentPadding: const EdgeInsets.symmetric(
-          horizontal: LayoutDimens.p12,
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(
+        horizontal: LayoutDimens.p12,
+      ),
+      leading: ClipRRect(
+        borderRadius: BorderRadius.circular(LayoutDimens.s8),
+        child: AspectRatio(
+          aspectRatio: LayoutDimens.ar1_1,
+          child: ImageViewer(url: Environment.imageLink),
         ),
-        leading: ClipRRect(
-          borderRadius: BorderRadius.circular(LayoutDimens.s8),
-          child: AspectRatio(
-            aspectRatio: LayoutDimens.ar1_1,
-            child: ImageViewer(url: Environment.imageLink),
-          ),
-        ),
-        title: AutoSizeText(product.productNameEn, maxLines: 1),
-        subtitle: AutoSizeText(productPrice, maxLines: 1),
-        trailing: SizedBox(
-          height: LayoutDimens.s36,
-          width: LayoutDimens.s112,
-          child: QuantityIndicator(
-            availableQuantity: 8,
-            iconSize: LayoutDimens.s20,
-            iconColor: const Color(CommonColors.gray700),
-            quantity: min(quantity, 100),
-            onIncrement: () {},
-            onDecrement: () {},
-          ),
+      ),
+      title: AutoSizeText(product.productNameEn, maxLines: 1),
+      subtitle: AutoSizeText(productPrice, maxLines: 1),
+      trailing: SizedBox(
+        height: LayoutDimens.s36,
+        width: LayoutDimens.s112,
+        child: QuantityIndicator(
+          availableQuantity: 8,
+          iconSize: LayoutDimens.s20,
+          iconColor: const Color(CommonColors.gray700),
+          quantity: min(quantity, 100),
+          onIncrement: () {},
+          onDecrement: () {},
         ),
       ),
     );
