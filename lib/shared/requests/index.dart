@@ -5,3 +5,4 @@ export 'auth-code.graphql.dart';
 export 'auth-email.graphql.dart';
 export 'add-to-cart.graphql.dart';
 export 'get-cart.graphql.dart';
+export 'get-categories.graphql.dart';

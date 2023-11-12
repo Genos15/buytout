@@ -24,6 +24,9 @@ mixin _$Category {
   String? get parentCategoryId => throw _privateConstructorUsedError;
   String get categoryNameEn => throw _privateConstructorUsedError;
   String get imageUrl => throw _privateConstructorUsedError;
+  String? get html => throw _privateConstructorUsedError;
+  bool get fullWidth => throw _privateConstructorUsedError;
+  String get bgColor => throw _privateConstructorUsedError;
   Map<String, dynamic> get categoryNameOtherLanguages =>
       throw _privateConstructorUsedError;
 
@@ -43,6 +46,9 @@ abstract class $CategoryCopyWith<$Res> {
       String? parentCategoryId,
       String categoryNameEn,
       String imageUrl,
+      String? html,
+      bool fullWidth,
+      String bgColor,
       Map<String, dynamic> categoryNameOtherLanguages});
 }
 
@@ -63,6 +69,9 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
     Object? parentCategoryId = freezed,
     Object? categoryNameEn = null,
     Object? imageUrl = null,
+    Object? html = freezed,
+    Object? fullWidth = null,
+    Object? bgColor = null,
     Object? categoryNameOtherLanguages = null,
   }) {
     return _then(_value.copyWith(
@@ -82,6 +91,18 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      html: freezed == html
+          ? _value.html
+          : html // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullWidth: null == fullWidth
+          ? _value.fullWidth
+          : fullWidth // ignore: cast_nullable_to_non_nullable
+              as bool,
+      bgColor: null == bgColor
+          ? _value.bgColor
+          : bgColor // ignore: cast_nullable_to_non_nullable
+              as String,
       categoryNameOtherLanguages: null == categoryNameOtherLanguages
           ? _value.categoryNameOtherLanguages
           : categoryNameOtherLanguages // ignore: cast_nullable_to_non_nullable
@@ -91,10 +112,11 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
 }
 
 /// @nodoc
-abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
-  factory _$$_CategoryCopyWith(
-          _$_Category value, $Res Function(_$_Category) then) =
-      __$$_CategoryCopyWithImpl<$Res>;
+abstract class _$$CategoryImplCopyWith<$Res>
+    implements $CategoryCopyWith<$Res> {
+  factory _$$CategoryImplCopyWith(
+          _$CategoryImpl value, $Res Function(_$CategoryImpl) then) =
+      __$$CategoryImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -102,15 +124,18 @@ abstract class _$$_CategoryCopyWith<$Res> implements $CategoryCopyWith<$Res> {
       String? parentCategoryId,
       String categoryNameEn,
       String imageUrl,
+      String? html,
+      bool fullWidth,
+      String bgColor,
       Map<String, dynamic> categoryNameOtherLanguages});
 }
 
 /// @nodoc
-class __$$_CategoryCopyWithImpl<$Res>
-    extends _$CategoryCopyWithImpl<$Res, _$_Category>
-    implements _$$_CategoryCopyWith<$Res> {
-  __$$_CategoryCopyWithImpl(
-      _$_Category _value, $Res Function(_$_Category) _then)
+class __$$CategoryImplCopyWithImpl<$Res>
+    extends _$CategoryCopyWithImpl<$Res, _$CategoryImpl>
+    implements _$$CategoryImplCopyWith<$Res> {
+  __$$CategoryImplCopyWithImpl(
+      _$CategoryImpl _value, $Res Function(_$CategoryImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -120,9 +145,12 @@ class __$$_CategoryCopyWithImpl<$Res>
     Object? parentCategoryId = freezed,
     Object? categoryNameEn = null,
     Object? imageUrl = null,
+    Object? html = freezed,
+    Object? fullWidth = null,
+    Object? bgColor = null,
     Object? categoryNameOtherLanguages = null,
   }) {
-    return _then(_$_Category(
+    return _then(_$CategoryImpl(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -139,6 +167,18 @@ class __$$_CategoryCopyWithImpl<$Res>
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
               as String,
+      html: freezed == html
+          ? _value.html
+          : html // ignore: cast_nullable_to_non_nullable
+              as String?,
+      fullWidth: null == fullWidth
+          ? _value.fullWidth
+          : fullWidth // ignore: cast_nullable_to_non_nullable
+              as bool,
+      bgColor: null == bgColor
+          ? _value.bgColor
+          : bgColor // ignore: cast_nullable_to_non_nullable
+              as String,
       categoryNameOtherLanguages: null == categoryNameOtherLanguages
           ? _value._categoryNameOtherLanguages
           : categoryNameOtherLanguages // ignore: cast_nullable_to_non_nullable
@@ -149,18 +189,21 @@ class __$$_CategoryCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Category extends _Category {
-  const _$_Category(
+class _$CategoryImpl extends _Category {
+  const _$CategoryImpl(
       {required this.categoryId,
       this.parentCategoryId = null,
       required this.categoryNameEn,
       this.imageUrl = '',
+      this.html = null,
+      this.fullWidth = false,
+      this.bgColor = '#FFFFFF',
       final Map<String, dynamic> categoryNameOtherLanguages = const {}})
       : _categoryNameOtherLanguages = categoryNameOtherLanguages,
         super._();
 
-  factory _$_Category.fromJson(Map<String, dynamic> json) =>
-      _$$_CategoryFromJson(json);
+  factory _$CategoryImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CategoryImplFromJson(json);
 
   @override
   final String categoryId;
@@ -172,6 +215,15 @@ class _$_Category extends _Category {
   @override
   @JsonKey()
   final String imageUrl;
+  @override
+  @JsonKey()
+  final String? html;
+  @override
+  @JsonKey()
+  final bool fullWidth;
+  @override
+  @JsonKey()
+  final String bgColor;
   final Map<String, dynamic> _categoryNameOtherLanguages;
   @override
   @JsonKey()
@@ -184,14 +236,14 @@ class _$_Category extends _Category {
 
   @override
   String toString() {
-    return 'Category(categoryId: $categoryId, parentCategoryId: $parentCategoryId, categoryNameEn: $categoryNameEn, imageUrl: $imageUrl, categoryNameOtherLanguages: $categoryNameOtherLanguages)';
+    return 'Category(categoryId: $categoryId, parentCategoryId: $parentCategoryId, categoryNameEn: $categoryNameEn, imageUrl: $imageUrl, html: $html, fullWidth: $fullWidth, bgColor: $bgColor, categoryNameOtherLanguages: $categoryNameOtherLanguages)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Category &&
+            other is _$CategoryImpl &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.parentCategoryId, parentCategoryId) ||
@@ -200,6 +252,10 @@ class _$_Category extends _Category {
                 other.categoryNameEn == categoryNameEn) &&
             (identical(other.imageUrl, imageUrl) ||
                 other.imageUrl == imageUrl) &&
+            (identical(other.html, html) || other.html == html) &&
+            (identical(other.fullWidth, fullWidth) ||
+                other.fullWidth == fullWidth) &&
+            (identical(other.bgColor, bgColor) || other.bgColor == bgColor) &&
             const DeepCollectionEquality().equals(
                 other._categoryNameOtherLanguages,
                 _categoryNameOtherLanguages));
@@ -213,17 +269,20 @@ class _$_Category extends _Category {
       parentCategoryId,
       categoryNameEn,
       imageUrl,
+      html,
+      fullWidth,
+      bgColor,
       const DeepCollectionEquality().hash(_categoryNameOtherLanguages));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CategoryCopyWith<_$_Category> get copyWith =>
-      __$$_CategoryCopyWithImpl<_$_Category>(this, _$identity);
+  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
+      __$$CategoryImplCopyWithImpl<_$CategoryImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CategoryToJson(
+    return _$$CategoryImplToJson(
       this,
     );
   }
@@ -235,10 +294,14 @@ abstract class _Category extends Category {
       final String? parentCategoryId,
       required final String categoryNameEn,
       final String imageUrl,
-      final Map<String, dynamic> categoryNameOtherLanguages}) = _$_Category;
+      final String? html,
+      final bool fullWidth,
+      final String bgColor,
+      final Map<String, dynamic> categoryNameOtherLanguages}) = _$CategoryImpl;
   const _Category._() : super._();
 
-  factory _Category.fromJson(Map<String, dynamic> json) = _$_Category.fromJson;
+  factory _Category.fromJson(Map<String, dynamic> json) =
+      _$CategoryImpl.fromJson;
 
   @override
   String get categoryId;
@@ -249,9 +312,15 @@ abstract class _Category extends Category {
   @override
   String get imageUrl;
   @override
+  String? get html;
+  @override
+  bool get fullWidth;
+  @override
+  String get bgColor;
+  @override
   Map<String, dynamic> get categoryNameOtherLanguages;
   @override
   @JsonKey(ignore: true)
-  _$$_CategoryCopyWith<_$_Category> get copyWith =>
+  _$$CategoryImplCopyWith<_$CategoryImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

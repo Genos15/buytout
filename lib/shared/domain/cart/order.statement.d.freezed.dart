@@ -108,11 +108,11 @@ class _$OrderStatementCopyWithImpl<$Res, $Val extends OrderStatement>
 }
 
 /// @nodoc
-abstract class _$$_OrderStatementCopyWith<$Res>
+abstract class _$$OrderStatementImplCopyWith<$Res>
     implements $OrderStatementCopyWith<$Res> {
-  factory _$$_OrderStatementCopyWith(
-          _$_OrderStatement value, $Res Function(_$_OrderStatement) then) =
-      __$$_OrderStatementCopyWithImpl<$Res>;
+  factory _$$OrderStatementImplCopyWith(_$OrderStatementImpl value,
+          $Res Function(_$OrderStatementImpl) then) =
+      __$$OrderStatementImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -128,11 +128,11 @@ abstract class _$$_OrderStatementCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_OrderStatementCopyWithImpl<$Res>
-    extends _$OrderStatementCopyWithImpl<$Res, _$_OrderStatement>
-    implements _$$_OrderStatementCopyWith<$Res> {
-  __$$_OrderStatementCopyWithImpl(
-      _$_OrderStatement _value, $Res Function(_$_OrderStatement) _then)
+class __$$OrderStatementImplCopyWithImpl<$Res>
+    extends _$OrderStatementCopyWithImpl<$Res, _$OrderStatementImpl>
+    implements _$$OrderStatementImplCopyWith<$Res> {
+  __$$OrderStatementImplCopyWithImpl(
+      _$OrderStatementImpl _value, $Res Function(_$OrderStatementImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -145,7 +145,7 @@ class __$$_OrderStatementCopyWithImpl<$Res>
     Object? totalAmount = null,
     Object? currencyDetail = null,
   }) {
-    return _then(_$_OrderStatement(
+    return _then(_$OrderStatementImpl(
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -176,8 +176,8 @@ class __$$_OrderStatementCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_OrderStatement extends _OrderStatement {
-  const _$_OrderStatement(
+class _$OrderStatementImpl extends _OrderStatement {
+  const _$OrderStatementImpl(
       {required final List<ShoppingCartItem> products,
       required this.deliveryFee,
       required this.serviceFee,
@@ -187,8 +187,8 @@ class _$_OrderStatement extends _OrderStatement {
       : _products = products,
         super._();
 
-  factory _$_OrderStatement.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderStatementFromJson(json);
+  factory _$OrderStatementImpl.fromJson(Map<String, dynamic> json) =>
+      _$$OrderStatementImplFromJson(json);
 
   final List<ShoppingCartItem> _products;
   @override
@@ -218,7 +218,7 @@ class _$_OrderStatement extends _OrderStatement {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_OrderStatement &&
+            other is _$OrderStatementImpl &&
             const DeepCollectionEquality().equals(other._products, _products) &&
             (identical(other.deliveryFee, deliveryFee) ||
                 other.deliveryFee == deliveryFee) &&
@@ -246,12 +246,13 @@ class _$_OrderStatement extends _OrderStatement {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OrderStatementCopyWith<_$_OrderStatement> get copyWith =>
-      __$$_OrderStatementCopyWithImpl<_$_OrderStatement>(this, _$identity);
+  _$$OrderStatementImplCopyWith<_$OrderStatementImpl> get copyWith =>
+      __$$OrderStatementImplCopyWithImpl<_$OrderStatementImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderStatementToJson(
+    return _$$OrderStatementImplToJson(
       this,
     );
   }
@@ -264,11 +265,11 @@ abstract class _OrderStatement extends OrderStatement {
       required final int serviceFee,
       required final int productTotalAmount,
       required final int totalAmount,
-      required final CurrencyDetail currencyDetail}) = _$_OrderStatement;
+      required final CurrencyDetail currencyDetail}) = _$OrderStatementImpl;
   const _OrderStatement._() : super._();
 
   factory _OrderStatement.fromJson(Map<String, dynamic> json) =
-      _$_OrderStatement.fromJson;
+      _$OrderStatementImpl.fromJson;
 
   @override
   List<ShoppingCartItem> get products;
@@ -284,6 +285,6 @@ abstract class _OrderStatement extends OrderStatement {
   CurrencyDetail get currencyDetail;
   @override
   @JsonKey(ignore: true)
-  _$$_OrderStatementCopyWith<_$_OrderStatement> get copyWith =>
+  _$$OrderStatementImplCopyWith<_$OrderStatementImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

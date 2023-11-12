@@ -75,11 +75,11 @@ class _$CategoryUiStateCopyWithImpl<$Res, $Val extends CategoryUiState>
 }
 
 /// @nodoc
-abstract class _$$_CategoryUiStateCopyWith<$Res>
+abstract class _$$CategoryUiStateImplCopyWith<$Res>
     implements $CategoryUiStateCopyWith<$Res> {
-  factory _$$_CategoryUiStateCopyWith(
-          _$_CategoryUiState value, $Res Function(_$_CategoryUiState) then) =
-      __$$_CategoryUiStateCopyWithImpl<$Res>;
+  factory _$$CategoryUiStateImplCopyWith(_$CategoryUiStateImpl value,
+          $Res Function(_$CategoryUiStateImpl) then) =
+      __$$CategoryUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -87,11 +87,11 @@ abstract class _$$_CategoryUiStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CategoryUiStateCopyWithImpl<$Res>
-    extends _$CategoryUiStateCopyWithImpl<$Res, _$_CategoryUiState>
-    implements _$$_CategoryUiStateCopyWith<$Res> {
-  __$$_CategoryUiStateCopyWithImpl(
-      _$_CategoryUiState _value, $Res Function(_$_CategoryUiState) _then)
+class __$$CategoryUiStateImplCopyWithImpl<$Res>
+    extends _$CategoryUiStateCopyWithImpl<$Res, _$CategoryUiStateImpl>
+    implements _$$CategoryUiStateImplCopyWith<$Res> {
+  __$$CategoryUiStateImplCopyWithImpl(
+      _$CategoryUiStateImpl _value, $Res Function(_$CategoryUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +101,7 @@ class __$$_CategoryUiStateCopyWithImpl<$Res>
     Object? totalProductCount = null,
     Object? products = null,
   }) {
-    return _then(_$_CategoryUiState(
+    return _then(_$CategoryUiStateImpl(
       categoryId: null == categoryId
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
@@ -120,16 +120,16 @@ class __$$_CategoryUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CategoryUiState extends _CategoryUiState {
-  const _$_CategoryUiState(
+class _$CategoryUiStateImpl extends _CategoryUiState {
+  const _$CategoryUiStateImpl(
       {required this.categoryId,
       required this.totalProductCount,
       required final List<ProdLite> products})
       : _products = products,
         super._();
 
-  factory _$_CategoryUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_CategoryUiStateFromJson(json);
+  factory _$CategoryUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CategoryUiStateImplFromJson(json);
 
   @override
   final String categoryId;
@@ -152,7 +152,7 @@ class _$_CategoryUiState extends _CategoryUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CategoryUiState &&
+            other is _$CategoryUiStateImpl &&
             (identical(other.categoryId, categoryId) ||
                 other.categoryId == categoryId) &&
             (identical(other.totalProductCount, totalProductCount) ||
@@ -168,12 +168,13 @@ class _$_CategoryUiState extends _CategoryUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CategoryUiStateCopyWith<_$_CategoryUiState> get copyWith =>
-      __$$_CategoryUiStateCopyWithImpl<_$_CategoryUiState>(this, _$identity);
+  _$$CategoryUiStateImplCopyWith<_$CategoryUiStateImpl> get copyWith =>
+      __$$CategoryUiStateImplCopyWithImpl<_$CategoryUiStateImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CategoryUiStateToJson(
+    return _$$CategoryUiStateImplToJson(
       this,
     );
   }
@@ -183,11 +184,11 @@ abstract class _CategoryUiState extends CategoryUiState {
   const factory _CategoryUiState(
       {required final String categoryId,
       required final int totalProductCount,
-      required final List<ProdLite> products}) = _$_CategoryUiState;
+      required final List<ProdLite> products}) = _$CategoryUiStateImpl;
   const _CategoryUiState._() : super._();
 
   factory _CategoryUiState.fromJson(Map<String, dynamic> json) =
-      _$_CategoryUiState.fromJson;
+      _$CategoryUiStateImpl.fromJson;
 
   @override
   String get categoryId;
@@ -197,6 +198,6 @@ abstract class _CategoryUiState extends CategoryUiState {
   List<ProdLite> get products;
   @override
   @JsonKey(ignore: true)
-  _$$_CategoryUiStateCopyWith<_$_CategoryUiState> get copyWith =>
+  _$$CategoryUiStateImplCopyWith<_$CategoryUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,8 @@ part of 'order.statement.d.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_OrderStatement _$$_OrderStatementFromJson(Map<String, dynamic> json) =>
-    _$_OrderStatement(
+_$OrderStatementImpl _$$OrderStatementImplFromJson(Map<String, dynamic> json) =>
+    _$OrderStatementImpl(
       products: (json['products'] as List<dynamic>)
           .map((e) => ShoppingCartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -19,7 +19,8 @@ _$_OrderStatement _$$_OrderStatementFromJson(Map<String, dynamic> json) =>
           json['currencyDetail'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_OrderStatementToJson(_$_OrderStatement instance) =>
+Map<String, dynamic> _$$OrderStatementImplToJson(
+        _$OrderStatementImpl instance) =>
     <String, dynamic>{
       'products': instance.products,
       'deliveryFee': instance.deliveryFee,

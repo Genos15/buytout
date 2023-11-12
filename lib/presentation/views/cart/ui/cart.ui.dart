@@ -65,7 +65,7 @@ class CartUi extends ConsumerWidget {
                 border: Border(
                   top: BorderSide(
                     color: Color(CommonColors.gray20_carbon),
-                    width: _kDividerWidth,
+                    width: LayoutDimens.s0_5,
                   ),
                 ),
               ),
@@ -84,7 +84,6 @@ class CartUi extends ConsumerWidget {
   }
 }
 
-const _kDividerWidth = 0.5;
 
 class _CartResumeBanner extends StatelessWidget {
   final int productCount;
@@ -101,11 +100,11 @@ class _CartResumeBanner extends StatelessWidget {
         border: Border(
           top: BorderSide(
             color: Color(CommonColors.gray20_carbon),
-            width: _kDividerWidth,
+            width: LayoutDimens.s0_5,
           ),
           bottom: BorderSide(
             color: Color(CommonColors.gray20_carbon),
-            width: _kDividerWidth,
+            width: LayoutDimens.s0_5,
           ),
         ),
       ),

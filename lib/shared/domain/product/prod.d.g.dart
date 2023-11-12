@@ -6,7 +6,8 @@ part of 'prod.d.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_ProdLite _$$_ProdLiteFromJson(Map<String, dynamic> json) => _$_ProdLite(
+_$ProdLiteImpl _$$ProdLiteImplFromJson(Map<String, dynamic> json) =>
+    _$ProdLiteImpl(
       productId: json['productId'] as String,
       productNameEn: json['productNameEn'] as String,
       productNameOtherLanguages: LanguageMap.fromJson(
@@ -15,7 +16,7 @@ _$_ProdLite _$$_ProdLiteFromJson(Map<String, dynamic> json) => _$_ProdLite(
           json['pricePerCurrency'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_ProdLiteToJson(_$_ProdLite instance) =>
+Map<String, dynamic> _$$ProdLiteImplToJson(_$ProdLiteImpl instance) =>
     <String, dynamic>{
       'productId': instance.productId,
       'productNameEn': instance.productNameEn,
@@ -23,8 +24,8 @@ Map<String, dynamic> _$$_ProdLiteToJson(_$_ProdLite instance) =>
       'pricePerCurrency': instance.pricePerCurrency,
     };
 
-_$_ProdDetails _$$_ProdDetailsFromJson(Map<String, dynamic> json) =>
-    _$_ProdDetails(
+_$ProdDetailsImpl _$$ProdDetailsImplFromJson(Map<String, dynamic> json) =>
+    _$ProdDetailsImpl(
       productId: json['productId'] as String,
       productNameEn: json['productNameEn'] as String,
       productNameOtherLanguages: LanguageMap.fromJson(
@@ -35,7 +36,7 @@ _$_ProdDetails _$$_ProdDetailsFromJson(Map<String, dynamic> json) =>
       discount: json['discount'] as int,
     );
 
-Map<String, dynamic> _$$_ProdDetailsToJson(_$_ProdDetails instance) =>
+Map<String, dynamic> _$$ProdDetailsImplToJson(_$ProdDetailsImpl instance) =>
     <String, dynamic>{
       'productId': instance.productId,
       'productNameEn': instance.productNameEn,

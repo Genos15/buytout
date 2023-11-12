@@ -62,22 +62,22 @@ class _$BottomNavUiStateCopyWithImpl<$Res, $Val extends BottomNavUiState>
 }
 
 /// @nodoc
-abstract class _$$_BottomNavUiStateCopyWith<$Res>
+abstract class _$$BottomNavUiStateImplCopyWith<$Res>
     implements $BottomNavUiStateCopyWith<$Res> {
-  factory _$$_BottomNavUiStateCopyWith(
-          _$_BottomNavUiState value, $Res Function(_$_BottomNavUiState) then) =
-      __$$_BottomNavUiStateCopyWithImpl<$Res>;
+  factory _$$BottomNavUiStateImplCopyWith(_$BottomNavUiStateImpl value,
+          $Res Function(_$BottomNavUiStateImpl) then) =
+      __$$BottomNavUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({BottomNavState current});
 }
 
 /// @nodoc
-class __$$_BottomNavUiStateCopyWithImpl<$Res>
-    extends _$BottomNavUiStateCopyWithImpl<$Res, _$_BottomNavUiState>
-    implements _$$_BottomNavUiStateCopyWith<$Res> {
-  __$$_BottomNavUiStateCopyWithImpl(
-      _$_BottomNavUiState _value, $Res Function(_$_BottomNavUiState) _then)
+class __$$BottomNavUiStateImplCopyWithImpl<$Res>
+    extends _$BottomNavUiStateCopyWithImpl<$Res, _$BottomNavUiStateImpl>
+    implements _$$BottomNavUiStateImplCopyWith<$Res> {
+  __$$BottomNavUiStateImplCopyWithImpl(_$BottomNavUiStateImpl _value,
+      $Res Function(_$BottomNavUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_BottomNavUiStateCopyWithImpl<$Res>
   $Res call({
     Object? current = null,
   }) {
-    return _then(_$_BottomNavUiState(
+    return _then(_$BottomNavUiStateImpl(
       current: null == current
           ? _value.current
           : current // ignore: cast_nullable_to_non_nullable
@@ -96,11 +96,11 @@ class __$$_BottomNavUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_BottomNavUiState extends _BottomNavUiState {
-  const _$_BottomNavUiState({required this.current}) : super._();
+class _$BottomNavUiStateImpl extends _BottomNavUiState {
+  const _$BottomNavUiStateImpl({required this.current}) : super._();
 
-  factory _$_BottomNavUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_BottomNavUiStateFromJson(json);
+  factory _$BottomNavUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BottomNavUiStateImplFromJson(json);
 
   @override
   final BottomNavState current;
@@ -114,7 +114,7 @@ class _$_BottomNavUiState extends _BottomNavUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BottomNavUiState &&
+            other is _$BottomNavUiStateImpl &&
             (identical(other.current, current) || other.current == current));
   }
 
@@ -125,12 +125,13 @@ class _$_BottomNavUiState extends _BottomNavUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BottomNavUiStateCopyWith<_$_BottomNavUiState> get copyWith =>
-      __$$_BottomNavUiStateCopyWithImpl<_$_BottomNavUiState>(this, _$identity);
+  _$$BottomNavUiStateImplCopyWith<_$BottomNavUiStateImpl> get copyWith =>
+      __$$BottomNavUiStateImplCopyWithImpl<_$BottomNavUiStateImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BottomNavUiStateToJson(
+    return _$$BottomNavUiStateImplToJson(
       this,
     );
   }
@@ -138,16 +139,16 @@ class _$_BottomNavUiState extends _BottomNavUiState {
 
 abstract class _BottomNavUiState extends BottomNavUiState {
   const factory _BottomNavUiState({required final BottomNavState current}) =
-      _$_BottomNavUiState;
+      _$BottomNavUiStateImpl;
   const _BottomNavUiState._() : super._();
 
   factory _BottomNavUiState.fromJson(Map<String, dynamic> json) =
-      _$_BottomNavUiState.fromJson;
+      _$BottomNavUiStateImpl.fromJson;
 
   @override
   BottomNavState get current;
   @override
   @JsonKey(ignore: true)
-  _$$_BottomNavUiStateCopyWith<_$_BottomNavUiState> get copyWith =>
+  _$$BottomNavUiStateImplCopyWith<_$BottomNavUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

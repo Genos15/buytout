@@ -6,12 +6,12 @@ part of 'cart-ui.vm.state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CartUiState _$$_CartUiStateFromJson(Map<String, dynamic> json) =>
-    _$_CartUiState(
+_$CartUiStateImpl _$$CartUiStateImplFromJson(Map<String, dynamic> json) =>
+    _$CartUiStateImpl(
       cart: OrderStatement.fromJson(json['cart'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_CartUiStateToJson(_$_CartUiState instance) =>
+Map<String, dynamic> _$$CartUiStateImplToJson(_$CartUiStateImpl instance) =>
     <String, dynamic>{
       'cart': instance.cart,
     };

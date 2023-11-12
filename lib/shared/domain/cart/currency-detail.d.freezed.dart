@@ -68,22 +68,22 @@ class _$CurrencyDetailCopyWithImpl<$Res, $Val extends CurrencyDetail>
 }
 
 /// @nodoc
-abstract class _$$_CurrencyDetailCopyWith<$Res>
+abstract class _$$CurrencyDetailImplCopyWith<$Res>
     implements $CurrencyDetailCopyWith<$Res> {
-  factory _$$_CurrencyDetailCopyWith(
-          _$_CurrencyDetail value, $Res Function(_$_CurrencyDetail) then) =
-      __$$_CurrencyDetailCopyWithImpl<$Res>;
+  factory _$$CurrencyDetailImplCopyWith(_$CurrencyDetailImpl value,
+          $Res Function(_$CurrencyDetailImpl) then) =
+      __$$CurrencyDetailImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String currencyCode, String currencySymbol});
 }
 
 /// @nodoc
-class __$$_CurrencyDetailCopyWithImpl<$Res>
-    extends _$CurrencyDetailCopyWithImpl<$Res, _$_CurrencyDetail>
-    implements _$$_CurrencyDetailCopyWith<$Res> {
-  __$$_CurrencyDetailCopyWithImpl(
-      _$_CurrencyDetail _value, $Res Function(_$_CurrencyDetail) _then)
+class __$$CurrencyDetailImplCopyWithImpl<$Res>
+    extends _$CurrencyDetailCopyWithImpl<$Res, _$CurrencyDetailImpl>
+    implements _$$CurrencyDetailImplCopyWith<$Res> {
+  __$$CurrencyDetailImplCopyWithImpl(
+      _$CurrencyDetailImpl _value, $Res Function(_$CurrencyDetailImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_CurrencyDetailCopyWithImpl<$Res>
     Object? currencyCode = null,
     Object? currencySymbol = null,
   }) {
-    return _then(_$_CurrencyDetail(
+    return _then(_$CurrencyDetailImpl(
       currencyCode: null == currencyCode
           ? _value.currencyCode
           : currencyCode // ignore: cast_nullable_to_non_nullable
@@ -107,13 +107,13 @@ class __$$_CurrencyDetailCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CurrencyDetail extends _CurrencyDetail {
-  const _$_CurrencyDetail(
+class _$CurrencyDetailImpl extends _CurrencyDetail {
+  const _$CurrencyDetailImpl(
       {required this.currencyCode, required this.currencySymbol})
       : super._();
 
-  factory _$_CurrencyDetail.fromJson(Map<String, dynamic> json) =>
-      _$$_CurrencyDetailFromJson(json);
+  factory _$CurrencyDetailImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CurrencyDetailImplFromJson(json);
 
   @override
   final String currencyCode;
@@ -129,7 +129,7 @@ class _$_CurrencyDetail extends _CurrencyDetail {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrencyDetail &&
+            other is _$CurrencyDetailImpl &&
             (identical(other.currencyCode, currencyCode) ||
                 other.currencyCode == currencyCode) &&
             (identical(other.currencySymbol, currencySymbol) ||
@@ -143,12 +143,13 @@ class _$_CurrencyDetail extends _CurrencyDetail {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrencyDetailCopyWith<_$_CurrencyDetail> get copyWith =>
-      __$$_CurrencyDetailCopyWithImpl<_$_CurrencyDetail>(this, _$identity);
+  _$$CurrencyDetailImplCopyWith<_$CurrencyDetailImpl> get copyWith =>
+      __$$CurrencyDetailImplCopyWithImpl<_$CurrencyDetailImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CurrencyDetailToJson(
+    return _$$CurrencyDetailImplToJson(
       this,
     );
   }
@@ -157,11 +158,11 @@ class _$_CurrencyDetail extends _CurrencyDetail {
 abstract class _CurrencyDetail extends CurrencyDetail {
   const factory _CurrencyDetail(
       {required final String currencyCode,
-      required final String currencySymbol}) = _$_CurrencyDetail;
+      required final String currencySymbol}) = _$CurrencyDetailImpl;
   const _CurrencyDetail._() : super._();
 
   factory _CurrencyDetail.fromJson(Map<String, dynamic> json) =
-      _$_CurrencyDetail.fromJson;
+      _$CurrencyDetailImpl.fromJson;
 
   @override
   String get currencyCode;
@@ -169,6 +170,6 @@ abstract class _CurrencyDetail extends CurrencyDetail {
   String get currencySymbol;
   @override
   @JsonKey(ignore: true)
-  _$$_CurrencyDetailCopyWith<_$_CurrencyDetail> get copyWith =>
+  _$$CurrencyDetailImplCopyWith<_$CurrencyDetailImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

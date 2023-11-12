@@ -63,22 +63,22 @@ class _$LanguageMapCopyWithImpl<$Res, $Val extends LanguageMap>
 }
 
 /// @nodoc
-abstract class _$$_LanguageMapCopyWith<$Res>
+abstract class _$$LanguageMapImplCopyWith<$Res>
     implements $LanguageMapCopyWith<$Res> {
-  factory _$$_LanguageMapCopyWith(
-          _$_LanguageMap value, $Res Function(_$_LanguageMap) then) =
-      __$$_LanguageMapCopyWithImpl<$Res>;
+  factory _$$LanguageMapImplCopyWith(
+          _$LanguageMapImpl value, $Res Function(_$LanguageMapImpl) then) =
+      __$$LanguageMapImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({@JsonKey(name: 'FR') String? fr});
 }
 
 /// @nodoc
-class __$$_LanguageMapCopyWithImpl<$Res>
-    extends _$LanguageMapCopyWithImpl<$Res, _$_LanguageMap>
-    implements _$$_LanguageMapCopyWith<$Res> {
-  __$$_LanguageMapCopyWithImpl(
-      _$_LanguageMap _value, $Res Function(_$_LanguageMap) _then)
+class __$$LanguageMapImplCopyWithImpl<$Res>
+    extends _$LanguageMapCopyWithImpl<$Res, _$LanguageMapImpl>
+    implements _$$LanguageMapImplCopyWith<$Res> {
+  __$$LanguageMapImplCopyWithImpl(
+      _$LanguageMapImpl _value, $Res Function(_$LanguageMapImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -86,7 +86,7 @@ class __$$_LanguageMapCopyWithImpl<$Res>
   $Res call({
     Object? fr = freezed,
   }) {
-    return _then(_$_LanguageMap(
+    return _then(_$LanguageMapImpl(
       fr: freezed == fr
           ? _value.fr
           : fr // ignore: cast_nullable_to_non_nullable
@@ -98,11 +98,11 @@ class __$$_LanguageMapCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LanguageMap extends _LanguageMap {
-  const _$_LanguageMap({@JsonKey(name: 'FR') this.fr}) : super._();
+class _$LanguageMapImpl extends _LanguageMap {
+  const _$LanguageMapImpl({@JsonKey(name: 'FR') this.fr}) : super._();
 
-  factory _$_LanguageMap.fromJson(Map<String, dynamic> json) =>
-      _$$_LanguageMapFromJson(json);
+  factory _$LanguageMapImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LanguageMapImplFromJson(json);
 
   @override
   @JsonKey(name: 'FR')
@@ -117,7 +117,7 @@ class _$_LanguageMap extends _LanguageMap {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LanguageMap &&
+            other is _$LanguageMapImpl &&
             (identical(other.fr, fr) || other.fr == fr));
   }
 
@@ -128,12 +128,12 @@ class _$_LanguageMap extends _LanguageMap {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LanguageMapCopyWith<_$_LanguageMap> get copyWith =>
-      __$$_LanguageMapCopyWithImpl<_$_LanguageMap>(this, _$identity);
+  _$$LanguageMapImplCopyWith<_$LanguageMapImpl> get copyWith =>
+      __$$LanguageMapImplCopyWithImpl<_$LanguageMapImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LanguageMapToJson(
+    return _$$LanguageMapImplToJson(
       this,
     );
   }
@@ -141,17 +141,17 @@ class _$_LanguageMap extends _LanguageMap {
 
 abstract class _LanguageMap extends LanguageMap {
   const factory _LanguageMap({@JsonKey(name: 'FR') final String? fr}) =
-      _$_LanguageMap;
+      _$LanguageMapImpl;
   const _LanguageMap._() : super._();
 
   factory _LanguageMap.fromJson(Map<String, dynamic> json) =
-      _$_LanguageMap.fromJson;
+      _$LanguageMapImpl.fromJson;
 
   @override
   @JsonKey(name: 'FR')
   String? get fr;
   @override
   @JsonKey(ignore: true)
-  _$$_LanguageMapCopyWith<_$_LanguageMap> get copyWith =>
+  _$$LanguageMapImplCopyWith<_$LanguageMapImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

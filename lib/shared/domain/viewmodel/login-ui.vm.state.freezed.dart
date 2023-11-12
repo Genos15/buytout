@@ -68,22 +68,22 @@ class _$LoginUiStateCopyWithImpl<$Res, $Val extends LoginUiState>
 }
 
 /// @nodoc
-abstract class _$$_LoginUiStateCopyWith<$Res>
+abstract class _$$LoginUiStateImplCopyWith<$Res>
     implements $LoginUiStateCopyWith<$Res> {
-  factory _$$_LoginUiStateCopyWith(
-          _$_LoginUiState value, $Res Function(_$_LoginUiState) then) =
-      __$$_LoginUiStateCopyWithImpl<$Res>;
+  factory _$$LoginUiStateImplCopyWith(
+          _$LoginUiStateImpl value, $Res Function(_$LoginUiStateImpl) then) =
+      __$$LoginUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String? email, String? code});
 }
 
 /// @nodoc
-class __$$_LoginUiStateCopyWithImpl<$Res>
-    extends _$LoginUiStateCopyWithImpl<$Res, _$_LoginUiState>
-    implements _$$_LoginUiStateCopyWith<$Res> {
-  __$$_LoginUiStateCopyWithImpl(
-      _$_LoginUiState _value, $Res Function(_$_LoginUiState) _then)
+class __$$LoginUiStateImplCopyWithImpl<$Res>
+    extends _$LoginUiStateCopyWithImpl<$Res, _$LoginUiStateImpl>
+    implements _$$LoginUiStateImplCopyWith<$Res> {
+  __$$LoginUiStateImplCopyWithImpl(
+      _$LoginUiStateImpl _value, $Res Function(_$LoginUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_LoginUiStateCopyWithImpl<$Res>
     Object? email = freezed,
     Object? code = freezed,
   }) {
-    return _then(_$_LoginUiState(
+    return _then(_$LoginUiStateImpl(
       email: freezed == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -107,11 +107,11 @@ class __$$_LoginUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LoginUiState extends _LoginUiState {
-  const _$_LoginUiState({this.email, this.code}) : super._();
+class _$LoginUiStateImpl extends _LoginUiState {
+  const _$LoginUiStateImpl({this.email, this.code}) : super._();
 
-  factory _$_LoginUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_LoginUiStateFromJson(json);
+  factory _$LoginUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LoginUiStateImplFromJson(json);
 
   @override
   final String? email;
@@ -127,7 +127,7 @@ class _$_LoginUiState extends _LoginUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LoginUiState &&
+            other is _$LoginUiStateImpl &&
             (identical(other.email, email) || other.email == email) &&
             (identical(other.code, code) || other.code == code));
   }
@@ -139,12 +139,12 @@ class _$_LoginUiState extends _LoginUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LoginUiStateCopyWith<_$_LoginUiState> get copyWith =>
-      __$$_LoginUiStateCopyWithImpl<_$_LoginUiState>(this, _$identity);
+  _$$LoginUiStateImplCopyWith<_$LoginUiStateImpl> get copyWith =>
+      __$$LoginUiStateImplCopyWithImpl<_$LoginUiStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LoginUiStateToJson(
+    return _$$LoginUiStateImplToJson(
       this,
     );
   }
@@ -152,11 +152,11 @@ class _$_LoginUiState extends _LoginUiState {
 
 abstract class _LoginUiState extends LoginUiState {
   const factory _LoginUiState({final String? email, final String? code}) =
-      _$_LoginUiState;
+      _$LoginUiStateImpl;
   const _LoginUiState._() : super._();
 
   factory _LoginUiState.fromJson(Map<String, dynamic> json) =
-      _$_LoginUiState.fromJson;
+      _$LoginUiStateImpl.fromJson;
 
   @override
   String? get email;
@@ -164,6 +164,6 @@ abstract class _LoginUiState extends LoginUiState {
   String? get code;
   @override
   @JsonKey(ignore: true)
-  _$$_LoginUiStateCopyWith<_$_LoginUiState> get copyWith =>
+  _$$LoginUiStateImplCopyWith<_$LoginUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

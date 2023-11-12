@@ -104,10 +104,11 @@ class _$ProdLiteCopyWithImpl<$Res, $Val extends ProdLite>
 }
 
 /// @nodoc
-abstract class _$$_ProdLiteCopyWith<$Res> implements $ProdLiteCopyWith<$Res> {
-  factory _$$_ProdLiteCopyWith(
-          _$_ProdLite value, $Res Function(_$_ProdLite) then) =
-      __$$_ProdLiteCopyWithImpl<$Res>;
+abstract class _$$ProdLiteImplCopyWith<$Res>
+    implements $ProdLiteCopyWith<$Res> {
+  factory _$$ProdLiteImplCopyWith(
+          _$ProdLiteImpl value, $Res Function(_$ProdLiteImpl) then) =
+      __$$ProdLiteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -123,11 +124,11 @@ abstract class _$$_ProdLiteCopyWith<$Res> implements $ProdLiteCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_ProdLiteCopyWithImpl<$Res>
-    extends _$ProdLiteCopyWithImpl<$Res, _$_ProdLite>
-    implements _$$_ProdLiteCopyWith<$Res> {
-  __$$_ProdLiteCopyWithImpl(
-      _$_ProdLite _value, $Res Function(_$_ProdLite) _then)
+class __$$ProdLiteImplCopyWithImpl<$Res>
+    extends _$ProdLiteCopyWithImpl<$Res, _$ProdLiteImpl>
+    implements _$$ProdLiteImplCopyWith<$Res> {
+  __$$ProdLiteImplCopyWithImpl(
+      _$ProdLiteImpl _value, $Res Function(_$ProdLiteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -138,7 +139,7 @@ class __$$_ProdLiteCopyWithImpl<$Res>
     Object? productNameOtherLanguages = null,
     Object? pricePerCurrency = null,
   }) {
-    return _then(_$_ProdLite(
+    return _then(_$ProdLiteImpl(
       productId: null == productId
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -161,16 +162,16 @@ class __$$_ProdLiteCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProdLite extends _ProdLite {
-  const _$_ProdLite(
+class _$ProdLiteImpl extends _ProdLite {
+  const _$ProdLiteImpl(
       {required this.productId,
       required this.productNameEn,
       required this.productNameOtherLanguages,
       required this.pricePerCurrency})
       : super._();
 
-  factory _$_ProdLite.fromJson(Map<String, dynamic> json) =>
-      _$$_ProdLiteFromJson(json);
+  factory _$ProdLiteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProdLiteImplFromJson(json);
 
   @override
   final String productId;
@@ -190,7 +191,7 @@ class _$_ProdLite extends _ProdLite {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProdLite &&
+            other is _$ProdLiteImpl &&
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.productNameEn, productNameEn) ||
@@ -210,12 +211,12 @@ class _$_ProdLite extends _ProdLite {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProdLiteCopyWith<_$_ProdLite> get copyWith =>
-      __$$_ProdLiteCopyWithImpl<_$_ProdLite>(this, _$identity);
+  _$$ProdLiteImplCopyWith<_$ProdLiteImpl> get copyWith =>
+      __$$ProdLiteImplCopyWithImpl<_$ProdLiteImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProdLiteToJson(
+    return _$$ProdLiteImplToJson(
       this,
     );
   }
@@ -226,10 +227,11 @@ abstract class _ProdLite extends ProdLite {
       {required final String productId,
       required final String productNameEn,
       required final LanguageMap productNameOtherLanguages,
-      required final PricePerCurrency pricePerCurrency}) = _$_ProdLite;
+      required final PricePerCurrency pricePerCurrency}) = _$ProdLiteImpl;
   const _ProdLite._() : super._();
 
-  factory _ProdLite.fromJson(Map<String, dynamic> json) = _$_ProdLite.fromJson;
+  factory _ProdLite.fromJson(Map<String, dynamic> json) =
+      _$ProdLiteImpl.fromJson;
 
   @override
   String get productId;
@@ -241,7 +243,7 @@ abstract class _ProdLite extends ProdLite {
   PricePerCurrency get pricePerCurrency;
   @override
   @JsonKey(ignore: true)
-  _$$_ProdLiteCopyWith<_$_ProdLite> get copyWith =>
+  _$$ProdLiteImplCopyWith<_$ProdLiteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -350,11 +352,11 @@ class _$ProdDetailsCopyWithImpl<$Res, $Val extends ProdDetails>
 }
 
 /// @nodoc
-abstract class _$$_ProdDetailsCopyWith<$Res>
+abstract class _$$ProdDetailsImplCopyWith<$Res>
     implements $ProdDetailsCopyWith<$Res> {
-  factory _$$_ProdDetailsCopyWith(
-          _$_ProdDetails value, $Res Function(_$_ProdDetails) then) =
-      __$$_ProdDetailsCopyWithImpl<$Res>;
+  factory _$$ProdDetailsImplCopyWith(
+          _$ProdDetailsImpl value, $Res Function(_$ProdDetailsImpl) then) =
+      __$$ProdDetailsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -372,11 +374,11 @@ abstract class _$$_ProdDetailsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProdDetailsCopyWithImpl<$Res>
-    extends _$ProdDetailsCopyWithImpl<$Res, _$_ProdDetails>
-    implements _$$_ProdDetailsCopyWith<$Res> {
-  __$$_ProdDetailsCopyWithImpl(
-      _$_ProdDetails _value, $Res Function(_$_ProdDetails) _then)
+class __$$ProdDetailsImplCopyWithImpl<$Res>
+    extends _$ProdDetailsCopyWithImpl<$Res, _$ProdDetailsImpl>
+    implements _$$ProdDetailsImplCopyWith<$Res> {
+  __$$ProdDetailsImplCopyWithImpl(
+      _$ProdDetailsImpl _value, $Res Function(_$ProdDetailsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -389,7 +391,7 @@ class __$$_ProdDetailsCopyWithImpl<$Res>
     Object? stockQuantity = null,
     Object? discount = null,
   }) {
-    return _then(_$_ProdDetails(
+    return _then(_$ProdDetailsImpl(
       productId: null == productId
           ? _value.productId
           : productId // ignore: cast_nullable_to_non_nullable
@@ -420,8 +422,8 @@ class __$$_ProdDetailsCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProdDetails extends _ProdDetails {
-  const _$_ProdDetails(
+class _$ProdDetailsImpl extends _ProdDetails {
+  const _$ProdDetailsImpl(
       {required this.productId,
       required this.productNameEn,
       required this.productNameOtherLanguages,
@@ -430,8 +432,8 @@ class _$_ProdDetails extends _ProdDetails {
       required this.discount})
       : super._();
 
-  factory _$_ProdDetails.fromJson(Map<String, dynamic> json) =>
-      _$$_ProdDetailsFromJson(json);
+  factory _$ProdDetailsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProdDetailsImplFromJson(json);
 
   @override
   final String productId;
@@ -455,7 +457,7 @@ class _$_ProdDetails extends _ProdDetails {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProdDetails &&
+            other is _$ProdDetailsImpl &&
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.productNameEn, productNameEn) ||
@@ -479,12 +481,12 @@ class _$_ProdDetails extends _ProdDetails {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProdDetailsCopyWith<_$_ProdDetails> get copyWith =>
-      __$$_ProdDetailsCopyWithImpl<_$_ProdDetails>(this, _$identity);
+  _$$ProdDetailsImplCopyWith<_$ProdDetailsImpl> get copyWith =>
+      __$$ProdDetailsImplCopyWithImpl<_$ProdDetailsImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProdDetailsToJson(
+    return _$$ProdDetailsImplToJson(
       this,
     );
   }
@@ -497,11 +499,11 @@ abstract class _ProdDetails extends ProdDetails {
       required final LanguageMap productNameOtherLanguages,
       required final PricePerCurrency pricePerCurrency,
       required final int stockQuantity,
-      required final int discount}) = _$_ProdDetails;
+      required final int discount}) = _$ProdDetailsImpl;
   const _ProdDetails._() : super._();
 
   factory _ProdDetails.fromJson(Map<String, dynamic> json) =
-      _$_ProdDetails.fromJson;
+      _$ProdDetailsImpl.fromJson;
 
   @override
   String get productId;
@@ -517,6 +519,6 @@ abstract class _ProdDetails extends ProdDetails {
   int get discount;
   @override
   @JsonKey(ignore: true)
-  _$$_ProdDetailsCopyWith<_$_ProdDetails> get copyWith =>
+  _$$ProdDetailsImplCopyWith<_$ProdDetailsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -44,9 +44,15 @@ class CartPreview extends StatelessWidget {
       decoration: BoxDecoration(color: Color(background)),
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [AutoSizeText('MON PANIER'), AutoSizeText('Voir')],
+            children: [
+              const AutoSizeText('MON PANIER'),
+              GestureDetector(
+                child: const AutoSizeText('VOIR'),
+                onTap: () => {Navigator.pop(context)},
+              ),
+            ],
           ),
           const SizedBox(height: LayoutDimens.p12),
           Row(

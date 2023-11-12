@@ -14,19 +14,38 @@ class OrderSummaryUi extends StatelessWidget {
         bottomNavState: BottomNavState.defaultUi,
         centerTitle: true,
         title: AutoSizeText(
-          'Résumé de la commande',
+          'Résumé',
           textAlign: TextAlign.center,
           style: TextStyle(color: Color(CommonColors.black900)),
         ),
       ),
       slivers: [
-        const SliverToBoxAdapter(child: AutoSizeText('Panier recap')),
-        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
-        const SliverToBoxAdapter(child: AutoSizeText('Adresse de livraison')),
-        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
         SliverToBoxAdapter(child: CartPreview(statement: statement)),
-        const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.p12)),
-        SliverToBoxAdapter(child: OrderSummaryFooter(statement: statement))
+        const Space(),
+        SliverToBoxAdapter(child: OrderSummaryFooter(statement: statement)),
+        const Space(),
+      ],
+      overlays: [
+        Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(LayoutDimens.p12),
+            decoration: const BoxDecoration(
+              color: Color(CommonColors.white),
+              border: Border(
+                top: BorderSide(
+                  color: Color(CommonColors.gray20_carbon),
+                  width: LayoutDimens.s0_5,
+                ),
+              ),
+            ),
+            child: TextSubmitButton(
+              text: 'Commander',
+              onPressed: () {},
+            ),
+          ),
+        )
       ],
     );
   }

@@ -87,23 +87,25 @@ class _$ResultCopyWithImpl<T, $Res, $Val extends Result<T>>
 }
 
 /// @nodoc
-abstract class _$$IdleCopyWith<T, $Res> {
-  factory _$$IdleCopyWith(_$Idle<T> value, $Res Function(_$Idle<T>) then) =
-      __$$IdleCopyWithImpl<T, $Res>;
+abstract class _$$IdleImplCopyWith<T, $Res> {
+  factory _$$IdleImplCopyWith(
+          _$IdleImpl<T> value, $Res Function(_$IdleImpl<T>) then) =
+      __$$IdleImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$IdleCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$Idle<T>>
-    implements _$$IdleCopyWith<T, $Res> {
-  __$$IdleCopyWithImpl(_$Idle<T> _value, $Res Function(_$Idle<T>) _then)
+class __$$IdleImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$IdleImpl<T>>
+    implements _$$IdleImplCopyWith<T, $Res> {
+  __$$IdleImplCopyWithImpl(
+      _$IdleImpl<T> _value, $Res Function(_$IdleImpl<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Idle<T> implements Idle<T> {
-  const _$Idle();
+class _$IdleImpl<T> implements Idle<T> {
+  const _$IdleImpl();
 
   @override
   String toString() {
@@ -113,7 +115,7 @@ class _$Idle<T> implements Idle<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Idle<T>);
+        (other.runtimeType == runtimeType && other is _$IdleImpl<T>);
   }
 
   @override
@@ -196,22 +198,24 @@ class _$Idle<T> implements Idle<T> {
 }
 
 abstract class Idle<T> implements Result<T> {
-  const factory Idle() = _$Idle<T>;
+  const factory Idle() = _$IdleImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$DataCopyWith<T, $Res> {
-  factory _$$DataCopyWith(_$Data<T> value, $Res Function(_$Data<T>) then) =
-      __$$DataCopyWithImpl<T, $Res>;
+abstract class _$$DataImplCopyWith<T, $Res> {
+  factory _$$DataImplCopyWith(
+          _$DataImpl<T> value, $Res Function(_$DataImpl<T>) then) =
+      __$$DataImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({T value});
 }
 
 /// @nodoc
-class __$$DataCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$Data<T>>
-    implements _$$DataCopyWith<T, $Res> {
-  __$$DataCopyWithImpl(_$Data<T> _value, $Res Function(_$Data<T>) _then)
+class __$$DataImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$DataImpl<T>>
+    implements _$$DataImplCopyWith<T, $Res> {
+  __$$DataImplCopyWithImpl(
+      _$DataImpl<T> _value, $Res Function(_$DataImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -219,7 +223,7 @@ class __$$DataCopyWithImpl<T, $Res>
   $Res call({
     Object? value = freezed,
   }) {
-    return _then(_$Data<T>(
+    return _then(_$DataImpl<T>(
       freezed == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -230,8 +234,8 @@ class __$$DataCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$Data<T> implements Data<T> {
-  const _$Data(this.value);
+class _$DataImpl<T> implements Data<T> {
+  const _$DataImpl(this.value);
 
   @override
   final T value;
@@ -245,7 +249,7 @@ class _$Data<T> implements Data<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$Data<T> &&
+            other is _$DataImpl<T> &&
             const DeepCollectionEquality().equals(other.value, value));
   }
 
@@ -256,8 +260,8 @@ class _$Data<T> implements Data<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataCopyWith<T, _$Data<T>> get copyWith =>
-      __$$DataCopyWithImpl<T, _$Data<T>>(this, _$identity);
+  _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
+      __$$DataImplCopyWithImpl<T, _$DataImpl<T>>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -336,34 +340,34 @@ class _$Data<T> implements Data<T> {
 }
 
 abstract class Data<T> implements Result<T> {
-  const factory Data(final T value) = _$Data<T>;
+  const factory Data(final T value) = _$DataImpl<T>;
 
   T get value;
   @JsonKey(ignore: true)
-  _$$DataCopyWith<T, _$Data<T>> get copyWith =>
+  _$$DataImplCopyWith<T, _$DataImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$LoadingCopyWith<T, $Res> {
-  factory _$$LoadingCopyWith(
-          _$Loading<T> value, $Res Function(_$Loading<T>) then) =
-      __$$LoadingCopyWithImpl<T, $Res>;
+abstract class _$$LoadingImplCopyWith<T, $Res> {
+  factory _$$LoadingImplCopyWith(
+          _$LoadingImpl<T> value, $Res Function(_$LoadingImpl<T>) then) =
+      __$$LoadingImplCopyWithImpl<T, $Res>;
 }
 
 /// @nodoc
-class __$$LoadingCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$Loading<T>>
-    implements _$$LoadingCopyWith<T, $Res> {
-  __$$LoadingCopyWithImpl(
-      _$Loading<T> _value, $Res Function(_$Loading<T>) _then)
+class __$$LoadingImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$LoadingImpl<T>>
+    implements _$$LoadingImplCopyWith<T, $Res> {
+  __$$LoadingImplCopyWithImpl(
+      _$LoadingImpl<T> _value, $Res Function(_$LoadingImpl<T>) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$Loading<T> implements Loading<T> {
-  const _$Loading();
+class _$LoadingImpl<T> implements Loading<T> {
+  const _$LoadingImpl();
 
   @override
   String toString() {
@@ -373,7 +377,7 @@ class _$Loading<T> implements Loading<T> {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$Loading<T>);
+        (other.runtimeType == runtimeType && other is _$LoadingImpl<T>);
   }
 
   @override
@@ -456,24 +460,24 @@ class _$Loading<T> implements Loading<T> {
 }
 
 abstract class Loading<T> implements Result<T> {
-  const factory Loading() = _$Loading<T>;
+  const factory Loading() = _$LoadingImpl<T>;
 }
 
 /// @nodoc
-abstract class _$$ErrorDetailsCopyWith<T, $Res> {
-  factory _$$ErrorDetailsCopyWith(
-          _$ErrorDetails<T> value, $Res Function(_$ErrorDetails<T>) then) =
-      __$$ErrorDetailsCopyWithImpl<T, $Res>;
+abstract class _$$ErrorDetailsImplCopyWith<T, $Res> {
+  factory _$$ErrorDetailsImplCopyWith(_$ErrorDetailsImpl<T> value,
+          $Res Function(_$ErrorDetailsImpl<T>) then) =
+      __$$ErrorDetailsImplCopyWithImpl<T, $Res>;
   @useResult
   $Res call({Exception? exception, StackTrace? stackTrace});
 }
 
 /// @nodoc
-class __$$ErrorDetailsCopyWithImpl<T, $Res>
-    extends _$ResultCopyWithImpl<T, $Res, _$ErrorDetails<T>>
-    implements _$$ErrorDetailsCopyWith<T, $Res> {
-  __$$ErrorDetailsCopyWithImpl(
-      _$ErrorDetails<T> _value, $Res Function(_$ErrorDetails<T>) _then)
+class __$$ErrorDetailsImplCopyWithImpl<T, $Res>
+    extends _$ResultCopyWithImpl<T, $Res, _$ErrorDetailsImpl<T>>
+    implements _$$ErrorDetailsImplCopyWith<T, $Res> {
+  __$$ErrorDetailsImplCopyWithImpl(
+      _$ErrorDetailsImpl<T> _value, $Res Function(_$ErrorDetailsImpl<T>) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -482,7 +486,7 @@ class __$$ErrorDetailsCopyWithImpl<T, $Res>
     Object? exception = freezed,
     Object? stackTrace = freezed,
   }) {
-    return _then(_$ErrorDetails<T>(
+    return _then(_$ErrorDetailsImpl<T>(
       freezed == exception
           ? _value.exception
           : exception // ignore: cast_nullable_to_non_nullable
@@ -497,8 +501,8 @@ class __$$ErrorDetailsCopyWithImpl<T, $Res>
 
 /// @nodoc
 
-class _$ErrorDetails<T> implements ErrorDetails<T> {
-  const _$ErrorDetails([this.exception, this.stackTrace]);
+class _$ErrorDetailsImpl<T> implements ErrorDetails<T> {
+  const _$ErrorDetailsImpl([this.exception, this.stackTrace]);
 
   @override
   final Exception? exception;
@@ -514,7 +518,7 @@ class _$ErrorDetails<T> implements ErrorDetails<T> {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorDetails<T> &&
+            other is _$ErrorDetailsImpl<T> &&
             (identical(other.exception, exception) ||
                 other.exception == exception) &&
             (identical(other.stackTrace, stackTrace) ||
@@ -527,8 +531,9 @@ class _$ErrorDetails<T> implements ErrorDetails<T> {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ErrorDetailsCopyWith<T, _$ErrorDetails<T>> get copyWith =>
-      __$$ErrorDetailsCopyWithImpl<T, _$ErrorDetails<T>>(this, _$identity);
+  _$$ErrorDetailsImplCopyWith<T, _$ErrorDetailsImpl<T>> get copyWith =>
+      __$$ErrorDetailsImplCopyWithImpl<T, _$ErrorDetailsImpl<T>>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -609,11 +614,11 @@ class _$ErrorDetails<T> implements ErrorDetails<T> {
 abstract class ErrorDetails<T> implements Result<T> {
   const factory ErrorDetails(
       [final Exception? exception,
-      final StackTrace? stackTrace]) = _$ErrorDetails<T>;
+      final StackTrace? stackTrace]) = _$ErrorDetailsImpl<T>;
 
   Exception? get exception;
   StackTrace? get stackTrace;
   @JsonKey(ignore: true)
-  _$$ErrorDetailsCopyWith<T, _$ErrorDetails<T>> get copyWith =>
+  _$$ErrorDetailsImplCopyWith<T, _$ErrorDetailsImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

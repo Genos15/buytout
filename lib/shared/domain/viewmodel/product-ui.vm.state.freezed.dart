@@ -87,11 +87,11 @@ class _$ProductUiStateCopyWithImpl<$Res, $Val extends ProductUiState>
 }
 
 /// @nodoc
-abstract class _$$_ProductUiStateCopyWith<$Res>
+abstract class _$$ProductUiStateImplCopyWith<$Res>
     implements $ProductUiStateCopyWith<$Res> {
-  factory _$$_ProductUiStateCopyWith(
-          _$_ProductUiState value, $Res Function(_$_ProductUiState) then) =
-      __$$_ProductUiStateCopyWithImpl<$Res>;
+  factory _$$ProductUiStateImplCopyWith(_$ProductUiStateImpl value,
+          $Res Function(_$ProductUiStateImpl) then) =
+      __$$ProductUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ProdLite input, ProdDetails product});
@@ -103,11 +103,11 @@ abstract class _$$_ProductUiStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductUiStateCopyWithImpl<$Res>
-    extends _$ProductUiStateCopyWithImpl<$Res, _$_ProductUiState>
-    implements _$$_ProductUiStateCopyWith<$Res> {
-  __$$_ProductUiStateCopyWithImpl(
-      _$_ProductUiState _value, $Res Function(_$_ProductUiState) _then)
+class __$$ProductUiStateImplCopyWithImpl<$Res>
+    extends _$ProductUiStateCopyWithImpl<$Res, _$ProductUiStateImpl>
+    implements _$$ProductUiStateImplCopyWith<$Res> {
+  __$$ProductUiStateImplCopyWithImpl(
+      _$ProductUiStateImpl _value, $Res Function(_$ProductUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +116,7 @@ class __$$_ProductUiStateCopyWithImpl<$Res>
     Object? input = null,
     Object? product = null,
   }) {
-    return _then(_$_ProductUiState(
+    return _then(_$ProductUiStateImpl(
       input: null == input
           ? _value.input
           : input // ignore: cast_nullable_to_non_nullable
@@ -131,12 +131,12 @@ class __$$_ProductUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductUiState extends _ProductUiState {
-  const _$_ProductUiState({required this.input, required this.product})
+class _$ProductUiStateImpl extends _ProductUiState {
+  const _$ProductUiStateImpl({required this.input, required this.product})
       : super._();
 
-  factory _$_ProductUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductUiStateFromJson(json);
+  factory _$ProductUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductUiStateImplFromJson(json);
 
   @override
   final ProdLite input;
@@ -152,7 +152,7 @@ class _$_ProductUiState extends _ProductUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductUiState &&
+            other is _$ProductUiStateImpl &&
             (identical(other.input, input) || other.input == input) &&
             (identical(other.product, product) || other.product == product));
   }
@@ -164,12 +164,13 @@ class _$_ProductUiState extends _ProductUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductUiStateCopyWith<_$_ProductUiState> get copyWith =>
-      __$$_ProductUiStateCopyWithImpl<_$_ProductUiState>(this, _$identity);
+  _$$ProductUiStateImplCopyWith<_$ProductUiStateImpl> get copyWith =>
+      __$$ProductUiStateImplCopyWithImpl<_$ProductUiStateImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductUiStateToJson(
+    return _$$ProductUiStateImplToJson(
       this,
     );
   }
@@ -178,11 +179,11 @@ class _$_ProductUiState extends _ProductUiState {
 abstract class _ProductUiState extends ProductUiState {
   const factory _ProductUiState(
       {required final ProdLite input,
-      required final ProdDetails product}) = _$_ProductUiState;
+      required final ProdDetails product}) = _$ProductUiStateImpl;
   const _ProductUiState._() : super._();
 
   factory _ProductUiState.fromJson(Map<String, dynamic> json) =
-      _$_ProductUiState.fromJson;
+      _$ProductUiStateImpl.fromJson;
 
   @override
   ProdLite get input;
@@ -190,6 +191,6 @@ abstract class _ProductUiState extends ProductUiState {
   ProdDetails get product;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductUiStateCopyWith<_$_ProductUiState> get copyWith =>
+  _$$ProductUiStateImplCopyWith<_$ProductUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

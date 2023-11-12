@@ -1,4 +1,3 @@
-import 'package:buytout/config/index.dart';
 import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
@@ -24,27 +23,33 @@ class HomeUi extends ConsumerWidget {
       ),
       slivers: [
         if (dataReady)
-          SliverPadding(
-            padding: const EdgeInsets.all(LayoutDimens.p16),
-            sliver: SliverToBoxAdapter(
-              child: OutfitAdsTmp(
-                onPressed: () => context.go(
-                  '/category',
-                  extra: homeUiVmState.requireValue.primary,
+          SliverList.builder(
+            itemCount: homeUiVmState.requireValue.specialCategories.length,
+            itemBuilder: (context, index) {
+              final categories = homeUiVmState.requireValue.specialCategories;
+              final category = categories.elementAt(index);
+
+              var insets = const EdgeInsets.only(
+                left: LayoutDimens.p16,
+                right: LayoutDimens.p16,
+                bottom: LayoutDimens.p16,
+              );
+
+              if (category.fullWidth) {
+                insets = const EdgeInsets.only(bottom: LayoutDimens.p16);
+              }
+
+              return Padding(
+                padding: insets,
+                child: HtmlCategoryCard(
+                  category: category,
+                  onPressed: () => context.go(
+                    '/category',
+                    extra: category,
+                  ),
                 ),
-              ),
-            ),
-          ),
-        if (dataReady)
-          SliverToBoxAdapter(
-            child: CustomCard.image(
-              categoryName: homeUiVmState.requireValue.secondary.categoryNameEn,
-              imageUrl: homeUiVmState.requireValue.secondary.imageUrl,
-              onPressed: () => context.go(
-                '/category',
-                extra: homeUiVmState.requireValue.secondary,
-              ),
-            ),
+              );
+            },
           ),
         if (dataReady)
           SliverPadding(
@@ -61,15 +66,14 @@ class HomeUi extends ConsumerWidget {
                 mainAxisSpacing: LayoutDimens.s16,
               ),
               itemBuilder: (context, index) {
-                final productCategory =
-                    homeUiVmState.requireValue.categories[index];
+                final category = homeUiVmState.requireValue.categories[index];
                 return CustomCard.content(
-                  categoryName: productCategory.categoryNameEn.toUpperCase(),
+                  categoryName: category.categoryNameEn.toUpperCase(),
                   categoryDescription: 'description',
-                  imageUrl: Environment.imageLink,
+                  imageUrl: category.imageUrl,
                   onPressed: () => context.go(
                     '/category',
-                    extra: productCategory,
+                    extra: category,
                   ),
                 );
               },

@@ -6,18 +6,18 @@ part of 'home-ui.vm.state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_HomeUiState _$$_HomeUiStateFromJson(Map<String, dynamic> json) =>
-    _$_HomeUiState(
-      primary: Category.fromJson(json['primary'] as Map<String, dynamic>),
-      secondary: Category.fromJson(json['secondary'] as Map<String, dynamic>),
+_$HomeUiStateImpl _$$HomeUiStateImplFromJson(Map<String, dynamic> json) =>
+    _$HomeUiStateImpl(
+      specialCategories: (json['specialCategories'] as List<dynamic>)
+          .map((e) => Category.fromJson(e as Map<String, dynamic>))
+          .toList(),
       categories: (json['categories'] as List<dynamic>)
           .map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_HomeUiStateToJson(_$_HomeUiState instance) =>
+Map<String, dynamic> _$$HomeUiStateImplToJson(_$HomeUiStateImpl instance) =>
     <String, dynamic>{
-      'primary': instance.primary,
-      'secondary': instance.secondary,
+      'specialCategories': instance.specialCategories,
       'categories': instance.categories,
     };

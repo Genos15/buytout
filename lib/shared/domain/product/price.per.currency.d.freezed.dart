@@ -80,11 +80,11 @@ class _$PricePerCurrencyCopyWithImpl<$Res, $Val extends PricePerCurrency>
 }
 
 /// @nodoc
-abstract class _$$_PricePerCurrencyCopyWith<$Res>
+abstract class _$$PricePerCurrencyImplCopyWith<$Res>
     implements $PricePerCurrencyCopyWith<$Res> {
-  factory _$$_PricePerCurrencyCopyWith(
-          _$_PricePerCurrency value, $Res Function(_$_PricePerCurrency) then) =
-      __$$_PricePerCurrencyCopyWithImpl<$Res>;
+  factory _$$PricePerCurrencyImplCopyWith(_$PricePerCurrencyImpl value,
+          $Res Function(_$PricePerCurrencyImpl) then) =
+      __$$PricePerCurrencyImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,11 +94,11 @@ abstract class _$$_PricePerCurrencyCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PricePerCurrencyCopyWithImpl<$Res>
-    extends _$PricePerCurrencyCopyWithImpl<$Res, _$_PricePerCurrency>
-    implements _$$_PricePerCurrencyCopyWith<$Res> {
-  __$$_PricePerCurrencyCopyWithImpl(
-      _$_PricePerCurrency _value, $Res Function(_$_PricePerCurrency) _then)
+class __$$PricePerCurrencyImplCopyWithImpl<$Res>
+    extends _$PricePerCurrencyCopyWithImpl<$Res, _$PricePerCurrencyImpl>
+    implements _$$PricePerCurrencyImplCopyWith<$Res> {
+  __$$PricePerCurrencyImplCopyWithImpl(_$PricePerCurrencyImpl _value,
+      $Res Function(_$PricePerCurrencyImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -108,7 +108,7 @@ class __$$_PricePerCurrencyCopyWithImpl<$Res>
     Object? euro = freezed,
     Object? dollar = freezed,
   }) {
-    return _then(_$_PricePerCurrency(
+    return _then(_$PricePerCurrencyImpl(
       xaf: null == xaf
           ? _value.xaf
           : xaf // ignore: cast_nullable_to_non_nullable
@@ -128,15 +128,15 @@ class __$$_PricePerCurrencyCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PricePerCurrency extends _PricePerCurrency {
-  const _$_PricePerCurrency(
+class _$PricePerCurrencyImpl extends _PricePerCurrency {
+  const _$PricePerCurrencyImpl(
       {@JsonKey(name: 'XAF') required this.xaf,
       @JsonKey(name: 'EURO') this.euro = null,
       @JsonKey(name: 'DOLLAR') this.dollar = null})
       : super._();
 
-  factory _$_PricePerCurrency.fromJson(Map<String, dynamic> json) =>
-      _$$_PricePerCurrencyFromJson(json);
+  factory _$PricePerCurrencyImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PricePerCurrencyImplFromJson(json);
 
   @override
   @JsonKey(name: 'XAF')
@@ -157,7 +157,7 @@ class _$_PricePerCurrency extends _PricePerCurrency {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PricePerCurrency &&
+            other is _$PricePerCurrencyImpl &&
             (identical(other.xaf, xaf) || other.xaf == xaf) &&
             (identical(other.euro, euro) || other.euro == euro) &&
             (identical(other.dollar, dollar) || other.dollar == dollar));
@@ -170,12 +170,13 @@ class _$_PricePerCurrency extends _PricePerCurrency {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PricePerCurrencyCopyWith<_$_PricePerCurrency> get copyWith =>
-      __$$_PricePerCurrencyCopyWithImpl<_$_PricePerCurrency>(this, _$identity);
+  _$$PricePerCurrencyImplCopyWith<_$PricePerCurrencyImpl> get copyWith =>
+      __$$PricePerCurrencyImplCopyWithImpl<_$PricePerCurrencyImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PricePerCurrencyToJson(
+    return _$$PricePerCurrencyImplToJson(
       this,
     );
   }
@@ -185,11 +186,11 @@ abstract class _PricePerCurrency extends PricePerCurrency {
   const factory _PricePerCurrency(
       {@JsonKey(name: 'XAF') required final int xaf,
       @JsonKey(name: 'EURO') final int? euro,
-      @JsonKey(name: 'DOLLAR') final int? dollar}) = _$_PricePerCurrency;
+      @JsonKey(name: 'DOLLAR') final int? dollar}) = _$PricePerCurrencyImpl;
   const _PricePerCurrency._() : super._();
 
   factory _PricePerCurrency.fromJson(Map<String, dynamic> json) =
-      _$_PricePerCurrency.fromJson;
+      _$PricePerCurrencyImpl.fromJson;
 
   @override
   @JsonKey(name: 'XAF')
@@ -202,6 +203,6 @@ abstract class _PricePerCurrency extends PricePerCurrency {
   int? get dollar;
   @override
   @JsonKey(ignore: true)
-  _$$_PricePerCurrencyCopyWith<_$_PricePerCurrency> get copyWith =>
+  _$$PricePerCurrencyImplCopyWith<_$PricePerCurrencyImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

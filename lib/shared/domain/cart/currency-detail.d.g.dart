@@ -6,13 +6,14 @@ part of 'currency-detail.d.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CurrencyDetail _$$_CurrencyDetailFromJson(Map<String, dynamic> json) =>
-    _$_CurrencyDetail(
+_$CurrencyDetailImpl _$$CurrencyDetailImplFromJson(Map<String, dynamic> json) =>
+    _$CurrencyDetailImpl(
       currencyCode: json['currencyCode'] as String,
       currencySymbol: json['currencySymbol'] as String,
     );
 
-Map<String, dynamic> _$$_CurrencyDetailToJson(_$_CurrencyDetail instance) =>
+Map<String, dynamic> _$$CurrencyDetailImplToJson(
+        _$CurrencyDetailImpl instance) =>
     <String, dynamic>{
       'currencyCode': instance.currencyCode,
       'currencySymbol': instance.currencySymbol,

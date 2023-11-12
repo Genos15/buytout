@@ -84,11 +84,11 @@ class _$ShoppingCartItemCopyWithImpl<$Res, $Val extends ShoppingCartItem>
 }
 
 /// @nodoc
-abstract class _$$_ShoppingCartItemCopyWith<$Res>
+abstract class _$$ShoppingCartItemImplCopyWith<$Res>
     implements $ShoppingCartItemCopyWith<$Res> {
-  factory _$$_ShoppingCartItemCopyWith(
-          _$_ShoppingCartItem value, $Res Function(_$_ShoppingCartItem) then) =
-      __$$_ShoppingCartItemCopyWithImpl<$Res>;
+  factory _$$ShoppingCartItemImplCopyWith(_$ShoppingCartItemImpl value,
+          $Res Function(_$ShoppingCartItemImpl) then) =
+      __$$ShoppingCartItemImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int quantity, ProdLite product, dynamic productAttribute});
@@ -98,11 +98,11 @@ abstract class _$$_ShoppingCartItemCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ShoppingCartItemCopyWithImpl<$Res>
-    extends _$ShoppingCartItemCopyWithImpl<$Res, _$_ShoppingCartItem>
-    implements _$$_ShoppingCartItemCopyWith<$Res> {
-  __$$_ShoppingCartItemCopyWithImpl(
-      _$_ShoppingCartItem _value, $Res Function(_$_ShoppingCartItem) _then)
+class __$$ShoppingCartItemImplCopyWithImpl<$Res>
+    extends _$ShoppingCartItemCopyWithImpl<$Res, _$ShoppingCartItemImpl>
+    implements _$$ShoppingCartItemImplCopyWith<$Res> {
+  __$$ShoppingCartItemImplCopyWithImpl(_$ShoppingCartItemImpl _value,
+      $Res Function(_$ShoppingCartItemImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -112,7 +112,7 @@ class __$$_ShoppingCartItemCopyWithImpl<$Res>
     Object? product = null,
     Object? productAttribute = freezed,
   }) {
-    return _then(_$_ShoppingCartItem(
+    return _then(_$ShoppingCartItemImpl(
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -131,15 +131,15 @@ class __$$_ShoppingCartItemCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ShoppingCartItem extends _ShoppingCartItem {
-  const _$_ShoppingCartItem(
+class _$ShoppingCartItemImpl extends _ShoppingCartItem {
+  const _$ShoppingCartItemImpl(
       {required this.quantity,
       required this.product,
       this.productAttribute = null})
       : super._();
 
-  factory _$_ShoppingCartItem.fromJson(Map<String, dynamic> json) =>
-      _$$_ShoppingCartItemFromJson(json);
+  factory _$ShoppingCartItemImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ShoppingCartItemImplFromJson(json);
 
   @override
   final int quantity;
@@ -158,7 +158,7 @@ class _$_ShoppingCartItem extends _ShoppingCartItem {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ShoppingCartItem &&
+            other is _$ShoppingCartItemImpl &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.product, product) || other.product == product) &&
@@ -174,12 +174,13 @@ class _$_ShoppingCartItem extends _ShoppingCartItem {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ShoppingCartItemCopyWith<_$_ShoppingCartItem> get copyWith =>
-      __$$_ShoppingCartItemCopyWithImpl<_$_ShoppingCartItem>(this, _$identity);
+  _$$ShoppingCartItemImplCopyWith<_$ShoppingCartItemImpl> get copyWith =>
+      __$$ShoppingCartItemImplCopyWithImpl<_$ShoppingCartItemImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ShoppingCartItemToJson(
+    return _$$ShoppingCartItemImplToJson(
       this,
     );
   }
@@ -189,11 +190,11 @@ abstract class _ShoppingCartItem extends ShoppingCartItem {
   const factory _ShoppingCartItem(
       {required final int quantity,
       required final ProdLite product,
-      final dynamic productAttribute}) = _$_ShoppingCartItem;
+      final dynamic productAttribute}) = _$ShoppingCartItemImpl;
   const _ShoppingCartItem._() : super._();
 
   factory _ShoppingCartItem.fromJson(Map<String, dynamic> json) =
-      _$_ShoppingCartItem.fromJson;
+      _$ShoppingCartItemImpl.fromJson;
 
   @override
   int get quantity;
@@ -203,6 +204,6 @@ abstract class _ShoppingCartItem extends ShoppingCartItem {
   dynamic get productAttribute;
   @override
   @JsonKey(ignore: true)
-  _$$_ShoppingCartItemCopyWith<_$_ShoppingCartItem> get copyWith =>
+  _$$ShoppingCartItemImplCopyWith<_$ShoppingCartItemImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -10,8 +10,7 @@ class HomeUiState with _$HomeUiState {
   const HomeUiState._();
 
   const factory HomeUiState({
-    required Category primary,
-    required Category secondary,
+    required List<Category> specialCategories,
     required List<Category> categories,
   }) = _HomeUiState;
 

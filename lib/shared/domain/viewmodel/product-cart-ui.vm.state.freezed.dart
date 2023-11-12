@@ -78,11 +78,11 @@ class _$ProductCartUiStateCopyWithImpl<$Res, $Val extends ProductCartUiState>
 }
 
 /// @nodoc
-abstract class _$$_ProductCartUiStateCopyWith<$Res>
+abstract class _$$ProductCartUiStateImplCopyWith<$Res>
     implements $ProductCartUiStateCopyWith<$Res> {
-  factory _$$_ProductCartUiStateCopyWith(_$_ProductCartUiState value,
-          $Res Function(_$_ProductCartUiState) then) =
-      __$$_ProductCartUiStateCopyWithImpl<$Res>;
+  factory _$$ProductCartUiStateImplCopyWith(_$ProductCartUiStateImpl value,
+          $Res Function(_$ProductCartUiStateImpl) then) =
+      __$$ProductCartUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int quantity, ProdDetails product});
@@ -92,11 +92,11 @@ abstract class _$$_ProductCartUiStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ProductCartUiStateCopyWithImpl<$Res>
-    extends _$ProductCartUiStateCopyWithImpl<$Res, _$_ProductCartUiState>
-    implements _$$_ProductCartUiStateCopyWith<$Res> {
-  __$$_ProductCartUiStateCopyWithImpl(
-      _$_ProductCartUiState _value, $Res Function(_$_ProductCartUiState) _then)
+class __$$ProductCartUiStateImplCopyWithImpl<$Res>
+    extends _$ProductCartUiStateCopyWithImpl<$Res, _$ProductCartUiStateImpl>
+    implements _$$ProductCartUiStateImplCopyWith<$Res> {
+  __$$ProductCartUiStateImplCopyWithImpl(_$ProductCartUiStateImpl _value,
+      $Res Function(_$ProductCartUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +105,7 @@ class __$$_ProductCartUiStateCopyWithImpl<$Res>
     Object? quantity = null,
     Object? product = null,
   }) {
-    return _then(_$_ProductCartUiState(
+    return _then(_$ProductCartUiStateImpl(
       quantity: null == quantity
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
@@ -120,12 +120,13 @@ class __$$_ProductCartUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ProductCartUiState extends _ProductCartUiState {
-  const _$_ProductCartUiState({required this.quantity, required this.product})
+class _$ProductCartUiStateImpl extends _ProductCartUiState {
+  const _$ProductCartUiStateImpl(
+      {required this.quantity, required this.product})
       : super._();
 
-  factory _$_ProductCartUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_ProductCartUiStateFromJson(json);
+  factory _$ProductCartUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ProductCartUiStateImplFromJson(json);
 
   @override
   final int quantity;
@@ -141,7 +142,7 @@ class _$_ProductCartUiState extends _ProductCartUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ProductCartUiState &&
+            other is _$ProductCartUiStateImpl &&
             (identical(other.quantity, quantity) ||
                 other.quantity == quantity) &&
             (identical(other.product, product) || other.product == product));
@@ -154,13 +155,13 @@ class _$_ProductCartUiState extends _ProductCartUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ProductCartUiStateCopyWith<_$_ProductCartUiState> get copyWith =>
-      __$$_ProductCartUiStateCopyWithImpl<_$_ProductCartUiState>(
+  _$$ProductCartUiStateImplCopyWith<_$ProductCartUiStateImpl> get copyWith =>
+      __$$ProductCartUiStateImplCopyWithImpl<_$ProductCartUiStateImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ProductCartUiStateToJson(
+    return _$$ProductCartUiStateImplToJson(
       this,
     );
   }
@@ -169,11 +170,11 @@ class _$_ProductCartUiState extends _ProductCartUiState {
 abstract class _ProductCartUiState extends ProductCartUiState {
   const factory _ProductCartUiState(
       {required final int quantity,
-      required final ProdDetails product}) = _$_ProductCartUiState;
+      required final ProdDetails product}) = _$ProductCartUiStateImpl;
   const _ProductCartUiState._() : super._();
 
   factory _ProductCartUiState.fromJson(Map<String, dynamic> json) =
-      _$_ProductCartUiState.fromJson;
+      _$ProductCartUiStateImpl.fromJson;
 
   @override
   int get quantity;
@@ -181,6 +182,6 @@ abstract class _ProductCartUiState extends ProductCartUiState {
   ProdDetails get product;
   @override
   @JsonKey(ignore: true)
-  _$$_ProductCartUiStateCopyWith<_$_ProductCartUiState> get copyWith =>
+  _$$ProductCartUiStateImplCopyWith<_$ProductCartUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

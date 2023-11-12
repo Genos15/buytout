@@ -6,8 +6,9 @@ part of 'category-ui.vm.state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CategoryUiState _$$_CategoryUiStateFromJson(Map<String, dynamic> json) =>
-    _$_CategoryUiState(
+_$CategoryUiStateImpl _$$CategoryUiStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CategoryUiStateImpl(
       categoryId: json['categoryId'] as String,
       totalProductCount: json['totalProductCount'] as int,
       products: (json['products'] as List<dynamic>)
@@ -15,7 +16,8 @@ _$_CategoryUiState _$$_CategoryUiStateFromJson(Map<String, dynamic> json) =>
           .toList(),
     );
 
-Map<String, dynamic> _$$_CategoryUiStateToJson(_$_CategoryUiState instance) =>
+Map<String, dynamic> _$$CategoryUiStateImplToJson(
+        _$CategoryUiStateImpl instance) =>
     <String, dynamic>{
       'categoryId': instance.categoryId,
       'totalProductCount': instance.totalProductCount,

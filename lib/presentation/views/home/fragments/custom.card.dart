@@ -76,7 +76,7 @@ class CustomCard extends StatelessWidget {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: '${categoryName!.toUpperCase()}\n',
+                      text: '$categoryName\n',
                       style: AppTextStyles.normalBoldOf(context),
                     ),
                     TextSpan(
@@ -85,6 +85,7 @@ class CustomCard extends StatelessWidget {
                     )
                   ],
                 ),
+                textAlign: TextAlign.left,
               ),
             ),
         ],

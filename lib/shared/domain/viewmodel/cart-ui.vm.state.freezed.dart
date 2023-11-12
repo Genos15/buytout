@@ -72,11 +72,11 @@ class _$CartUiStateCopyWithImpl<$Res, $Val extends CartUiState>
 }
 
 /// @nodoc
-abstract class _$$_CartUiStateCopyWith<$Res>
+abstract class _$$CartUiStateImplCopyWith<$Res>
     implements $CartUiStateCopyWith<$Res> {
-  factory _$$_CartUiStateCopyWith(
-          _$_CartUiState value, $Res Function(_$_CartUiState) then) =
-      __$$_CartUiStateCopyWithImpl<$Res>;
+  factory _$$CartUiStateImplCopyWith(
+          _$CartUiStateImpl value, $Res Function(_$CartUiStateImpl) then) =
+      __$$CartUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({OrderStatement cart});
@@ -86,11 +86,11 @@ abstract class _$$_CartUiStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CartUiStateCopyWithImpl<$Res>
-    extends _$CartUiStateCopyWithImpl<$Res, _$_CartUiState>
-    implements _$$_CartUiStateCopyWith<$Res> {
-  __$$_CartUiStateCopyWithImpl(
-      _$_CartUiState _value, $Res Function(_$_CartUiState) _then)
+class __$$CartUiStateImplCopyWithImpl<$Res>
+    extends _$CartUiStateCopyWithImpl<$Res, _$CartUiStateImpl>
+    implements _$$CartUiStateImplCopyWith<$Res> {
+  __$$CartUiStateImplCopyWithImpl(
+      _$CartUiStateImpl _value, $Res Function(_$CartUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -98,7 +98,7 @@ class __$$_CartUiStateCopyWithImpl<$Res>
   $Res call({
     Object? cart = null,
   }) {
-    return _then(_$_CartUiState(
+    return _then(_$CartUiStateImpl(
       cart: null == cart
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
@@ -109,11 +109,11 @@ class __$$_CartUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CartUiState extends _CartUiState {
-  const _$_CartUiState({required this.cart}) : super._();
+class _$CartUiStateImpl extends _CartUiState {
+  const _$CartUiStateImpl({required this.cart}) : super._();
 
-  factory _$_CartUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_CartUiStateFromJson(json);
+  factory _$CartUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartUiStateImplFromJson(json);
 
   @override
   final OrderStatement cart;
@@ -127,7 +127,7 @@ class _$_CartUiState extends _CartUiState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CartUiState &&
+            other is _$CartUiStateImpl &&
             (identical(other.cart, cart) || other.cart == cart));
   }
 
@@ -138,12 +138,12 @@ class _$_CartUiState extends _CartUiState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartUiStateCopyWith<_$_CartUiState> get copyWith =>
-      __$$_CartUiStateCopyWithImpl<_$_CartUiState>(this, _$identity);
+  _$$CartUiStateImplCopyWith<_$CartUiStateImpl> get copyWith =>
+      __$$CartUiStateImplCopyWithImpl<_$CartUiStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CartUiStateToJson(
+    return _$$CartUiStateImplToJson(
       this,
     );
   }
@@ -151,16 +151,16 @@ class _$_CartUiState extends _CartUiState {
 
 abstract class _CartUiState extends CartUiState {
   const factory _CartUiState({required final OrderStatement cart}) =
-      _$_CartUiState;
+      _$CartUiStateImpl;
   const _CartUiState._() : super._();
 
   factory _CartUiState.fromJson(Map<String, dynamic> json) =
-      _$_CartUiState.fromJson;
+      _$CartUiStateImpl.fromJson;
 
   @override
   OrderStatement get cart;
   @override
   @JsonKey(ignore: true)
-  _$$_CartUiStateCopyWith<_$_CartUiState> get copyWith =>
+  _$$CartUiStateImplCopyWith<_$CartUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

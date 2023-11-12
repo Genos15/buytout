@@ -20,8 +20,7 @@ HomeUiState _$HomeUiStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$HomeUiState {
-  Category get primary => throw _privateConstructorUsedError;
-  Category get secondary => throw _privateConstructorUsedError;
+  List<Category> get specialCategories => throw _privateConstructorUsedError;
   List<Category> get categories => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,10 +35,7 @@ abstract class $HomeUiStateCopyWith<$Res> {
           HomeUiState value, $Res Function(HomeUiState) then) =
       _$HomeUiStateCopyWithImpl<$Res, HomeUiState>;
   @useResult
-  $Res call({Category primary, Category secondary, List<Category> categories});
-
-  $CategoryCopyWith<$Res> get primary;
-  $CategoryCopyWith<$Res> get secondary;
+  $Res call({List<Category> specialCategories, List<Category> categories});
 }
 
 /// @nodoc
@@ -55,83 +51,52 @@ class _$HomeUiStateCopyWithImpl<$Res, $Val extends HomeUiState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? primary = null,
-    Object? secondary = null,
+    Object? specialCategories = null,
     Object? categories = null,
   }) {
     return _then(_value.copyWith(
-      primary: null == primary
-          ? _value.primary
-          : primary // ignore: cast_nullable_to_non_nullable
-              as Category,
-      secondary: null == secondary
-          ? _value.secondary
-          : secondary // ignore: cast_nullable_to_non_nullable
-              as Category,
+      specialCategories: null == specialCategories
+          ? _value.specialCategories
+          : specialCategories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
       categories: null == categories
           ? _value.categories
           : categories // ignore: cast_nullable_to_non_nullable
               as List<Category>,
     ) as $Val);
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get primary {
-    return $CategoryCopyWith<$Res>(_value.primary, (value) {
-      return _then(_value.copyWith(primary: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get secondary {
-    return $CategoryCopyWith<$Res>(_value.secondary, (value) {
-      return _then(_value.copyWith(secondary: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_HomeUiStateCopyWith<$Res>
+abstract class _$$HomeUiStateImplCopyWith<$Res>
     implements $HomeUiStateCopyWith<$Res> {
-  factory _$$_HomeUiStateCopyWith(
-          _$_HomeUiState value, $Res Function(_$_HomeUiState) then) =
-      __$$_HomeUiStateCopyWithImpl<$Res>;
+  factory _$$HomeUiStateImplCopyWith(
+          _$HomeUiStateImpl value, $Res Function(_$HomeUiStateImpl) then) =
+      __$$HomeUiStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Category primary, Category secondary, List<Category> categories});
-
-  @override
-  $CategoryCopyWith<$Res> get primary;
-  @override
-  $CategoryCopyWith<$Res> get secondary;
+  $Res call({List<Category> specialCategories, List<Category> categories});
 }
 
 /// @nodoc
-class __$$_HomeUiStateCopyWithImpl<$Res>
-    extends _$HomeUiStateCopyWithImpl<$Res, _$_HomeUiState>
-    implements _$$_HomeUiStateCopyWith<$Res> {
-  __$$_HomeUiStateCopyWithImpl(
-      _$_HomeUiState _value, $Res Function(_$_HomeUiState) _then)
+class __$$HomeUiStateImplCopyWithImpl<$Res>
+    extends _$HomeUiStateCopyWithImpl<$Res, _$HomeUiStateImpl>
+    implements _$$HomeUiStateImplCopyWith<$Res> {
+  __$$HomeUiStateImplCopyWithImpl(
+      _$HomeUiStateImpl _value, $Res Function(_$HomeUiStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? primary = null,
-    Object? secondary = null,
+    Object? specialCategories = null,
     Object? categories = null,
   }) {
-    return _then(_$_HomeUiState(
-      primary: null == primary
-          ? _value.primary
-          : primary // ignore: cast_nullable_to_non_nullable
-              as Category,
-      secondary: null == secondary
-          ? _value.secondary
-          : secondary // ignore: cast_nullable_to_non_nullable
-              as Category,
+    return _then(_$HomeUiStateImpl(
+      specialCategories: null == specialCategories
+          ? _value._specialCategories
+          : specialCategories // ignore: cast_nullable_to_non_nullable
+              as List<Category>,
       categories: null == categories
           ? _value._categories
           : categories // ignore: cast_nullable_to_non_nullable
@@ -142,21 +107,26 @@ class __$$_HomeUiStateCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_HomeUiState extends _HomeUiState {
-  const _$_HomeUiState(
-      {required this.primary,
-      required this.secondary,
+class _$HomeUiStateImpl extends _HomeUiState {
+  const _$HomeUiStateImpl(
+      {required final List<Category> specialCategories,
       required final List<Category> categories})
-      : _categories = categories,
+      : _specialCategories = specialCategories,
+        _categories = categories,
         super._();
 
-  factory _$_HomeUiState.fromJson(Map<String, dynamic> json) =>
-      _$$_HomeUiStateFromJson(json);
+  factory _$HomeUiStateImpl.fromJson(Map<String, dynamic> json) =>
+      _$$HomeUiStateImplFromJson(json);
 
+  final List<Category> _specialCategories;
   @override
-  final Category primary;
-  @override
-  final Category secondary;
+  List<Category> get specialCategories {
+    if (_specialCategories is EqualUnmodifiableListView)
+      return _specialCategories;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_specialCategories);
+  }
+
   final List<Category> _categories;
   @override
   List<Category> get categories {
@@ -167,35 +137,36 @@ class _$_HomeUiState extends _HomeUiState {
 
   @override
   String toString() {
-    return 'HomeUiState(primary: $primary, secondary: $secondary, categories: $categories)';
+    return 'HomeUiState(specialCategories: $specialCategories, categories: $categories)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_HomeUiState &&
-            (identical(other.primary, primary) || other.primary == primary) &&
-            (identical(other.secondary, secondary) ||
-                other.secondary == secondary) &&
+            other is _$HomeUiStateImpl &&
+            const DeepCollectionEquality()
+                .equals(other._specialCategories, _specialCategories) &&
             const DeepCollectionEquality()
                 .equals(other._categories, _categories));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, primary, secondary,
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_specialCategories),
       const DeepCollectionEquality().hash(_categories));
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_HomeUiStateCopyWith<_$_HomeUiState> get copyWith =>
-      __$$_HomeUiStateCopyWithImpl<_$_HomeUiState>(this, _$identity);
+  _$$HomeUiStateImplCopyWith<_$HomeUiStateImpl> get copyWith =>
+      __$$HomeUiStateImplCopyWithImpl<_$HomeUiStateImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_HomeUiStateToJson(
+    return _$$HomeUiStateImplToJson(
       this,
     );
   }
@@ -203,22 +174,19 @@ class _$_HomeUiState extends _HomeUiState {
 
 abstract class _HomeUiState extends HomeUiState {
   const factory _HomeUiState(
-      {required final Category primary,
-      required final Category secondary,
-      required final List<Category> categories}) = _$_HomeUiState;
+      {required final List<Category> specialCategories,
+      required final List<Category> categories}) = _$HomeUiStateImpl;
   const _HomeUiState._() : super._();
 
   factory _HomeUiState.fromJson(Map<String, dynamic> json) =
-      _$_HomeUiState.fromJson;
+      _$HomeUiStateImpl.fromJson;
 
   @override
-  Category get primary;
-  @override
-  Category get secondary;
+  List<Category> get specialCategories;
   @override
   List<Category> get categories;
   @override
   @JsonKey(ignore: true)
-  _$$_HomeUiStateCopyWith<_$_HomeUiState> get copyWith =>
+  _$$HomeUiStateImplCopyWith<_$HomeUiStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

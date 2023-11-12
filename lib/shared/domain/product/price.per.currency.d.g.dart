@@ -6,14 +6,16 @@ part of 'price.per.currency.d.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PricePerCurrency _$$_PricePerCurrencyFromJson(Map<String, dynamic> json) =>
-    _$_PricePerCurrency(
+_$PricePerCurrencyImpl _$$PricePerCurrencyImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PricePerCurrencyImpl(
       xaf: json['XAF'] as int,
       euro: json['EURO'] as int? ?? null,
       dollar: json['DOLLAR'] as int? ?? null,
     );
 
-Map<String, dynamic> _$$_PricePerCurrencyToJson(_$_PricePerCurrency instance) =>
+Map<String, dynamic> _$$PricePerCurrencyImplToJson(
+        _$PricePerCurrencyImpl instance) =>
     <String, dynamic>{
       'XAF': instance.xaf,
       'EURO': instance.euro,

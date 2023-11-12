@@ -1,8 +1,6 @@
-import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:html/dom.dart' as dom;
 
 const _htmlContent = r'''
 <body>
@@ -38,7 +36,7 @@ class OrderSummaryFooter extends StatelessWidget {
                   ),
                 ],
               ),
-              getSpaceBetween(),
+              spaceBetween(),
               TableRow(
                 children: [
                   const AutoSizeText('Frais de service'),
@@ -48,7 +46,7 @@ class OrderSummaryFooter extends StatelessWidget {
                   ),
                 ],
               ),
-              getSpaceBetween(),
+              spaceBetween(),
               TableRow(
                 children: [
                   const AutoSizeText('Frais de livraison'),
@@ -58,7 +56,7 @@ class OrderSummaryFooter extends StatelessWidget {
                   ),
                 ],
               ),
-              getSpaceBetween(),
+              spaceBetween(),
               TableRow(
                 children: [
                   const AutoSizeText('Total'),
@@ -70,21 +68,12 @@ class OrderSummaryFooter extends StatelessWidget {
               ),
             ],
           ),
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: LayoutDimens.p24),
-            child: SubmitButton(text: 'Commander'),
-          ),
           Html(
             shrinkWrap: true,
             data: _htmlContent,
-            onLinkTap: (
-              String? url,
-              Map<String, String> attributes,
-              dom.Element? element,
-            ) {},
             style: {
               "body": Style(
-                margin: Margins.all(0),
+                margin: Margins.zero,
                 fontSize: FontSize.small,
                 padding: HtmlPaddings.zero,
               ),
@@ -95,8 +84,8 @@ class OrderSummaryFooter extends StatelessWidget {
     );
   }
 
-  TableRow getSpaceBetween() => const TableRow(
-        children: <Widget>[
+  TableRow spaceBetween() => const TableRow(
+        children: [
           SizedBox(height: LayoutDimens.s12),
           SizedBox(height: LayoutDimens.s12),
         ],

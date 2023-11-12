@@ -6,12 +6,14 @@ part of 'bottom.nav-ui.vm.state.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_BottomNavUiState _$$_BottomNavUiStateFromJson(Map<String, dynamic> json) =>
-    _$_BottomNavUiState(
+_$BottomNavUiStateImpl _$$BottomNavUiStateImplFromJson(
+        Map<String, dynamic> json) =>
+    _$BottomNavUiStateImpl(
       current: $enumDecode(_$BottomNavStateEnumMap, json['current']),
     );
 
-Map<String, dynamic> _$$_BottomNavUiStateToJson(_$_BottomNavUiState instance) =>
+Map<String, dynamic> _$$BottomNavUiStateImplToJson(
+        _$BottomNavUiStateImpl instance) =>
     <String, dynamic>{
       'current': _$BottomNavStateEnumMap[instance.current]!,
     };

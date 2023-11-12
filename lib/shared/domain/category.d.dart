@@ -14,6 +14,9 @@ class Category with _$Category {
     @Default(null) String? parentCategoryId,
     required String categoryNameEn,
     @Default('') String imageUrl,
+    @Default(null) String? html,
+    @Default(false) bool fullWidth,
+    @Default('#FFFFFF') String bgColor,
     @Default({}) Map<String, dynamic> categoryNameOtherLanguages,
   }) = _Category;
 
