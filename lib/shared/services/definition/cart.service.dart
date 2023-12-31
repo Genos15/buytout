@@ -1,20 +1,20 @@
+
+import 'dart:async';
+
 import 'package:buytout/shared/index.dart';
 
 abstract interface class CartService {
-  Future<Result<Cart>> find();
 
-  Future<Result<Cart>> update({required Cart cart});
-
-  Future<Result<bool>> clear();
-
-  Future<Result<int>> addToCart({
-    required Product product,
+  Future<bool> addToCart({
+    required String productId,
     required int quantity,
   });
 
-  void addListener(void Function() listener);
+  Future<OrderStatement> getCart();
 
-  void removeListener(void Function() listener);
+  void addListener(FutureOr<void> Function() listener);
+
+  void removeListener(FutureOr<void> Function() listener);
 
   int getListenerCount();
 }

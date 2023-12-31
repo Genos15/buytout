@@ -14,30 +14,30 @@ class BottomNavigationBarM3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return NavigationBar(
-      backgroundColor: CommonColors.white.color,
-      shadowColor: CommonColors.white.color,
+      backgroundColor: const Color(CommonColors.white),
+      shadowColor: const Color(CommonColors.white),
       onDestinationSelected: onDestinationSelected,
       selectedIndex: index,
       destinations: const <NavigationDestination>[
         NavigationDestination(
           selectedIcon: Icon(CarbonIcons.store),
           icon: Icon(CarbonIcons.store),
-          label: 'Shop',
+          label: 'Boutique',
         ),
         NavigationDestination(
           selectedIcon: Icon(CarbonIcons.shopping_catalog),
           icon: Icon(CarbonIcons.shopping_bag),
-          label: 'Cart',
+          label: 'Panier',
         ),
         NavigationDestination(
           selectedIcon: Icon(CarbonIcons.favorite_filled),
           icon: Icon(CarbonIcons.favorite),
-          label: 'Favorite',
+          label: 'Favoris',
         ),
         NavigationDestination(
           selectedIcon: Icon(CarbonIcons.user_filled),
           icon: Icon(CarbonIcons.user),
-          label: 'Account',
+          label: 'Compte',
         ),
       ],
     );

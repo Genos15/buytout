@@ -1,5 +1,5 @@
 abstract class TextDimens {
-  static const baseSize = 14.0;
+  static const baseSize = 16.0;
   static const none = 0;
   static const xs = 0.75;
   static const sm = 0.875;

@@ -7,7 +7,7 @@ extension TextWidgetExtension on Widget {
       child: SizedBox(
         height: LayoutDimens.s16,
         width: LayoutDimens.s64,
-        child: Container(color: CommonColors.red10.color),
+        child: Container(color: const Color(CommonColors.red10)),
       ),
     );
   }
@@ -17,7 +17,7 @@ extension TextWidgetExtension on Widget {
       child: SizedBox(
         height: LayoutDimens.s16,
         width: LayoutDimens.s128,
-        child: Container(color: CommonColors.red10.color),
+        child: Container(color: const Color(CommonColors.red10)),
       ),
     );
   }
@@ -35,10 +35,10 @@ extension TextWidgetExtension on Widget {
 
     TextStyle blackStyle;
     if (textWidget.style == null) {
-      blackStyle = TextStyle(color: CommonColors.black900.color);
+      blackStyle = const TextStyle(color: Color(CommonColors.black900));
     } else {
       blackStyle = textWidget.style!.copyWith(
-        color: CommonColors.black900.color,
+        color: const Color(CommonColors.black900),
       );
     }
 

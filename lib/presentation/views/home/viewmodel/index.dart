@@ -1,2 +1,1 @@
-export 'home.viewmodel.dart';
-export 'home.viewmodel.state.dart';
+export 'home-ui.vm.dart';

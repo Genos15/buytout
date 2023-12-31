@@ -20,8 +20,8 @@ extension TextSpanWidgetExtension on TextSpan {
   TextSpan get disable {
     final disableStyle = switch (style) {
       (TextStyle? s) when s != null =>
-        s.copyWith(color: CommonColors.gray500.color),
-      _ => TextStyle(color: CommonColors.gray500.color),
+        s.copyWith(color: const Color(CommonColors.gray500)),
+      _ => const TextStyle(color: Color(CommonColors.gray500)),
     };
     return TextSpan(text: text, style: disableStyle);
   }
@@ -69,9 +69,9 @@ extension TextSpanWidgetExtension on TextSpan {
   TextSpan color(int color) {
     TextStyle coloredStyle;
     if (style == null) {
-      coloredStyle = TextStyle(color: color.color);
+      coloredStyle = TextStyle(color: Color(color));
     } else {
-      coloredStyle = style!.copyWith(color: color.color);
+      coloredStyle = style!.copyWith(color: Color(color));
     }
     return TextSpan(text: text, style: coloredStyle);
   }

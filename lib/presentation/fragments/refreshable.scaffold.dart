@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:buytout/shared/colors/common.colors.dart';
 import 'package:buytout/shared/extensions/index.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class RefreshableScaffold extends StatelessWidget {
   final Widget? header;
   final ScrollController? scrollController;
   final double gap;
+  final int background;
 
   const RefreshableScaffold({
     Key? key,
@@ -20,11 +22,13 @@ class RefreshableScaffold extends StatelessWidget {
     this.header,
     this.scrollController,
     this.gap = 0.0,
+    this.background = CommonColors.beige,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final safePadding = MediaQuery.of(context).padding.bottom;
+    final safePadding = MediaQuery.paddingOf(context).bottom;
+
     return switch (Platform.isIOS) {
       true => _RefreshableScaffoldIOS(
           slivers: slivers,
@@ -34,6 +38,7 @@ class RefreshableScaffold extends StatelessWidget {
           gap: gap,
           header: header,
           safePadding: safePadding,
+          background: background,
         ),
       _ when Platform.isAndroid => _RefreshableScaffoldAndroid(
           slivers: slivers,
@@ -43,6 +48,7 @@ class RefreshableScaffold extends StatelessWidget {
           gap: gap,
           header: header,
           safePadding: safePadding,
+          background: background,
         ),
       _ => const SizedBox.shrink(),
     };
@@ -57,6 +63,7 @@ class _RefreshableScaffoldAndroid extends StatelessWidget {
   final ScrollController? scrollController;
   final double gap;
   final double safePadding;
+  final int background;
 
   const _RefreshableScaffoldAndroid({
     Key? key,
@@ -67,6 +74,7 @@ class _RefreshableScaffoldAndroid extends StatelessWidget {
     this.scrollController,
     this.gap = 0.0,
     this.header,
+    required this.background,
   }) : super(key: key);
 
   @override
@@ -74,6 +82,8 @@ class _RefreshableScaffoldAndroid extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: true,
+        backgroundColor: Color(background),
         body: RefreshIndicator(
           onRefresh: onRefresh ?? () async {},
           child: Stack(
@@ -102,6 +112,7 @@ class _RefreshableScaffoldIOS extends StatelessWidget {
   final ScrollController? scrollController;
   final double gap;
   final double safePadding;
+  final int background;
 
   const _RefreshableScaffoldIOS({
     Key? key,
@@ -112,6 +123,7 @@ class _RefreshableScaffoldIOS extends StatelessWidget {
     required this.safePadding,
     this.gap = 0.0,
     this.header,
+    required this.background,
   }) : super(key: key);
 
   @override
@@ -119,6 +131,8 @@ class _RefreshableScaffoldIOS extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
+        backgroundColor: Color(background),
+        resizeToAvoidBottomInset: true,
         body: Stack(
           children: [
             CustomScrollView(

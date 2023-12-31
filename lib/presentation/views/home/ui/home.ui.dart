@@ -2,40 +2,83 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class HomeUI extends StatelessWidget {
-  const HomeUI({super.key});
+class HomeUi extends ConsumerWidget {
+  const HomeUi({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final homeUiVmState = ref.watch(homeUiVmProvider);
+
+    final dataReady = homeUiVmState.hasValue;
+
     return RefreshableScaffold(
-      header: Header.home(
+      background: CommonColors.white,
+      header: Header(
+        bottomNavState: BottomNavState.home,
         title: TextTitle1(
           'Showcase',
           textAlign: TextAlign.start,
-          style: TextStyle(color: CommonColors.black900.color),
+          style: AppTextStyles.specialLargeBoldOf(context),
         ),
       ),
       slivers: [
-        const SliverPadding(
-          padding: EdgeInsets.all(LayoutDimens.p8),
-          sliver: SliverToBoxAdapter(
-            child: SectionSeparator(
-              title: 'Popular',
-              subtitle: 'Most paid product of the community',
+        if (dataReady)
+          SliverList.builder(
+            itemCount: homeUiVmState.requireValue.specialCategories.length,
+            itemBuilder: (context, index) {
+              final categories = homeUiVmState.requireValue.specialCategories;
+              final category = categories.elementAt(index);
+
+              var insets = const EdgeInsets.only(
+                left: LayoutDimens.p16,
+                right: LayoutDimens.p16,
+                bottom: LayoutDimens.p16,
+              );
+
+              if (category.fullWidth) {
+                insets = const EdgeInsets.only(bottom: LayoutDimens.p16);
+              }
+
+              return Padding(
+                padding: insets,
+                child: HtmlCategoryCard(
+                  category: category,
+                  onPressed: () => context.go(
+                    '/category',
+                    extra: category,
+                  ),
+                ),
+              );
+            },
+          ),
+        if (dataReady)
+          SliverPadding(
+            padding: const EdgeInsets.all(LayoutDimens.p16),
+            sliver: SliverGrid.builder(
+              itemCount: homeUiVmState.requireValue.categories.length,
+              addSemanticIndexes: false,
+              addRepaintBoundaries: false,
+              addAutomaticKeepAlives: false,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                childAspectRatio: LayoutDimens.ar1_14,
+                crossAxisCount: 2,
+                crossAxisSpacing: LayoutDimens.s16,
+                mainAxisSpacing: LayoutDimens.s16,
+              ),
+              itemBuilder: (context, index) {
+                final category = homeUiVmState.requireValue.categories[index];
+                return CustomCard.content(
+                  categoryName: category.categoryNameEn.toUpperCase(),
+                  categoryDescription: 'description',
+                  imageUrl: category.imageUrl,
+                  onPressed: () => context.go(
+                    '/category',
+                    extra: category,
+                  ),
+                );
+              },
             ),
           ),
-        ),
-        const ProductListFragment.arrival().sliverBox,
-        const SliverPadding(
-          padding: EdgeInsets.all(LayoutDimens.p8),
-          sliver: SliverToBoxAdapter(
-            child: SectionSeparator(
-              title: 'Suggested for you',
-              subtitle: 'Based on area interests',
-            ),
-          ),
-        ),
-        const ProductListFragment.best().sp8,
       ],
     );
   }

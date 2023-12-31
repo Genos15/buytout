@@ -5,7 +5,7 @@ var logger = Logger(
     methodCount: 2,
     errorMethodCount: 8,
     // lineLength: 120,
-    colors: true,
+    colors: false,
     printEmojis: true,
     printTime: false,
   ),

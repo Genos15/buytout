@@ -1,5 +1,5 @@
 import 'package:buytout/shared/index.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class QuantityIndicator extends StatelessWidget {
   final int availableQuantity;
@@ -21,37 +21,41 @@ class QuantityIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: double.infinity,
-      padding: EdgeInsets.zero,
-      decoration: BoxDecoration(
-        color: CommonColors.gray100.color,
-        borderRadius: BorderRadius.circular(iconSize),
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: onDecrement,
-            child: Icon(
-              CarbonIcons.subtract_alt,
-              size: iconSize,
-              color: iconColor,
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(iconSize),
+      child: Container(
+        color: const Color(CommonColors.gray50),
+        constraints: BoxConstraints(
+          maxWidth: double.infinity,
+          maxHeight: iconSize,
+          minHeight: iconSize,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Flexible(
+              flex: 1,
+              child: IconButton.outlined(
+                padding: EdgeInsets.zero,
+                onPressed: onDecrement,
+                icon: Icon(CarbonIcons.subtract, size: iconSize),
+              ),
             ),
-          ),
-          Text('$quantity'),
-          CupertinoButton(
-            padding: EdgeInsets.zero,
-            onPressed: onIncrement,
-            child: Icon(
-              CarbonIcons.add_filled,
-              size: iconSize,
-              color: iconColor,
+            Flexible(
+              flex: 1,
+              child: AutoSizeText(quantity.toString(), maxLines: 1),
             ),
-          ),
-        ],
+            Flexible(
+              flex: 1,
+              child: IconButton.filledTonal(
+                padding: EdgeInsets.zero,
+                onPressed: onIncrement,
+                icon: Icon(CarbonIcons.add, size: iconSize),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

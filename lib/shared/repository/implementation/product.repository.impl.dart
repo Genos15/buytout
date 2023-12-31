@@ -4,143 +4,91 @@ import 'package:buytout/config/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/services.dart';
 
-final productRepoProvider = Provider.autoDispose<ProductRepo>((ref) {
-  final db = ref.watch(databaseProvider);
-  return ProductRepoImpl(db);
+final productRepositoryProvider =
+    Provider.autoDispose<ProductRepository>((ref) {
+  final gqlClient = ref.watch(gqlClientProvider);
+
+  return ProductRepositoryImpl(gqlClient);
 });
 
-const kImageExtension = 'jpg';
+class ProductRepositoryImpl implements ProductRepository {
+  final GraphQLClient gqlClient;
 
-class ProductRepoImpl implements ProductRepo {
-  final DatabaseClient client;
   static const kPageSize = 50;
   final rootIsolateToken = RootIsolateToken.instance;
 
-  ProductRepoImpl(this.client) {
-    init(database: client.database);
-  }
-
-  void init({required Database? database}) async {
-    if (database == null) {
-      return;
-    }
-
-    try {
-      final apiResult = await httpClient.get('v1/products', params: {
-        'first': kPageSize,
-      });
-
-      final entries = apiResult['data'] as List;
-      final imageURL = Environment.imageBaseURL;
-
-      for (final entry in entries) {
-        Isolate.run(() async {
-          BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken!);
-          final productId = entry['id'];
-
-          final images = List.generate(5, (index) {
-            final position = 'image${index + 1}';
-            if (entry[position] == null) {
-              return null;
-            }
-            return {imageURL, productId, entry[position]}.join('/');
-          }).map((link) {
-            return link == null ? link : {link, kImageExtension}.join('.');
-          });
-
-          final product = Product.fromJson({
-            ...entry,
-            'runtimeType': 'output',
-            'image1': images.elementAtOrNull(0),
-            'image2': images.elementAtOrNull(1),
-            'image3': images.elementAtOrNull(2),
-            'image4': images.elementAtOrNull(3),
-            'image5': images.elementAtOrNull(4),
-          });
-          await insert(product: product);
-        });
-      }
-    } on Exception catch (e, s) {
-      logger.e('Loading error', e, s);
-    }
-  }
+  ProductRepositoryImpl(this.gqlClient);
 
   @override
-  Future<bool> delete({required String productId}) {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<int> deleteAll({required List<String> productIdList}) {
-    // TODO: implement deleteAll
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<Product> find({required String productId}) async {
-    final database = client.database;
-    if (database == null) {
-      throw DatabaseNotReadyException();
-    }
-    final [entry] = await Isolate.run(() {
-      BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken!);
-      return database.query(
-        kProductTableName,
-        where: "id = ?",
-        whereArgs: [productId],
-        limit: 1,
-      );
-    });
-
-    return Product.fromJson({...entry, 'runtimeType': 'output'});
-  }
-
-  @override
-  Future<Iterable<Product>> findAll({
+  Future<Iterable<ProdLite>> getProductByCategoryId({
+    required String productCategoryId,
     required int first,
     String? after,
   }) async {
-    final database = client.database;
-    if (database == null) {
-      return [];
+    final options = QueryOptions(
+      document: categoryProductRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['categoryProducts'],
+      variables: {
+        'categoryId': productCategoryId,
+        'first': first,
+        'after': after,
+        'searchText': null,
+      },
+    );
+
+    final apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      throw apiResult.exception!;
     }
 
-    final entries = await Isolate.run(() async {
-      BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken!);
-      return await database.query(
-        kProductTableName,
-        orderBy: "id",
-        limit: first,
-      );
-    });
-
     return Isolate.run(() {
-      BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken!);
-      final productList = <Product>[];
-
-      for (final entry in entries) {
-        final product = Product.fromJson({...entry, 'runtimeType': 'output'});
-        productList.add(product);
-      }
-
-      return productList;
+      final nodes = ConnectionHelper.deserialize(apiResult.parsedData);
+      final products = nodes.map((node) => ProdLite.fromJson(node));
+      return products;
     });
   }
 
   @override
-  Future<int> insert({required Product product}) {
-    final database = client.database;
-    if (database == null) {
-      throw DatabaseNotReadyException();
+  Future<int> getTotalProductCount({required String productCategoryId}) async {
+    var options = QueryOptions(
+      document: categoryProductCountRequest,
+      fetchPolicy: FetchPolicy.noCache,
+      cacheRereadPolicy: CacheRereadPolicy.ignoreAll,
+      optimisticResult: true,
+      parserFn: (data) => data['category'],
+      variables: {
+        'categoryId': productCategoryId,
+      },
+    );
+
+    var apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      // throw apiResult.exception!;
     }
-    return Isolate.run(() async {
-      BackgroundIsolateBinaryMessenger.ensureInitialized(rootIsolateToken!);
-      return await database.insert(
-        kProductTableName,
-        product.toJson()..remove('runtimeType'),
-        conflictAlgorithm: ConflictAlgorithm.replace,
-      );
-    });
+
+    return 91;
+  }
+
+  @override
+  Future<ProdDetails> getProductById({required String productId}) async {
+    var options = QueryOptions(
+      document: productRequest,
+      fetchPolicy: FetchPolicy.cacheAndNetwork,
+      parserFn: (data) => data['product'],
+      variables: {
+        'productId': productId,
+      },
+    );
+
+    var apiResult = await gqlClient.query(options);
+
+    if (apiResult.hasException) {
+      throw apiResult.exception!;
+    }
+
+    return Isolate.run(() => ProdDetails.fromJson(apiResult.parsedData));
   }
 }

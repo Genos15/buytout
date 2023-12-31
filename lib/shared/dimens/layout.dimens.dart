@@ -24,6 +24,7 @@ abstract class LayoutDimens {
 
   // s = size = Height, Width
   static const s0 = 0.0;
+  static const s0_5 = 0.5;
   static const s1 = 1.0;
   static const s2 = 2.0;
   static const s4 = 4.0;

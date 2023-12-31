@@ -2,52 +2,132 @@ import 'package:buytout/presentation/index.dart';
 import 'package:buytout/shared/index.dart';
 import 'package:flutter/material.dart';
 
-class CartUI extends ConsumerWidget {
-  const CartUI({Key? key}) : super(key: key);
+class CartUi extends ConsumerWidget {
+  const CartUi({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final cartResult = ref.watch(cartViewModelProvider);
+    final vm = ref.watch(cartUiVmProvider.notifier);
+    final cartUiVmState = ref.watch(cartUiVmProvider);
 
     return RefreshableScaffold(
-      header: Header.cart(
-        title: Text(
-          'Cart',
+      background: CommonColors.white,
+      onRefresh: () async {
+        vm.fetchCurrentCart();
+      },
+      header: const Header(
+        bottomNavState: BottomNavState.cart,
+        centerTitle: true,
+        title: AutoSizeText(
+          'Mon panier',
           textAlign: TextAlign.center,
-          style: TextStyle(color: CommonColors.black900.color),
+          style: TextStyle(color: Color(CommonColors.black900)),
         ),
       ),
-      slivers: [
-        cartResult.when(
-          (cart) => ProductCartList(cart: cart),
-          idle: () => const SizedBox.shrink().sliverBox,
-          loading: () => const SizedBox.shrink().sliverBox,
-          error: (e, s) => const SizedBox.shrink().sliverBox,
-        ),
-        const SpaceDivider().sliverBox,
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [Text('Subtotal'), Text('800 FCFA')],
-        ).sliverBox.sp12,
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [Text('Delivery fee'), Text('250 FCFA')],
-        ).sliverBox.sp12,
-        const SpaceDivider().sliverBox,
-        const Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          mainAxisSize: MainAxisSize.max,
-          children: [Text('Total'), Text('1050 FCFA')],
-        ).sliverBox.sp12,
-      ],
+      slivers: switch (cartUiVmState) {
+        AsyncData() => [
+            SliverToBoxAdapter(
+              child: _CartResumeBanner(
+                productCount: vm.items.length,
+                amount: vm.productTotalAmount,
+              ),
+            ),
+            ProductCartList(items: vm.items, currencyDetail: vm.currencyDetail),
+            const SliverToBoxAdapter(child: SizedBox(height: LayoutDimens.s96)),
+          ],
+        AsyncLoading() => [
+            const SliverFillRemaining(
+              child: Center(
+                child: CircularProgressIndicator.adaptive(),
+              ),
+            ),
+          ],
+        _ => [
+            SliverFillRemaining(
+              child: Center(
+                child: AutoSizeText(
+                  "Votre panier est vide",
+                  style: AppTextStyles.normalOf(context),
+                ),
+              ),
+            ),
+          ],
+      },
       overlays: [
-        Align(
-          alignment: Alignment.bottomCenter,
-          child: SubmitButton(text: 'Check out', onPressed: () {}).p12,
-        ),
+        if (cartUiVmState.hasValue)
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+              width: double.infinity,
+              padding: const EdgeInsets.all(LayoutDimens.p12),
+              decoration: const BoxDecoration(
+                color: Color(CommonColors.white),
+                border: Border(
+                  top: BorderSide(
+                    color: Color(CommonColors.gray20_carbon),
+                    width: LayoutDimens.s0_5,
+                  ),
+                ),
+              ),
+              child: TextSubmitButton(
+                text: 'Confirmer la commande',
+                onPressed: () {
+                  vm.goToOrderSummaryPage((statement) {
+                    context.go('/order-summary', extra: statement);
+                  });
+                },
+              ),
+            ),
+          )
       ],
+    );
+  }
+}
+
+
+class _CartResumeBanner extends StatelessWidget {
+  final int productCount;
+  final String amount;
+
+  const _CartResumeBanner({required this.productCount, required this.amount});
+
+  @override
+  Widget build(BuildContext context) {
+    final small = AppTextStyles.smallOf(context);
+    return Container(
+      padding: const EdgeInsets.all(LayoutDimens.p12),
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(
+            color: Color(CommonColors.gray20_carbon),
+            width: LayoutDimens.s0_5,
+          ),
+          bottom: BorderSide(
+            color: Color(CommonColors.gray20_carbon),
+            width: LayoutDimens.s0_5,
+          ),
+        ),
+      ),
+      child: Center(
+        child: AutoSizeText.rich(
+          TextSpan(
+            children: [
+              TextSpan(
+                text: '$productCount Articles: Total (hors livraison)',
+                style: small,
+              ),
+              TextSpan(text: ' • ', style: small),
+              TextSpan(
+                text: amount,
+                style: small.copyWith(
+                  color: const Color(CommonColors.gray100_carbon),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
